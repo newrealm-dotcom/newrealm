@@ -6,16 +6,16 @@ visual identity, experience journey, the signature 3D hero, and the motion syste
 > **Correction (this revision):** an earlier draft of this document invented a
 > "3D and motion design studio" positioning, a fictional 8-realm brand
 > narrative, and a made-up portfolio/testimonial/metrics for New Realm
-> Graphics. None of that was sourced from the real business. New Realm
-> Graphics is an actual Denver, Colorado design studio, 20+ years in
-> business, offering website design, graphic and logo design, packaging
-> design, product/print design, and digital marketing (verified via search —
-> this session could not directly browse newrealm.com due to network
-> restrictions). The sections below have been corrected to only state
-> verified facts. The dark, crystal-hero, premium visual *treatment* is kept
-> as a deliberate stylistic choice for this rebuild, not a claim about the
-> studio's own positioning — flagged explicitly wherever that distinction
-> matters.
+> Graphics. None of that was sourced from the real business. This session
+> cannot browse newrealm.com directly (network restrictions), so an initial
+> correction pass relied on search-result snippets; the owner then supplied
+> the real logo file and the verbatim text of newrealm.com/services/
+> (including the owner/operator bio), which now supersede the earlier
+> snippet-derived copy wherever they overlap. The sections below state only
+> verified or directly-supplied facts. The dark, crystal-hero, premium visual
+> *treatment* is kept as a deliberate stylistic choice for this rebuild, not
+> a claim about the studio's own positioning — flagged explicitly wherever
+> that distinction matters.
 
 ---
 
@@ -93,8 +93,8 @@ Sourced content only — no invented process steps or testimonials.
 |---|---|---|---|
 | 0 | Loader | Set tone before content paints | Stylistic — logo mark assembles, progress as a thin light line |
 | 1 | Hero | First impression + instant value clarity | Real tagline ("Trends come and go. Diamonds are forever."), real positioning (20+ yrs, small-business focus) |
-| 2 | About | Frame the studio's experience | Real fact: 20+ years, staying progressive with current design standards |
-| 3 | Services | What they do, make it concrete | Real service list: Website Design, Graphic & Logo Design, Packaging & Product Design, Digital Marketing |
+| 2 | Owner & Operator | Who's behind the work | Verbatim bio supplied by the owner: Mike Franco, 25 years in design/print/web, leads digital marketing, SEO/AEO, and site maintenance |
+| 3 | Services | What they do, make it concrete | Verbatim service copy from newrealm.com/services/: Website Development & Graphic Design, Website Design/Dev/Maintenance (HTML/CSS/PHP/Java), Graphic Design & Printing, Product/Packaging Design, Digital Marketing (SEO/AEO/PPC/etc.) |
 | 4 | Portfolio | Credibility | Two real, linked case studies: Popcorn Frights Film Festival, Eric Kline Productions |
 | 5 | CTA / Contact | Convert | Get a Quote — project form (not yet wired to a real backend/inbox) |
 | 6 | Footer | Wayfinding | Sitemap, Denver location, copyright, back-to-top |

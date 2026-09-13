@@ -3,7 +3,13 @@ import { Reveal } from '../components/Reveal'
 import { KineticText } from '../components/KineticText'
 import { MagneticButton } from '../components/MagneticButton'
 
-const PROJECT_TYPES = ['Website Design', 'Graphic & Logo Design', 'Packaging & Product Design', 'Digital Marketing', 'Something else']
+const PROJECT_TYPES = [
+  'Website Development & Design',
+  'Graphic Design & Printing',
+  'Product & Packaging Design',
+  'Digital Marketing (SEO/AEO)',
+  'Something else',
+]
 
 export function CTA() {
   const [status, setStatus] = useState<'idle' | 'submitting' | 'done'>('idle')
