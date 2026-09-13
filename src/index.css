@@ -1,0 +1,116 @@
+@import 'tailwindcss';
+
+@theme {
+  --font-display: 'Bricolage Grotesque', ui-sans-serif, system-ui, sans-serif;
+  --font-body: 'Inter', ui-sans-serif, system-ui, sans-serif;
+
+  --color-void: #06070a;
+  --color-void-2: #0b0d12;
+  --color-void-3: #14161d;
+  --color-bone: #edebe6;
+  --color-bone-dim: #9a9a9e;
+  --color-ion-violet: #7c5cff;
+  --color-ion-cyan: #4ce0d2;
+  --color-metal-gold: #c9a66b;
+  --color-line: rgba(237, 235, 230, 0.1);
+
+  --ease-realm-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-realm-inout: cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-line);
+  }
+
+  html {
+    background: var(--color-void);
+    color-scheme: dark;
+  }
+
+  body {
+    background: var(--color-void);
+    color: var(--color-bone);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background: var(--color-ion-violet);
+    color: var(--color-void);
+  }
+
+  :focus-visible {
+    outline: 1.5px solid var(--color-ion-cyan);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+  }
+}
+
+@layer utilities {
+  .film-grain {
+    position: fixed;
+    inset: 0;
+    z-index: 60;
+    pointer-events: none;
+    opacity: 0.05;
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 160px 160px;
+  }
+
+  .eyebrow {
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--color-bone-dim);
+  }
+
+  /* Applied to the leaf text spans, not the wrapper: background-clip is not
+     inherited, and KineticText nests each word in its own inline-block. */
+  .gradient-text .kinetic-word > span {
+    background: linear-gradient(90deg, var(--color-ion-violet), var(--color-ion-cyan));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .cursor-ring--active {
+    width: 48px;
+    height: 48px;
+    background-color: var(--color-ion-cyan);
+    border-color: transparent;
+  }
+
+  .magnetic {
+    display: inline-flex;
+    will-change: transform;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
