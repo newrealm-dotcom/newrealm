@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://newrealmgraphics.com/sitemap.xml
+Sitemap: https://newrealm.com/sitemap.xml

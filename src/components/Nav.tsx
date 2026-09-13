@@ -2,9 +2,8 @@ import { useEffect, useState } from 'react'
 import { MagneticButton } from './MagneticButton'
 
 const LINKS = [
-  { href: '#capabilities', label: 'Capabilities' },
-  { href: '#process', label: 'Process' },
-  { href: '#work', label: 'Work' },
+  { href: '#capabilities', label: 'Services' },
+  { href: '#work', label: 'Portfolio' },
 ]
 
 export function Nav() {
@@ -61,7 +60,7 @@ export function Nav() {
           onClick={scrollToContact}
           className="rounded-full border border-[var(--color-line)] px-5 py-2 text-sm font-medium text-[var(--color-bone)] transition-colors hover:border-[var(--color-ion-cyan)]"
         >
-          Start a Project
+          Get a Quote
         </MagneticButton>
       </nav>
     </header>

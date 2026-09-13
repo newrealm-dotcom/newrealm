@@ -4,23 +4,23 @@ import { KineticText } from '../components/KineticText'
 const CAPABILITIES = [
   {
     n: '01',
-    title: '3D Product & Brand Visuals',
-    desc: 'Photoreal and stylized 3D renders, hero objects, and campaign visuals built to spec.',
+    title: 'Website Design',
+    desc: 'Custom website design for companies across a wide variety of industries.',
   },
   {
     n: '02',
-    title: 'Motion & Animation',
-    desc: 'Kinetic identity systems, launch films, and interface motion that carries a brand voice.',
+    title: 'Graphic & Logo Design',
+    desc: 'Logo design and brand identity, plus catalogs, brochures, flyers, banners, postcards, and business cards.',
   },
   {
     n: '03',
-    title: 'Interactive Web Experiences',
-    desc: 'Real-time 3D sites and product configurators — engineered, not just decorated.',
+    title: 'Packaging & Product Design',
+    desc: 'Packaging built with the latest software and technology so products stand out and stay end-user friendly.',
   },
   {
     n: '04',
-    title: 'Spatial & Immersive Design',
-    desc: 'Environment design for exhibitions, AR previews, and virtual showrooms.',
+    title: 'Digital Marketing',
+    desc: 'Online marketing, motion graphics, animation, copywriting, and PR.',
   },
 ]
 
@@ -29,10 +29,10 @@ export function Capabilities() {
     <section id="capabilities" data-realm-preset="hidden" className="relative px-6 py-24 md:px-10 md:py-32">
       <div className="mx-auto max-w-[1400px]">
         <Reveal>
-          <p className="eyebrow mb-6">03 / Realm — Capabilities</p>
+          <p className="eyebrow mb-6">Services</p>
         </Reveal>
         <h2 className="mb-16 max-w-2xl font-[family-name:var(--font-display)] text-4xl font-light tracking-tight text-[var(--color-bone)] md:text-5xl">
-          <KineticText text="What we build" />
+          <KineticText text="What we do" />
         </h2>
 
         <div className="grid grid-cols-1 gap-px overflow-hidden rounded-2xl border border-[var(--color-line)] bg-[var(--color-line)] md:grid-cols-2">

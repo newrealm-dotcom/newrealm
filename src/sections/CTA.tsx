@@ -3,7 +3,7 @@ import { Reveal } from '../components/Reveal'
 import { KineticText } from '../components/KineticText'
 import { MagneticButton } from '../components/MagneticButton'
 
-const PROJECT_TYPES = ['3D & Brand Visuals', 'Motion & Animation', 'Interactive Web', 'Spatial / Immersive', 'Something else']
+const PROJECT_TYPES = ['Website Design', 'Graphic & Logo Design', 'Packaging & Product Design', 'Digital Marketing', 'Something else']
 
 export function CTA() {
   const [status, setStatus] = useState<'idle' | 'submitting' | 'done'>('idle')
@@ -40,15 +40,14 @@ export function CTA() {
       <div className="mx-auto grid w-full max-w-[1400px] gap-16 md:grid-cols-2">
         <div>
           <Reveal>
-            <p className="eyebrow mb-6">07 / Realm — Start</p>
+            <p className="eyebrow mb-6">Get a Quote</p>
           </Reveal>
           <h2 className="font-[family-name:var(--font-display)] text-4xl font-light leading-[1.05] tracking-tight text-[var(--color-bone)] md:text-6xl">
-            <KineticText text="Tell us about the world you're building." />
+            <KineticText text="Tell us about your project." />
           </h2>
           <Reveal delay={0.15}>
             <p className="mt-8 max-w-md text-[var(--color-bone-dim)]">
-              Share a few details and we'll respond within two business days with
-              next steps — no automated sales funnel, just the studio.
+              Share a few details and someone from our team will get back to you.
             </p>
           </Reveal>
         </div>
@@ -108,7 +107,7 @@ export function CTA() {
                 disabled={status === 'submitting'}
                 className="w-full rounded-full bg-[var(--color-bone)] px-6 py-3 text-sm font-semibold text-[var(--color-void)] transition-transform hover:scale-[1.01] disabled:opacity-60"
               >
-                {status === 'submitting' ? 'Sending…' : 'Send Project Brief'}
+                {status === 'submitting' ? 'Sending…' : 'Request a Quote'}
               </MagneticButton>
             </form>
           )}

@@ -9,19 +9,16 @@ export function Footer() {
             New Realm Graphics
           </p>
           <p className="mt-1 text-xs text-[var(--color-bone-dim)]">
-            © {YEAR} New Realm Graphics. All rights reserved.
+            Denver, Colorado — © {YEAR} New Realm Graphics. All rights reserved.
           </p>
         </div>
 
         <nav aria-label="Footer" className="flex flex-wrap gap-x-8 gap-y-3 text-sm text-[var(--color-bone-dim)]">
           <a href="#capabilities" data-cursor="hover" className="hover:text-[var(--color-bone)]">
-            Capabilities
-          </a>
-          <a href="#process" data-cursor="hover" className="hover:text-[var(--color-bone)]">
-            Process
+            Services
           </a>
           <a href="#work" data-cursor="hover" className="hover:text-[var(--color-bone)]">
-            Work
+            Portfolio
           </a>
           <a href="#contact" data-cursor="hover" className="hover:text-[var(--color-bone)]">
             Contact

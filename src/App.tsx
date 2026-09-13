@@ -9,9 +9,7 @@ const Scene = lazy(() => import('./three/Scene').then((m) => ({ default: m.Scene
 import { Hero } from './sections/Hero'
 import { Manifesto } from './sections/Manifesto'
 import { Capabilities } from './sections/Capabilities'
-import { Process } from './sections/Process'
 import { Proof } from './sections/Proof'
-import { Testimonial } from './sections/Testimonial'
 import { CTA } from './sections/CTA'
 import { useSmoothScroll } from './lib/useSmoothScroll'
 import { ScrollTrigger } from './lib/motion'
@@ -49,9 +47,7 @@ function App() {
         <Hero />
         <Manifesto />
         <Capabilities />
-        <Process />
         <Proof />
-        <Testimonial />
         <CTA />
       </main>
 

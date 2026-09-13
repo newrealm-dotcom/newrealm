@@ -3,18 +3,30 @@
 This document is the single source of truth for the site build. It covers concept,
 visual identity, experience journey, the signature 3D hero, and the motion system.
 
+> **Correction (this revision):** an earlier draft of this document invented a
+> "3D and motion design studio" positioning, a fictional 8-realm brand
+> narrative, and a made-up portfolio/testimonial/metrics for New Realm
+> Graphics. None of that was sourced from the real business. New Realm
+> Graphics is an actual Denver, Colorado design studio, 20+ years in
+> business, offering website design, graphic and logo design, packaging
+> design, product/print design, and digital marketing (verified via search —
+> this session could not directly browse newrealm.com due to network
+> restrictions). The sections below have been corrected to only state
+> verified facts. The dark, crystal-hero, premium visual *treatment* is kept
+> as a deliberate stylistic choice for this rebuild, not a claim about the
+> studio's own positioning — flagged explicitly wherever that distinction
+> matters.
+
 ---
 
 ## 1. Creative Direction
 
-**Concept — "The Realm."**
-New Realm Graphics builds crafted visual worlds for other brands. The site's
-central metaphor is **The Core**: a single faceted object suspended in a dark
-void that never fully reveals itself at once — it refracts, rotates, and opens
-new facets as you engage with it. It stands for the studio's own craft: precision
-geometry, engineered light, and complexity disciplined into something calm.
-Every section of the site is a distinct "realm" — a self-contained environment
-with its own light and composition — visited in sequence, like chapters.
+**Concept.** New Realm Graphics has spent 20+ years helping small businesses
+succeed online. Real tagline: *"Trends come and go. Diamonds are forever."*
+This rebuild takes that tagline literally as its visual concept — a faceted
+crystal ("The Core") that stays legible and well-made regardless of trend —
+as a premium *presentation* of real, verified services, not an invented
+brand story.
 
 **Positioning.** Precise, quiet, confident. The studio doesn't shout; the work
 does. Confidence expressed through restraint: enormous negative space, one
@@ -66,29 +78,29 @@ nothing overshoots. The Core's facets respond to scroll position, not clicks;
 text reveals with a clip-path wipe, never a fade-only cheap effect; cursor
 becomes a thin reticle ring that magnetizes toward interactive elements.
 
-**Conversion goal.** One primary action — **"Start a Project"** — repeated at
-three calibrated moments (nav, mid-page after proof, final CTA realm), leading
-to a lightweight qualification form. Secondary action — **"View Selected
-Work"** — for browsers not ready to commit.
+**Conversion goal.** One primary action — **"Get a Quote"** (matches the real
+site's `/quote/` page) — repeated at three calibrated moments (nav, mid-page,
+final CTA), leading to a lightweight project form. Secondary action —
+**"View Portfolio"** — for browsers not ready to commit.
 
 ---
 
 ## 2. Experience Journey
 
-| # | Realm | Purpose | Key beats |
+Sourced content only — no invented process steps or testimonials.
+
+| # | Section | Purpose | Content source |
 |---|---|---|---|
-| 0 | Loader | Set tone before content paints | Logo mark assembles from facets, progress as a thin light line |
-| 1 | Hero | Unforgettable first impression + instant value clarity | The Core enters, headline wipes in, one-line value prop, scroll cue |
-| 2 | Manifesto | Frame *why* — the studio's thesis | Large kinetic type, Core recedes to background, ambient |
-| 3 | Capabilities | What we build, make it concrete | 4 capability cards, each with a micro 3D facet preview, hover swaps material |
-| 4 | Process | De-risk the engagement, build trust in method | Horizontal-feel scroll-linked steps 01–04 with a traveling light node |
-| 5 | Proof | Credibility | Selected work grid (image/video tiles, tilt-on-hover), metrics strip |
-| 6 | Testimonial | Emotional/social proof | Single large quote, minimal, client wordmark |
-| 7 | CTA / Contact | Convert | The Core re-enters fully assembled + resolved, qualification form |
-| 8 | Footer | Wayfinding, secondary conversion | Sitemap, socials, copyright, back-to-top |
+| 0 | Loader | Set tone before content paints | Stylistic — logo mark assembles, progress as a thin light line |
+| 1 | Hero | First impression + instant value clarity | Real tagline ("Trends come and go. Diamonds are forever."), real positioning (20+ yrs, small-business focus) |
+| 2 | About | Frame the studio's experience | Real fact: 20+ years, staying progressive with current design standards |
+| 3 | Services | What they do, make it concrete | Real service list: Website Design, Graphic & Logo Design, Packaging & Product Design, Digital Marketing |
+| 4 | Portfolio | Credibility | Two real, linked case studies: Popcorn Frights Film Festival, Eric Kline Productions |
+| 5 | CTA / Contact | Convert | Get a Quote — project form (not yet wired to a real backend/inbox) |
+| 6 | Footer | Wayfinding | Sitemap, Denver location, copyright, back-to-top |
 
 Sticky nav is transparent over the hero, gains a blurred `--void-2` backing
-past realm 1, and always keeps "Start a Project" visible.
+once scrolled, and always keeps "Get a Quote" visible.
 
 ---
 
