@@ -6,8 +6,9 @@
     </linearGradient>
   </defs>
   <rect width="1200" height="630" fill="#06070A"/>
-  <path d="M600 90 L980 320 L840 560 L360 560 L220 320 Z" stroke="url(#g)" stroke-width="2" fill="none" opacity="0.9"/>
-  <path d="M600 90 L600 380 M220 320 L600 380 L980 320 M360 560 L600 380 L840 560" stroke="url(#g)" stroke-width="1.2" opacity="0.55"/>
-  <text x="90" y="560" font-family="Arial, sans-serif" font-size="56" fill="#EDEBE6" letter-spacing="-1">New Realm Graphics</text>
-  <text x="90" y="600" font-family="Arial, sans-serif" font-size="22" fill="#9A9A9E">Crafted visual worlds</text>
+  <rect x="90" y="90" width="220" height="150" rx="12" fill="#ffffff"/>
+  <image x="102" y="108" width="196" height="114" href="nrg-logo.svg" preserveAspectRatio="xMidYMid meet"/>
+  <text x="90" y="360" font-family="Arial, sans-serif" font-size="52" fill="#EDEBE6" letter-spacing="-1">Trends come and go.</text>
+  <text x="90" y="420" font-family="Arial, sans-serif" font-size="52" fill="url(#g)" letter-spacing="-1">Diamonds are forever.</text>
+  <text x="90" y="480" font-family="Arial, sans-serif" font-size="24" fill="#9A9A9E">Denver, Colorado — 20+ years of website, graphic &amp; logo design</text>
 </svg>

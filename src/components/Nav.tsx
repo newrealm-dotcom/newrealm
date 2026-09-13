@@ -27,18 +27,9 @@ export function Nav() {
       }`}
     >
       <nav className="mx-auto flex max-w-[1400px] items-center justify-between px-6 py-5 md:px-10">
-        <a href="#top" className="flex items-center gap-2" data-cursor="hover">
-          <svg width="22" height="22" viewBox="0 0 64 64" fill="none" aria-hidden="true">
-            <path d="M32 6 L54 22 L46 50 L18 50 L10 22 Z" stroke="url(#nav-g)" strokeWidth="2.4" fill="none" />
-            <defs>
-              <linearGradient id="nav-g" x1="8" y1="6" x2="56" y2="58" gradientUnits="userSpaceOnUse">
-                <stop offset="0" stopColor="#7C5CFF" />
-                <stop offset="1" stopColor="#4CE0D2" />
-              </linearGradient>
-            </defs>
-          </svg>
-          <span className="font-[family-name:var(--font-display)] text-sm font-medium tracking-tight text-[var(--color-bone)]">
-            New Realm Graphics
+        <a href="#top" className="flex items-center" data-cursor="hover">
+          <span className="rounded-md bg-white px-2 py-1">
+            <img src="/nrg-logo.svg" alt="New Realm Graphics" className="h-7 w-auto md:h-8" />
           </span>
         </a>
 
