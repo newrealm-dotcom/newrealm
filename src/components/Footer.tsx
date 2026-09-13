@@ -1,37 +1,80 @@
+import { Link } from 'react-router-dom'
+import { SERVICES } from '../data/services'
+
 const YEAR = new Date().getFullYear()
 
 export function Footer() {
   return (
-    <footer className="relative border-t border-[var(--color-line)] px-6 py-12 md:px-10">
-      <div className="mx-auto flex max-w-[1400px] flex-col gap-8 md:flex-row md:items-center md:justify-between">
-        <div>
-          <p className="font-[family-name:var(--font-display)] text-sm text-[var(--color-bone)]">
-            New Realm Graphics
-          </p>
-          <p className="mt-1 text-xs text-[var(--color-bone-dim)]">
-            Denver, Colorado — © {YEAR} New Realm Graphics. All rights reserved.
-          </p>
+    <footer className="border-t border-[var(--color-line-strong)] bg-[var(--color-ink)] px-6 py-16 text-[var(--color-paper)] md:px-10">
+      <div className="mx-auto max-w-[var(--container-wide)]">
+        <div className="grid grid-cols-2 gap-10 pb-14 md:grid-cols-5">
+          <div className="col-span-2">
+            <img src="/nrg-logo-white.svg" alt="New Realm Graphics" className="h-8 w-auto" />
+            <p className="mt-4 max-w-xs text-sm text-[var(--color-paper)]/60">
+              A Denver, Colorado design studio with 20+ years of experience across branding, website design and
+              development, print, packaging, and digital marketing.
+            </p>
+          </div>
+
+          <div>
+            <p className="eyebrow mb-4 text-[var(--color-paper)]/50">Services</p>
+            <ul className="space-y-2.5 text-sm text-[var(--color-paper)]/70">
+              {SERVICES.map((s) => (
+                <li key={s.slug}>
+                  <Link to={`/services/${s.slug}`} className="hover:text-[var(--color-paper)]">
+                    {s.navLabel}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div>
+            <p className="eyebrow mb-4 text-[var(--color-paper)]/50">Company</p>
+            <ul className="space-y-2.5 text-sm text-[var(--color-paper)]/70">
+              <li>
+                <Link to="/work" className="hover:text-[var(--color-paper)]">
+                  Work
+                </Link>
+              </li>
+              <li>
+                <Link to="/about" className="hover:text-[var(--color-paper)]">
+                  About
+                </Link>
+              </li>
+              <li>
+                <Link to="/insights" className="hover:text-[var(--color-paper)]">
+                  Insights
+                </Link>
+              </li>
+              <li>
+                <Link to="/contact" className="hover:text-[var(--color-paper)]">
+                  Contact
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <p className="eyebrow mb-4 text-[var(--color-paper)]/50">Start a Project</p>
+            <p className="mb-4 text-sm text-[var(--color-paper)]/70">Tell us what you're building. We'll follow up shortly.</p>
+            <Link to="/contact" className="btn btn-secondary border-[var(--color-paper)]/30 text-[var(--color-paper)] hover:border-[var(--color-paper)]">
+              Start a Project
+            </Link>
+          </div>
         </div>
 
-        <nav aria-label="Footer" className="flex flex-wrap gap-x-8 gap-y-3 text-sm text-[var(--color-bone-dim)]">
-          <a href="#capabilities" data-cursor="hover" className="hover:text-[var(--color-bone)]">
-            Services
-          </a>
-          <a href="#work" data-cursor="hover" className="hover:text-[var(--color-bone)]">
-            Portfolio
-          </a>
-          <a href="#contact" data-cursor="hover" className="hover:text-[var(--color-bone)]">
-            Contact
-          </a>
-        </nav>
-
-        <a
-          href="#top"
-          data-cursor="hover"
-          className="text-sm text-[var(--color-bone-dim)] transition-colors hover:text-[var(--color-bone)]"
-        >
-          Back to top ↑
-        </a>
+        <div className="flex flex-col gap-4 border-t border-[var(--color-paper)]/10 pt-8 text-xs text-[var(--color-paper)]/50 md:flex-row md:items-center md:justify-between">
+          <p>Denver, Colorado — © {YEAR} New Realm Graphics. All rights reserved.</p>
+          <div className="flex gap-6">
+            <Link to="/privacy-policy" className="hover:text-[var(--color-paper)]/80">
+              Privacy Policy
+            </Link>
+            <Link to="/terms" className="hover:text-[var(--color-paper)]/80">
+              Terms
+            </Link>
+          </div>
+        </div>
       </div>
     </footer>
   )

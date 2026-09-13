@@ -1,44 +1,43 @@
-import { useEffect, useRef, type ReactNode } from 'react'
-import { gsap, ScrollTrigger, EASE } from '../lib/motion'
+import { useEffect, useRef, useState, type ReactNode } from 'react'
 import { useReducedMotion } from '../lib/useReducedMotion'
 
 interface RevealProps {
   children: ReactNode
   className?: string
   delay?: number
-  y?: number
-  start?: string
 }
 
-export function Reveal({ children, className = '', delay = 0, y = 32, start = 'top 88%' }: RevealProps) {
+export function Reveal({ children, className = '', delay = 0 }: RevealProps) {
   const ref = useRef<HTMLDivElement>(null)
   const reduced = useReducedMotion()
+  const [visible, setVisible] = useState(reduced)
 
   useEffect(() => {
+    if (reduced) return
+
     const el = ref.current
     if (!el) return
 
-    if (reduced) {
-      gsap.set(el, { opacity: 1, y: 0 })
-      return
-    }
-
-    gsap.set(el, { opacity: 0, y })
-
-    const trigger = ScrollTrigger.create({
-      trigger: el,
-      start,
-      once: true,
-      onEnter: () => {
-        gsap.to(el, { opacity: 1, y: 0, duration: 0.9, ease: EASE.out, delay })
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVisible(true)
+          observer.disconnect()
+        }
       },
-    })
+      { threshold: 0.15, rootMargin: '0px 0px -10% 0px' },
+    )
 
-    return () => trigger.kill()
-  }, [reduced, delay, y, start])
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [reduced])
 
   return (
-    <div ref={ref} className={className}>
+    <div
+      ref={ref}
+      className={`reveal ${visible ? 'reveal-in' : ''} ${className}`}
+      style={delay ? { transitionDelay: `${delay}ms` } : undefined}
+    >
       {children}
     </div>
   )
