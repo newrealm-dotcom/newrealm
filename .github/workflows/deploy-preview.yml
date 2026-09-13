@@ -27,6 +27,12 @@ jobs:
       - run: npm run build
         env:
           GH_PAGES: true
+      # GitHub Pages serves static files only — no server-side rewrites — so a
+      # direct link or refresh on a client-routed path (e.g. /work) 404s
+      # without this fallback. Copying index.html to 404.html makes Pages
+      # serve the SPA shell for any unknown path, and the router then
+      # renders the right route client-side.
+      - run: cp dist/index.html dist/404.html
       - uses: actions/configure-pages@v5
         with:
           enablement: true

@@ -1,59 +1,51 @@
-import { lazy, Suspense, useState } from 'react'
+import { Routes, Route } from 'react-router-dom'
 import { Nav } from './components/Nav'
 import { Footer } from './components/Footer'
-import { Cursor } from './components/Cursor'
-import { Loader } from './components/Loader'
-import { ScrollChoreography } from './three/ScrollChoreography'
-
-const Scene = lazy(() => import('./three/Scene').then((m) => ({ default: m.Scene })))
-import { Hero } from './sections/Hero'
-import { Manifesto } from './sections/Manifesto'
-import { Capabilities } from './sections/Capabilities'
-import { Proof } from './sections/Proof'
-import { CTA } from './sections/CTA'
-import { useSmoothScroll } from './lib/useSmoothScroll'
-import { ScrollTrigger } from './lib/motion'
+import { ScrollToTop } from './components/ScrollToTop'
+import { Home } from './pages/Home'
+import { Work } from './pages/Work'
+import { CaseStudy } from './pages/CaseStudy'
+import { Services } from './pages/Services'
+import { ServiceDetail } from './pages/ServiceDetail'
+import { About } from './pages/About'
+import { Insights } from './pages/Insights'
+import { InsightArticle } from './pages/InsightArticle'
+import { Contact } from './pages/Contact'
+import { PrivacyPolicy } from './pages/PrivacyPolicy'
+import { Terms } from './pages/Terms'
+import { NotFound } from './pages/NotFound'
 
 function App() {
-  const [loaded, setLoaded] = useState(false)
-  useSmoothScroll()
-
   return (
     <>
       <a
         href="#main"
-        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[80] focus:rounded-md focus:bg-[var(--color-bone)] focus:px-4 focus:py-2 focus:text-[var(--color-void)]"
+        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-sm focus:bg-[var(--color-ink)] focus:px-4 focus:py-2 focus:text-[var(--color-paper)]"
       >
         Skip to content
       </a>
 
-      <Loader
-        onDone={() => {
-          setLoaded(true)
-          requestAnimationFrame(() => ScrollTrigger.refresh())
-        }}
-      />
-
-      <div className="film-grain" />
-      <Cursor />
-      <Suspense fallback={null}>
-        <Scene />
-      </Suspense>
-      {loaded && <ScrollChoreography />}
-
+      <ScrollToTop />
       <Nav />
 
-      <main id="main" className="relative z-10">
-        <Hero />
-        <Manifesto />
-        <Capabilities />
-        <Proof />
-        <CTA />
+      <main id="main">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/work" element={<Work />} />
+          <Route path="/work/:slug" element={<CaseStudy />} />
+          <Route path="/services" element={<Services />} />
+          <Route path="/services/:slug" element={<ServiceDetail />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/insights" element={<Insights />} />
+          <Route path="/insights/:slug" element={<InsightArticle />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="/terms" element={<Terms />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
       </main>
 
-      <div className="relative z-10">
-        <Footer />
-      </div>
+      <Footer />
     </>
   )
 }

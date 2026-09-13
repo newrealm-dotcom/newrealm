@@ -1,150 +1,125 @@
-# New Realm Graphics — Creative Direction & Design System
+# New Realm Graphics — Design System & Creative Direction
 
-This document is the single source of truth for the site build. It covers concept,
-visual identity, experience journey, the signature 3D hero, and the motion system.
+Single source of truth for this build's visual and content direction.
 
-> **Correction (this revision):** an earlier draft of this document invented a
-> "3D and motion design studio" positioning, a fictional 8-realm brand
-> narrative, and a made-up portfolio/testimonial/metrics for New Realm
-> Graphics. None of that was sourced from the real business. This session
-> cannot browse newrealm.com directly (network restrictions), so an initial
-> correction pass relied on search-result snippets; the owner then supplied
-> the real logo file and the verbatim text of newrealm.com/services/
-> (including the owner/operator bio), which now supersede the earlier
-> snippet-derived copy wherever they overlap. The sections below state only
-> verified or directly-supplied facts. The dark, crystal-hero, premium visual
-> *treatment* is kept as a deliberate stylistic choice for this rebuild, not
-> a claim about the studio's own positioning — flagged explicitly wherever
-> that distinction matters.
+> **Revision history:** the first version of this site built a dark, neon-accented "3D
+> crystal" concept (Three.js hero, custom cursor ring, GSAP scroll choreography, a
+> preloader) around an invented studio narrative. A later pass corrected the invented
+> content with real, supplied facts but kept the same visual treatment. This revision
+> replaces the visual system entirely: the crystal/cursor/neon direction is exactly the
+> kind of generic "digital agency" gimmick a premium, editorial creative-and-digital
+> agency site should avoid, and the underlying libraries added real bundle weight for
+> decorative effect only. Nothing here is invented — see `src/data/*.ts` for sourcing.
 
 ---
 
 ## 1. Creative Direction
 
-**Concept.** New Realm Graphics has spent 20+ years helping small businesses
-succeed online. Real tagline: *"Trends come and go. Diamonds are forever."*
-This rebuild takes that tagline literally as its visual concept — a faceted
-crystal ("The Core") that stays legible and well-made regardless of trend —
-as a premium *presentation* of real, verified services, not an invented
-brand story.
+**Positioning.** New Realm Graphics has 20+ years of experience spanning traditional
+design/print and modern web/digital marketing — a combination most studios have
+specialized away from. The site should read as an established, multidisciplinary
+creative-and-digital agency, not a template-driven "graphic design company" site.
 
-**Positioning.** Precise, quiet, confident. The studio doesn't shout; the work
-does. Confidence expressed through restraint: enormous negative space, one
-idea per screen, motion that never fights for attention.
+**Visual world.** Editorial and paper-toned rather than dark/neon: a warm off-white
+background, near-black ink type, hairline borders instead of shadows or glass panels,
+and one restrained gold accent used only for hover/focus states and small emphasis —
+never as a decorative gradient.
 
-**Visual world.** An obsidian void lit by a single engineered light source.
-Materials read as physical and expensive — brushed metal, frosted volumetric
-glass, faceted crystal — never flat or "gamey." A fine film-grain overlay keeps
-the void from feeling sterile or purely digital.
+**Typography.** Display: **Bricolage Grotesque** (variable, weights 300–700) — a grotesk
+with enough personality to feel authored, not templated. Body/UI: **Inter**. Numerals and
+labels use the `.eyebrow` utility: uppercase, wide tracking, small size, muted color —
+acting as museum wall-labels for section context.
 
-**Typography.**
-- Display: **Bricolage Grotesque** (variable) — a grotesk with just enough
-  personality in its curves to feel authored rather than templated. Used large,
-  tight tracking, at low weight (300–500) for elegance and high weight (600–800)
-  for punctuation moments.
-- Body/UI: **Inter** — neutral, legible workhorse for paragraphs, labels, forms.
-- Numerals/meta labels: Inter, uppercase, wide tracking, small size — used for
-  section eyebrows ("01 / REALM"), acting like museum wall-labels.
+**Motion.** Subtle and performance-conscious only: a single `Reveal` component
+(IntersectionObserver + CSS transition, translateY 24px → 0, opacity 0 → 1, ~600ms
+`cubic-bezier(0.16, 1, 0.3, 1)`), link/button underline and color transitions (~200ms),
+and native `<details>` disclosure for FAQs. No parallax, no cursor gimmicks, no
+scroll-jacking, no preloader — content paints immediately and is fully present in the DOM
+with motion off (`prefers-reduced-motion` disables all `.reveal` transitions globally).
 
-**Color system.** 90% neutral, color spent only on energy/interaction:
-| Token | Hex | Use |
+---
+
+## 2. Design Tokens (`src/index.css`)
+
+| Token | Value | Use |
 |---|---|---|
-| `--void` | #06070A | Base background |
-| `--void-2` | #0B0D12 | Panel background, elevated surfaces |
-| `--bone` | #EDEBE6 | Primary text on dark |
-| `--bone-dim` | #9A9A9E | Secondary text |
-| `--ion-violet` | #7C5CFF | Primary accent — energy, links, focus |
-| `--ion-cyan` | #4CE0D2 | Secondary accent — rim light, gradient partner |
-| `--metal-gold` | #C9A66B | Premium accent — primary CTA only |
-| `--line` | rgba(237,235,230,0.10) | Hairline dividers |
+| `--color-paper` | `#f6f4ef` | Base background |
+| `--color-paper-2` | `#eeebe2` | Card/panel background, alternating section backgrounds |
+| `--color-ink` | `#16140f` | Primary text, headings, primary button fill |
+| `--color-ink-dim` | `#5c5848` | Body copy, secondary text |
+| `--color-ink-faint` | `#6a6555` | Tertiary text, icons, eyebrow labels (5.3:1 on paper — meets WCAG AA) |
+| `--color-line` | `rgba(22,20,15,0.12)` | Hairline dividers, card borders |
+| `--color-line-strong` | `rgba(22,20,15,0.22)` | Form borders, filter-pill borders |
+| `--color-gold` | `#8f5c24` | Sparse accent — hover states, link color on hover, selection (5.1:1 on paper) |
+| `--color-ink-2` | `#100e0a` | Footer / inverse-section background |
 
-Ion-violet → ion-cyan forms the signature gradient, used sparingly (progress
-indicators, gradient text on one hero word, the CTA button glow) so it stays
-special.
+**Containers.** `--container-content: 1280px` (reading-focused pages), `--container-wide:
+1440px` (grids, nav). Side padding `px-6` (mobile) → `px-10` (desktop).
 
-**Composition.** Asymmetric 12-column grid, generous margins, type large
-enough to sit *in* the same depth plane as the 3D object rather than boxed
-above it. Alternates full-bleed "realm" scenes with denser two-column
-information panels for contrast and pacing.
+**Type scale.** H1 `text-4xl`–`text-7xl` (display font, weight 500, tight tracking), H2
+`text-3xl`–`text-4xl`, H3 `text-xl`–`text-2xl`, body `text-base`/`text-lg` with
+`.prose-copy` capping measure at `68ch`.
 
-**Materials, lighting, depth.** Single key light + violet/cyan rim lights,
-soft volumetric fog, restrained bloom on emissive edges only. Depth built from
-real camera dolly (not just CSS parallax) plus a shallow depth-of-field blur
-that sharpens the current focal element and softens the rest.
+**Radius.** 2px on buttons only — square, editorial blocks throughout; no large rounded
+"card" or "glass panel" shapes.
 
-**Motion language.** Slow, confident, physical. Custom easing
-(`expo.out` for entrances, `power2.inOut` for transitions) — nothing bounces,
-nothing overshoots. The Core's facets respond to scroll position, not clicks;
-text reveals with a clip-path wipe, never a fade-only cheap effect; cursor
-becomes a thin reticle ring that magnetizes toward interactive elements.
+**Buttons.** `.btn-primary` (ink fill → gold on hover), `.btn-secondary` (hairline border
+→ solid ink border on hover). **Links.** `.link-underline` — a background-size underline
+that grows in on hover/focus, not a color-only change, so it works for keyboard focus too.
 
-**Conversion goal.** One primary action — **"Get a Quote"** (matches the real
-site's `/quote/` page) — repeated at three calibrated moments (nav, mid-page,
-final CTA), leading to a lightweight project form. Secondary action —
-**"View Portfolio"** — for browsers not ready to commit.
+**Forms.** 1px `--color-line-strong` border, no radius, gold border on focus (no removed
+outline — `:focus-visible` also gets a 2px gold outline site-wide).
+
+**Cards.** `.card` / ad hoc hairline-bordered blocks — no drop shadows, no glassmorphism.
+
+**Breakpoints.** Tailwind defaults (`sm` 640, `md` 768, `lg` 1024, `xl` 1280) — verified at
+320/375/390/430/768/1024/1440.
 
 ---
 
-## 2. Experience Journey
+## 3. Information Architecture
 
-Sourced content only — no invented process steps or testimonials.
+```
+/                     Home
+/work                 Portfolio index (filterable: All/Branding/Graphic Design/Web/Packaging/Print/Digital)
+/work/:slug           Case study (2 real projects)
+/services             Services overview
+/services/:slug       7 individual, independently-rankable service pages
+/about                Company history + Mike Franco profile
+/insights             Article index
+/insights/:slug       5 educational articles
+/contact              Start a Project qualification form + FAQ
+/privacy-policy
+/terms
+```
 
-| # | Section | Purpose | Content source |
-|---|---|---|---|
-| 0 | Loader | Set tone before content paints | Stylistic — logo mark assembles, progress as a thin light line |
-| 1 | Hero | First impression + instant value clarity | Real tagline ("Trends come and go. Diamonds are forever."), real positioning (20+ yrs, small-business focus) |
-| 2 | Owner & Operator | Who's behind the work | Verbatim bio supplied by the owner: Mike Franco, 25 years in design/print/web, leads digital marketing, SEO/AEO, and site maintenance |
-| 3 | Services | What they do, make it concrete | Verbatim service copy from newrealm.com/services/: Website Development & Graphic Design, Website Design/Dev/Maintenance (HTML/CSS/PHP/Java), Graphic Design & Printing, Product/Packaging Design, Digital Marketing (SEO/AEO/PPC/etc.) |
-| 4 | Portfolio | Credibility | Two real, linked case studies: Popcorn Frights Film Festival, Eric Kline Productions |
-| 5 | CTA / Contact | Convert | Get a Quote — project form (not yet wired to a real backend/inbox) |
-| 6 | Footer | Wayfinding | Sitemap, Denver location, copyright, back-to-top |
-
-Sticky nav is transparent over the hero, gains a blurred `--void-2` backing
-once scrolled, and always keeps "Get a Quote" visible.
-
----
-
-## 3. Signature 3D Hero
-
-- **Object:** "The Core" — an icosahedral crystal built from displaced,
-  faceted geometry (`icosahedronGeometry` + custom vertex displacement),
-  rendered with a physical glass/metal hybrid material (transmission +
-  low roughness + anisotropy) so it reads as cut crystal, not a toy.
-- **Lighting/camera:** one soft key light above-front, violet rim light left,
-  cyan rim light right, slow-drifting environment for reflections, camera on
-  a gentle idle orbit plus scroll-driven dolly-in.
-- **Entrance:** Core fades in from pure black already mid-rotation, scale
-  spring-eases up over ~1.4s while the headline wipes in behind it — object
-  and type feel like they belong in the same room.
-- **Mouse interaction:** Core's rotation subtly leads the pointer (parallax
-  look-at, clamped), a low-opacity light rig follows the cursor for a
-  "living" specular highlight.
-- **Scroll response:** scroll drives rotation speed + camera dolly + material
-  roughness (crystal "frosts" as you leave the hero), cross-fading into the
-  Manifesto realm's ambient background version of the same object.
-- **Reduced motion / low power:** static hero render (pre-baked look) with
-  only opacity/scale entrance, no continuous animation loop.
+Nav: **Work · Services (mega-menu) · About · Insights · Contact**, plus a visually
+distinct **Start a Project** button. Services dropdown is click-toggled (not hover-only),
+closes on outside click/Escape, and has a mobile full-panel equivalent — no interaction
+depends exclusively on hover.
 
 ---
 
-## 4. Motion System
+## 4. SEO / AEO
 
-- **Engine:** Lenis for inertial smooth scroll; GSAP + ScrollTrigger for all
-  scroll-choreography; no scroll-jacking of native scroll, just easing.
-- **Text reveals:** clip-path wipe per line, staggered ~60ms, `expo.out`,
-  triggered at 80% viewport entry.
-- **Section transitions:** cross-fade + 24px translate, 0.6–0.9s
-  `power2.inOut`; the 3D layer never hard-cuts, only continuously interpolates.
-- **Hover/cursor:** custom ring cursor (18px), scales to 48px + fills on
-  hoverable targets, hidden on touch. Buttons get a magnetic pull (±8px)
-  toward the cursor within a 40px radius.
-- **Timing scale:** 150ms (micro), 300ms (UI), 600ms (section), 1200ms+
-  (hero-scale) — all easing centralized in one JS module, no ad hoc tweens.
-- **Accessibility:** every animation respects `prefers-reduced-motion`
-  (cross-fades only, no parallax/3D motion, cursor ring disabled); focus-visible
-  states are never removed, just restyled to match the ring cursor; all
-  scroll-triggered content is present in the DOM and readable with motion off.
-- **Performance:** one shared R3F canvas (not one per section), capped pixel
-  ratio, geometry disposed off-screen, animations run on transform/opacity
-  only outside the canvas, IntersectionObserver gates ScrollTrigger work for
-  offscreen sections.
+- Per-route `<title>`/meta description/canonical/OG/Twitter tags and JSON-LD via
+  `src/components/SEO.tsx` (mounts/unmounts tags on route change).
+- JSON-LD: `ProfessionalService` + `Person` (index.html, site-wide), `WebSite` (Home),
+  `Service` (each service page), `CreativeWork` (each case study), `Article` (each
+  insight), `FAQPage` (Contact), `AboutPage` (About).
+- `public/sitemap.xml` lists every real route; `public/robots.txt` points to it.
+- **Known limitation:** this is a client-rendered SPA with no SSR/prerendering, so the
+  per-route metadata is only visible to crawlers that execute JavaScript. See README's
+  "Known gaps" section — prerendering each route is the recommended follow-up for full
+  AI/answer-engine crawler coverage.
+
+---
+
+## 5. Content Policy
+
+Every fact on this site is either directly sourced from newrealm.com (tagline, years in
+business, Mike Franco's bio, service descriptions, the two case studies) or is generic,
+non-company-specific educational content (the Insights articles, FAQ answers). No
+metrics, testimonials, additional team members, or client logos are fabricated. Where a
+real number wasn't available, copy describes the qualitative outcome instead of
+inventing a statistic.
