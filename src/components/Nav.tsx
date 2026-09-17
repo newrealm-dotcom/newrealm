@@ -134,12 +134,12 @@ export function Nav() {
           onClick={() => setMobileOpen(false)}
         >
           <img
-            src="/nrg-logo.webp"
+            src={`${import.meta.env.BASE_URL}nrg-logo.webp`}
             alt="New Realm Graphics"
             className="h-[167px] w-auto transition-opacity duration-300 group-hover:opacity-0"
           />
           <img
-            src="/nrg-logo-hover.png"
+            src={`${import.meta.env.BASE_URL}nrg-logo-hover.png`}
             alt=""
             aria-hidden="true"
             className="pointer-events-none absolute left-1/2 top-1/2 h-[167px] w-auto -translate-x-1/2 -translate-y-1/2 opacity-0 transition-opacity duration-300 group-hover:opacity-100"

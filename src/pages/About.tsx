@@ -58,7 +58,7 @@ export function About() {
           </div>
           <div className="flex justify-center lg:justify-end">
             <img
-              src="/rusty.png"
+              src={`${import.meta.env.BASE_URL}rusty.png`}
               alt=""
               className="h-auto w-full max-w-[280px] object-contain md:max-w-[340px] lg:max-w-[400px]"
             />
@@ -94,7 +94,7 @@ export function About() {
           <div className="grid grid-cols-1 gap-10 md:grid-cols-[300px_1fr] md:items-center">
             <Reveal>
               <img
-                src="/mike-franco-about.png?v=2"
+                src={`${import.meta.env.BASE_URL}mike-franco-about.png?v=2`}
                 alt={mike.name}
                 className="aspect-square w-full max-w-[300px] border-2 border-[var(--color-line)] object-cover"
               />

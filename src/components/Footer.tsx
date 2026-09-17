@@ -9,7 +9,7 @@ export function Footer() {
       <div className="mx-auto max-w-[var(--container-wide)]">
         <div className="grid grid-cols-2 gap-10 pb-14 md:grid-cols-5">
           <div className="col-span-2">
-            <img src="/nrg-logo-white.png" alt="New Realm Graphics" className="h-32 w-auto" />
+            <img src={`${import.meta.env.BASE_URL}nrg-logo-white.png`} alt="New Realm Graphics" className="h-32 w-auto" />
             <p className="mt-4 max-w-xs text-sm text-[var(--color-paper)]/60">
               A Fort Lauderdale, FL design studio with 20+ years of experience across branding, website design and
               development, print, packaging, and digital marketing.

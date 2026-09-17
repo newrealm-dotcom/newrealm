@@ -114,7 +114,7 @@ export function Home() {
 
           <div className="relative hidden min-h-[560px] overflow-hidden lg:block">
             <img
-              src="/hero-bg.webp"
+              src={`${import.meta.env.BASE_URL}hero-bg.webp`}
               alt=""
               className="absolute inset-0 h-full w-full object-cover"
             />
@@ -301,7 +301,7 @@ export function Home() {
               {TEAM[0].name}
             </h2>
             <img
-              src="/signature.png"
+              src={`${import.meta.env.BASE_URL}signature.png`}
               alt=""
               aria-hidden="true"
               className="mt-4 w-3/4 lg:w-4/5"
@@ -315,12 +315,12 @@ export function Home() {
             <div className="group relative mx-auto flex h-full w-full max-w-lg items-end justify-center lg:absolute lg:inset-x-0 lg:bottom-0 lg:top-[-50px] lg:h-auto lg:mx-0 lg:max-w-none">
               <div className="relative h-full w-full max-w-full">
                 <img
-                  src="/mike-franco.png?v=12"
+                  src={`${import.meta.env.BASE_URL}mike-franco.png?v=12`}
                   alt={TEAM[0].name}
                   className="h-full w-full max-w-full object-contain object-bottom transition-none group-hover:opacity-0"
                 />
                 <img
-                  src="/mike-franco-hover.png?v=12"
+                  src={`${import.meta.env.BASE_URL}mike-franco-hover.png?v=12`}
                   alt=""
                   aria-hidden="true"
                   className="pointer-events-none absolute inset-0 h-full w-full object-contain object-bottom opacity-0 transition-none group-hover:opacity-100"
