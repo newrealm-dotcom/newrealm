@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import type { Project } from '../data/projects'
+import { assetUrl } from '../lib/assetUrl'
 
 export function ProjectCard({ project }: { project: Project }) {
   return (
@@ -19,7 +20,7 @@ export function ProjectCard({ project }: { project: Project }) {
       {project.cover ? (
         <div className="mt-6 px-7">
           <img
-            src={project.cover}
+            src={assetUrl(project.cover)}
             alt=""
             className="aspect-[16/9] w-full object-cover"
           />

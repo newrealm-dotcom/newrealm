@@ -6,6 +6,7 @@ import { SERVICES } from '../data/services'
 import { PROJECTS } from '../data/projects'
 import { INSIGHTS } from '../data/insights'
 import { TEAM } from '../data/team'
+import { assetUrl } from '../lib/assetUrl'
 
 const DIFFERENTIATORS = [
   {
@@ -84,7 +85,7 @@ export function Home() {
           <div className="relative isolate overflow-hidden px-6 pb-16 pt-16 md:px-10 md:pb-20 md:pt-24 lg:flex lg:flex-col lg:justify-center lg:px-0 lg:pb-24 lg:pl-[100px] lg:pr-12 lg:pt-24">
             <div
               className="absolute inset-0 -z-20 bg-cover bg-center bg-no-repeat lg:hidden"
-              style={{ backgroundImage: "url('/hero-bg.webp')" }}
+              style={{ backgroundImage: `url('${assetUrl('hero-bg.webp')}')` }}
               aria-hidden="true"
             />
             <div className="absolute inset-0 -z-10 bg-white/50 lg:hidden" aria-hidden="true" />
@@ -114,7 +115,7 @@ export function Home() {
 
           <div className="relative hidden min-h-[560px] overflow-hidden lg:block">
             <img
-              src={`${import.meta.env.BASE_URL}hero-bg.webp`}
+              src={assetUrl('hero-bg.webp')}
               alt=""
               className="absolute inset-0 h-full w-full object-cover"
             />
@@ -234,7 +235,7 @@ export function Home() {
               <Reveal key={d.label} className="flex flex-col items-center text-center">
                 <div className="mb-4 flex h-[150px] w-full items-center justify-center">
                   <img
-                    src={d.icon}
+                    src={assetUrl(d.icon)}
                     alt=""
                     aria-hidden="true"
                     className="h-[150px] w-auto max-w-full object-contain"
@@ -301,7 +302,7 @@ export function Home() {
               {TEAM[0].name}
             </h2>
             <img
-              src={`${import.meta.env.BASE_URL}signature.png`}
+              src={assetUrl('signature.png')}
               alt=""
               aria-hidden="true"
               className="mt-4 w-3/4 lg:w-4/5"
@@ -315,12 +316,12 @@ export function Home() {
             <div className="group relative mx-auto flex h-full w-full max-w-lg items-end justify-center lg:absolute lg:inset-x-0 lg:bottom-0 lg:top-[-50px] lg:h-auto lg:mx-0 lg:max-w-none">
               <div className="relative h-full w-full max-w-full">
                 <img
-                  src={`${import.meta.env.BASE_URL}mike-franco.png?v=12`}
+                  src={assetUrl('mike-franco.png?v=12')}
                   alt={TEAM[0].name}
                   className="h-full w-full max-w-full object-contain object-bottom transition-none group-hover:opacity-0"
                 />
                 <img
-                  src={`${import.meta.env.BASE_URL}mike-franco-hover.png?v=12`}
+                  src={assetUrl('mike-franco-hover.png?v=12')}
                   alt=""
                   aria-hidden="true"
                   className="pointer-events-none absolute inset-0 h-full w-full object-contain object-bottom opacity-0 transition-none group-hover:opacity-100"
@@ -352,7 +353,7 @@ export function Home() {
                   <p className="eyebrow mb-3 text-[var(--color-ink-faint)]">{a.category}</p>
                   {a.cover ? (
                     <img
-                      src={a.cover}
+                      src={assetUrl(a.cover)}
                       alt=""
                       className="mb-4 block h-auto w-full"
                     />

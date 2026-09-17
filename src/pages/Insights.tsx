@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import { SEO } from '../components/SEO'
 import { Reveal } from '../components/Reveal'
 import { INSIGHTS } from '../data/insights'
+import { assetUrl } from '../lib/assetUrl'
 
 export function Insights() {
   return (
@@ -30,7 +31,7 @@ export function Insights() {
                   <p className="eyebrow mb-3 text-[var(--color-ink-faint)]">{a.category}</p>
                   {a.cover ? (
                     <img
-                      src={a.cover}
+                      src={assetUrl(a.cover)}
                       alt=""
                       className="mb-4 block h-auto w-full"
                     />

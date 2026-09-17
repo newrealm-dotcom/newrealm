@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
 import { Link, NavLink } from 'react-router-dom'
 import { SERVICES } from '../data/services'
+import { assetUrl } from '../lib/assetUrl'
 
 const PRIMARY_LINKS = [
   { to: '/work', label: 'Work' },
@@ -134,12 +135,12 @@ export function Nav() {
           onClick={() => setMobileOpen(false)}
         >
           <img
-            src={`${import.meta.env.BASE_URL}nrg-logo.webp`}
+            src={assetUrl('nrg-logo.webp')}
             alt="New Realm Graphics"
             className="h-[167px] w-auto transition-opacity duration-300 group-hover:opacity-0"
           />
           <img
-            src={`${import.meta.env.BASE_URL}nrg-logo-hover.png`}
+            src={assetUrl('nrg-logo-hover.png')}
             alt=""
             aria-hidden="true"
             className="pointer-events-none absolute left-1/2 top-1/2 h-[167px] w-auto -translate-x-1/2 -translate-y-1/2 opacity-0 transition-opacity duration-300 group-hover:opacity-100"

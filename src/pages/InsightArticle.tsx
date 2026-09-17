@@ -1,6 +1,7 @@
 import { Link, useParams } from 'react-router-dom'
 import { SEO, SITE_URL } from '../components/SEO'
 import { getInsightBySlug, INSIGHTS } from '../data/insights'
+import { assetUrl } from '../lib/assetUrl'
 import { NotFound } from './NotFound'
 
 export function InsightArticle() {
@@ -36,7 +37,7 @@ export function InsightArticle() {
           <p className="eyebrow mb-4 mt-6 text-center">{article.category}</p>
           {article.cover ? (
             <img
-              src={article.cover}
+              src={assetUrl(article.cover)}
               alt=""
               className="w-full"
             />
@@ -79,7 +80,7 @@ export function InsightArticle() {
                   <p className="eyebrow mb-2 text-[var(--color-ink-faint)]">{a.category}</p>
                   {a.cover ? (
                     <img
-                      src={a.cover}
+                      src={assetUrl(a.cover)}
                       alt=""
                       className="mb-4 block h-auto w-full"
                     />

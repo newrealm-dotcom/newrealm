@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import { SEO, SITE_URL } from '../components/SEO'
 import { Reveal } from '../components/Reveal'
 import { TEAM } from '../data/team'
+import { assetUrl } from '../lib/assetUrl'
 
 const CREDIBILITY = [
   {
@@ -58,7 +59,7 @@ export function About() {
           </div>
           <div className="flex justify-center lg:justify-end">
             <img
-              src={`${import.meta.env.BASE_URL}rusty.png`}
+              src={assetUrl('rusty.png')}
               alt=""
               className="h-auto w-full max-w-[280px] object-contain md:max-w-[340px] lg:max-w-[400px]"
             />
@@ -73,7 +74,7 @@ export function About() {
               <Reveal key={c.label} className="flex flex-col items-center">
                 <div className="mb-4 flex h-[150px] w-full items-center justify-center">
                   <img
-                    src={c.icon}
+                    src={assetUrl(c.icon)}
                     alt=""
                     aria-hidden="true"
                     className="h-[150px] w-auto max-w-full object-contain"
@@ -94,7 +95,7 @@ export function About() {
           <div className="grid grid-cols-1 gap-10 md:grid-cols-[300px_1fr] md:items-center">
             <Reveal>
               <img
-                src={`${import.meta.env.BASE_URL}mike-franco-about.png?v=2`}
+                src={assetUrl('mike-franco-about.png?v=2')}
                 alt={mike.name}
                 className="aspect-square w-full max-w-[300px] border-2 border-[var(--color-line)] object-cover"
               />
