@@ -18,7 +18,7 @@ export function Footer() {
           </div>
 
           <div>
-            <p className="eyebrow mb-4 text-[var(--color-paper)]/50">Services</p>
+            <p className="footer-heading mb-4">Services</p>
             <ul className="space-y-2.5 text-sm text-[var(--color-paper)]/70">
               {SERVICES.map((s) => (
                 <li key={s.slug}>
@@ -31,7 +31,7 @@ export function Footer() {
           </div>
 
           <div>
-            <p className="eyebrow mb-4 text-[var(--color-paper)]/50">Company</p>
+            <p className="footer-heading mb-4">Company</p>
             <ul className="space-y-2.5 text-sm text-[var(--color-paper)]/70">
               <li>
                 <Link to="/work" className="hover:text-[var(--color-paper)] hover:underline hover:underline-offset-4">
@@ -57,7 +57,7 @@ export function Footer() {
           </div>
 
           <div>
-            <p className="eyebrow mb-4 text-[var(--color-paper)]/50">Start a Project</p>
+            <p className="footer-heading mb-4">Start a Project</p>
             <p className="mb-4 text-sm text-[var(--color-paper)]/70">Tell us what you're building. We'll follow up shortly.</p>
             <Link to="/contact" className="btn btn-secondary border-[var(--color-paper)]/30 text-[var(--color-paper)] hover:border-[var(--color-paper)]">
               Start a Project

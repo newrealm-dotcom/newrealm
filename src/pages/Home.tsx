@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import { SEO, SITE_URL } from '../components/SEO'
 import { Reveal } from '../components/Reveal'
 import { ProjectCard } from '../components/ProjectCard'
+import { ServiceCard } from '../components/ServiceCard'
 import { SERVICES } from '../data/services'
 import { PROJECTS } from '../data/projects'
 import { INSIGHTS } from '../data/insights'
@@ -33,15 +34,6 @@ const DIFFERENTIATORS = [
 
 /** Homepage services grid — first six categories, each with its own color block. */
 const HOME_SERVICES = SERVICES.slice(0, 6)
-
-const SERVICE_CARD_THEMES = [
-  { bg: '#2dd4bf', fg: '#0f2f2a', muted: 'rgba(15, 47, 42, 0.72)', line: 'rgba(15, 47, 42, 0.18)' },
-  { bg: '#60a5fa', fg: '#0f2744', muted: 'rgba(15, 39, 68, 0.72)', line: 'rgba(15, 39, 68, 0.18)' },
-  { bg: '#fbbf24', fg: '#3b2505', muted: 'rgba(59, 37, 5, 0.72)', line: 'rgba(59, 37, 5, 0.18)' },
-  { bg: '#34d399', fg: '#0f2f24', muted: 'rgba(15, 47, 36, 0.72)', line: 'rgba(15, 47, 36, 0.18)' },
-  { bg: '#fb7185', fg: '#4a1020', muted: 'rgba(74, 16, 32, 0.72)', line: 'rgba(74, 16, 32, 0.18)' },
-  { bg: '#a3e635', fg: '#1f2e08', muted: 'rgba(31, 46, 8, 0.72)', line: 'rgba(31, 46, 8, 0.18)' },
-] as const
 
 const WHY_US = [
   {
@@ -160,65 +152,11 @@ export function Home() {
             under one roof.
           </p>
           <div className="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3">
-            {HOME_SERVICES.map((s, i) => {
-              const theme = SERVICE_CARD_THEMES[i]
-              return (
-                <Reveal key={s.slug} delay={i * 60}>
-                  <Link
-                    to={`/services/${s.slug}`}
-                    className="group relative flex h-full min-h-[420px] flex-col overflow-hidden rounded-2xl p-8 md:p-9"
-                    style={{ color: theme.fg }}
-                  >
-                    <div
-                      className="absolute inset-0 -z-10 transition-[filter] duration-300 ease-out group-hover:brightness-[3]"
-                      style={{ backgroundColor: theme.bg }}
-                      aria-hidden="true"
-                    />
-                    <span
-                      className="text-xs font-semibold tracking-[0.16em] transition-opacity duration-300 group-hover:opacity-0"
-                      style={{ color: theme.muted }}
-                    >
-                      {String(i + 1).padStart(2, '0')}
-                    </span>
-                    <h3 className="mt-5 font-[family-name:var(--font-display)] text-[calc(1.5rem*1.4)] font-medium leading-tight transition-opacity duration-300 group-hover:opacity-0">
-                      {s.navLabel}
-                    </h3>
-                    <p
-                      className="mt-3 text-sm leading-relaxed transition-opacity duration-300 group-hover:opacity-0"
-                      style={{ color: theme.muted }}
-                    >
-                      {s.shortDescription}
-                    </p>
-                    <ul className="mt-8 flex-1 transition-opacity duration-300 group-hover:opacity-0">
-                      {s.subServices.map((item) => (
-                        <li
-                          key={item}
-                          className="border-b py-3 text-sm"
-                          style={{ borderColor: theme.line, color: theme.fg }}
-                        >
-                          {item}
-                        </li>
-                      ))}
-                    </ul>
-                    <span
-                      className="mt-6 inline-block text-sm font-medium transition-opacity duration-300 group-hover:opacity-0"
-                      style={{ color: theme.fg }}
-                    >
-                      Learn more →
-                    </span>
-                    <div
-                      className="pointer-events-none absolute inset-0 z-10 flex flex-col items-center justify-center gap-6 px-8 opacity-0 transition-opacity duration-300 group-hover:opacity-100 md:px-9"
-                      style={{ color: theme.fg }}
-                    >
-                      <h3 className="max-w-full text-center font-[family-name:var(--font-display)] text-[calc(1.5rem*1.4*2)] font-medium leading-tight">
-                        {s.navLabel}
-                      </h3>
-                      <span className="text-sm font-semibold">Learn more →</span>
-                    </div>
-                  </Link>
-                </Reveal>
-              )
-            })}
+            {HOME_SERVICES.map((s, i) => (
+              <Reveal key={s.slug} delay={i * 60}>
+                <ServiceCard service={s} index={i} />
+              </Reveal>
+            ))}
           </div>
         </div>
       </section>
@@ -370,19 +308,19 @@ export function Home() {
       </section>
 
       {/* 10 — Final CTA */}
-      <section className="px-6 py-24 text-center md:px-10 md:py-32">
+      <section className="cta-band px-6 py-24 text-center md:px-10 md:py-32">
         <div className="mx-auto max-w-2xl">
-          <h2 className="font-[family-name:var(--font-display)] text-4xl font-medium text-[var(--color-ink)] md:text-5xl">
+          <h2 className="font-[family-name:var(--font-display)] text-4xl font-medium md:text-5xl">
             Let's build something that works.
           </h2>
-          <p className="mt-6 text-[var(--color-ink-dim)]">
+          <p className="mt-6">
             Tell us about your project — brand, website, or ongoing digital support — and we'll follow up shortly.
           </p>
           <div className="mt-10 flex flex-wrap justify-center gap-4">
-            <Link to="/contact" className="btn btn-primary">
+            <Link to="/contact" className="btn btn-inverse">
               Start a Project
             </Link>
-            <Link to="/work" className="btn btn-secondary">
+            <Link to="/work" className="btn btn-on-blue">
               View Our Work
             </Link>
           </div>

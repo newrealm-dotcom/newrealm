@@ -119,11 +119,11 @@ export function ServiceDetail() {
         </div>
       </section>
 
-      <section className="border-t border-[var(--color-line)] px-6 py-20 text-center md:px-10">
-        <h2 className="font-[family-name:var(--font-display)] text-3xl font-medium text-[var(--color-ink)] md:text-4xl">
+      <section className="cta-band border-t border-[var(--color-line)] px-6 py-20 text-center md:px-10">
+        <h2 className="font-[family-name:var(--font-display)] text-3xl font-medium md:text-4xl">
           {service.nextStep.label}.
         </h2>
-        <Link to={service.nextStep.to} className="btn btn-primary mt-8">
+        <Link to={service.nextStep.to} className="btn btn-inverse mt-8">
           {service.nextStep.label}
         </Link>
       </section>

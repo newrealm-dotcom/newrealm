@@ -113,15 +113,15 @@ export function About() {
         </div>
       </section>
 
-      <section className="border-t border-[var(--color-line)] px-6 py-20 text-center md:px-10">
-        <h2 className="font-[family-name:var(--font-display)] text-3xl font-medium text-[var(--color-ink)] md:text-4xl">
+      <section className="cta-band border-t border-[var(--color-line)] px-6 py-20 text-center md:px-10">
+        <h2 className="font-[family-name:var(--font-display)] text-3xl font-medium md:text-4xl">
           Let's talk about your project.
         </h2>
         <div className="mt-8 flex flex-wrap justify-center gap-4">
-          <Link to="/contact" className="btn btn-primary">
+          <Link to="/contact" className="btn btn-inverse">
             Start a Project
           </Link>
-          <Link to="/work" className="btn btn-secondary">
+          <Link to="/work" className="btn btn-on-blue">
             View Our Work
           </Link>
         </div>

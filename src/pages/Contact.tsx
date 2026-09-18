@@ -1,6 +1,7 @@
 import { useState, type FormEvent } from 'react'
 import { SEO } from '../components/SEO'
 import { FAQ } from '../data/faq'
+import { assetUrl } from '../lib/assetUrl'
 
 const HELP_OPTIONS = ['Branding', 'Graphic Design', 'Website', 'SEO/AEO', 'Digital Marketing', 'Packaging', 'Print', 'Maintenance', 'Other']
 const BUDGETS = ['Under $2,500', '$2,500 – $10,000', '$10,000 – $25,000', '$25,000+', 'Not sure yet']
@@ -65,14 +66,23 @@ export function Contact() {
       />
 
       <section className="border-b border-[var(--color-line)] px-6 py-16 md:px-10 md:py-20">
-        <div className="mx-auto max-w-[var(--container-content)]">
-          <p className="eyebrow mb-4">Start a Project</p>
-          <h1 className="max-w-2xl font-[family-name:var(--font-display)] text-4xl font-medium text-[var(--color-ink)] md:text-5xl">
-            Tell us about your project.
-          </h1>
-          <p className="prose-copy mt-6 text-lg text-[var(--color-ink-dim)]">
-            Share a few details and someone from our team will follow up shortly.
-          </p>
+        <div className="mx-auto grid max-w-[var(--container-wide)] grid-cols-1 items-center gap-10 lg:grid-cols-2 lg:gap-16">
+          <div>
+            <p className="eyebrow mb-4">Start a Project</p>
+            <h1 className="max-w-2xl font-[family-name:var(--font-display)] text-4xl font-medium text-[var(--color-ink)] md:text-5xl">
+              Tell us about your project.
+            </h1>
+            <p className="prose-copy mt-6 text-lg text-[var(--color-ink-dim)]">
+              Share a few details and someone from our team will follow up shortly.
+            </p>
+          </div>
+          <div className="mx-auto w-3/4 lg:mx-0 lg:justify-self-end">
+            <img
+              src={assetUrl('/contact-chichi.png')}
+              alt=""
+              className="block h-auto w-full"
+            />
+          </div>
         </div>
       </section>
 

@@ -13,14 +13,20 @@ export interface Project {
   solution: string
   results: string
   sourceUrl: string
+  /** Optional outbound link on the Client name */
+  clientUrl?: string
+  /** Card thumbnail on /work and homepage */
   cover?: string
+  /** Case-study hero image (right column). Falls back to cover if omitted. */
+  hero?: string
+  /** Case-study Results image (60% right column) */
+  resultsImage?: string
 }
 
 /**
- * Only real, sourced projects. Everything here is grounded in the case
- * studies published at the sourceUrl on newrealm.com — no invented metrics,
- * quotes, or details beyond what's stated there. Where a hard number isn't
- * available, "results" describes the strategic outcome instead of a stat.
+ * Case studies for /work/:slug. All entries share one layout in CaseStudy.tsx.
+ * To add a project: copy an existing object, set slug/copy/assets (cover, hero,
+ * resultsImage), and drop images in public/projects/.
  */
 export const PROJECTS: Project[] = [
   {
@@ -41,7 +47,10 @@ export const PROJECTS: Project[] = [
     results:
       'A festival website that has supported Popcorn Frights as it has grown into an established fixture of the genre-film festival circuit.',
     sourceUrl: 'https://newrealm.com/pf/case-study-popcorn-frights/',
+    clientUrl: 'https://popcornfrights.com/',
     cover: '/projects/popcorn-frights.jpg',
+    hero: '/projects/casestudy-PopcornFrights.webp',
+    resultsImage: '/projects/results-PopcornFrights.png',
   },
   {
     slug: 'eric-kline-productions',
@@ -62,6 +71,7 @@ export const PROJECTS: Project[] = [
       "A cohesive brand and website that gives Eric Kline Productions a professional online presence matching the quality of its production work.",
     sourceUrl: 'https://newrealm.com/pf/case-study-eric-kline-productions/',
     cover: '/projects/black-diamond.webp',
+    hero: '/projects/black-diamond.webp',
   },
 ]
 
