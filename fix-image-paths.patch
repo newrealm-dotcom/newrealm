@@ -1,0 +1,91 @@
+diff --git a/src/components/Footer.tsx b/src/components/Footer.tsx
+index 2eb55fc..eaff34a 100644
+--- a/src/components/Footer.tsx
++++ b/src/components/Footer.tsx
+@@ -9,7 +9,7 @@ export function Footer() {
+       <div className="mx-auto max-w-[var(--container-wide)]">
+         <div className="grid grid-cols-2 gap-10 pb-14 md:grid-cols-5">
+           <div className="col-span-2">
+-            <img src="/nrg-logo-white.png" alt="New Realm Graphics" className="h-32 w-auto" />
++            <img src={`${import.meta.env.BASE_URL}nrg-logo-white.png`} alt="New Realm Graphics" className="h-32 w-auto" />
+             <p className="mt-4 max-w-xs text-sm text-[var(--color-paper)]/60">
+               A Fort Lauderdale, FL design studio with 20+ years of experience across branding, website design and
+               development, print, packaging, and digital marketing.
+diff --git a/src/components/Nav.tsx b/src/components/Nav.tsx
+index 705dfd7..5743f1c 100644
+--- a/src/components/Nav.tsx
++++ b/src/components/Nav.tsx
+@@ -134,12 +134,12 @@ export function Nav() {
+           onClick={() => setMobileOpen(false)}
+         >
+           <img
+-            src="/nrg-logo.webp"
++            src={`${import.meta.env.BASE_URL}nrg-logo.webp`}
+             alt="New Realm Graphics"
+             className="h-[167px] w-auto transition-opacity duration-300 group-hover:opacity-0"
+           />
+           <img
+-            src="/nrg-logo-hover.png"
++            src={`${import.meta.env.BASE_URL}nrg-logo-hover.png`}
+             alt=""
+             aria-hidden="true"
+             className="pointer-events-none absolute left-1/2 top-1/2 h-[167px] w-auto -translate-x-1/2 -translate-y-1/2 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+diff --git a/src/pages/About.tsx b/src/pages/About.tsx
+index 2d567d1..be85aa0 100644
+--- a/src/pages/About.tsx
++++ b/src/pages/About.tsx
+@@ -58,7 +58,7 @@ export function About() {
+           </div>
+           <div className="flex justify-center lg:justify-end">
+             <img
+-              src="/rusty.png"
++              src={`${import.meta.env.BASE_URL}rusty.png`}
+               alt=""
+               className="h-auto w-full max-w-[280px] object-contain md:max-w-[340px] lg:max-w-[400px]"
+             />
+@@ -94,7 +94,7 @@ export function About() {
+           <div className="grid grid-cols-1 gap-10 md:grid-cols-[300px_1fr] md:items-center">
+             <Reveal>
+               <img
+-                src="/mike-franco-about.png?v=2"
++                src={`${import.meta.env.BASE_URL}mike-franco-about.png?v=2`}
+                 alt={mike.name}
+                 className="aspect-square w-full max-w-[300px] border-2 border-[var(--color-line)] object-cover"
+               />
+diff --git a/src/pages/Home.tsx b/src/pages/Home.tsx
+index 8d8b3b5..7a65b35 100644
+--- a/src/pages/Home.tsx
++++ b/src/pages/Home.tsx
+@@ -114,7 +114,7 @@ export function Home() {
+ 
+           <div className="relative hidden min-h-[560px] overflow-hidden lg:block">
+             <img
+-              src="/hero-bg.webp"
++              src={`${import.meta.env.BASE_URL}hero-bg.webp`}
+               alt=""
+               className="absolute inset-0 h-full w-full object-cover"
+             />
+@@ -301,7 +301,7 @@ export function Home() {
+               {TEAM[0].name}
+             </h2>
+             <img
+-              src="/signature.png"
++              src={`${import.meta.env.BASE_URL}signature.png`}
+               alt=""
+               aria-hidden="true"
+               className="mt-4 w-3/4 lg:w-4/5"
+@@ -315,12 +315,12 @@ export function Home() {
+             <div className="group relative mx-auto flex h-full w-full max-w-lg items-end justify-center lg:absolute lg:inset-x-0 lg:bottom-0 lg:top-[-50px] lg:h-auto lg:mx-0 lg:max-w-none">
+               <div className="relative h-full w-full max-w-full">
+                 <img
+-                  src="/mike-franco.png?v=12"
++                  src={`${import.meta.env.BASE_URL}mike-franco.png?v=12`}
+                   alt={TEAM[0].name}
+                   className="h-full w-full max-w-full object-contain object-bottom transition-none group-hover:opacity-0"
+                 />
+                 <img
+-                  src="/mike-franco-hover.png?v=12"
++                  src={`${import.meta.env.BASE_URL}mike-franco-hover.png?v=12`}
+                   alt=""
+                   aria-hidden="true"
+                   className="pointer-events-none absolute inset-0 h-full w-full object-contain object-bottom opacity-0 transition-none group-hover:opacity-100"
