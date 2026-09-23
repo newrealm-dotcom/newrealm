@@ -32,7 +32,7 @@ export function ServiceDetail() {
           '@type': 'Service',
           serviceType: service.title,
           provider: { '@type': 'ProfessionalService', name: 'New Realm Graphics', url: SITE_URL },
-          areaServed: 'Denver, Colorado',
+          areaServed: 'Fort Lauderdale, FL',
           description: service.shortDescription,
         }}
       />

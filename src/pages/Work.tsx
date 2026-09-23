@@ -18,7 +18,7 @@ export function Work() {
     <>
       <SEO
         title="Our Work"
-        description="Selected branding, website, and design work from New Realm Graphics — a Denver, Colorado creative and digital agency."
+        description="Selected branding, website, and design work from New Realm Graphics — a Fort Lauderdale, FL creative and digital agency."
         path="/work"
       />
 

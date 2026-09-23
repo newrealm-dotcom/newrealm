@@ -1,6 +1,6 @@
 # New Realm Graphics
 
-Marketing site for New Realm Graphics — a Denver, Colorado design studio with 20+ years of
+Marketing site for New Realm Graphics — a Fort Lauderdale, FL design studio with 20+ years of
 experience across branding, website design and development, print, packaging, and digital
 marketing (SEO/AEO). This is a multi-page, editorial-style marketing site: Home, Work
 (portfolio + case studies), Services (overview + 7 individual service pages), About, Insights

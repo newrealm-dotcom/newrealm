@@ -61,7 +61,7 @@ export function Home() {
     <>
       <SEO
         title="New Realm Graphics — Branding, Websites & Digital Marketing"
-        description="New Realm Graphics is a Denver, Colorado design studio with 20+ years of experience in branding, website design and development, print, packaging, SEO/AEO, and digital marketing for small businesses."
+        description="New Realm Graphics is a Fort Lauderdale, FL design studio with 20+ years of experience in branding, website design and development, print, packaging, SEO/AEO, and digital marketing for small businesses."
         path="/"
         jsonLd={{
           '@context': 'https://schema.org',
