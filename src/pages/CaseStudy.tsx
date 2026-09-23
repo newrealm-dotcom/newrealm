@@ -37,8 +37,8 @@ export function CaseStudy() {
       />
 
       {/* Hero — full-width 50/50, white */}
-      <section className="border-b border-[var(--color-line)] bg-white pb-16 pt-[14px] md:pb-20 md:pt-[30px]">
-        <div className="grid w-full grid-cols-1 items-center lg:grid-cols-2">
+      <section className="border-b border-[var(--color-line)] bg-white pb-16 pt-0 md:pb-20">
+        <div className="grid w-full grid-cols-1 items-center lg:grid-cols-[35%_65%]">
           <div className="px-6 lg:px-[100px] lg:py-0">
             <Link to="/work" className="link-underline text-sm text-[var(--color-ink-dim)]">
               ← All work

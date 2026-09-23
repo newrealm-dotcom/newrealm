@@ -36,17 +36,22 @@ export function Services() {
         </div>
       </section>
 
-      <section className="px-6 py-16 md:px-10 md:py-20">
-        <div className="mx-auto max-w-[var(--container-wide)]">
-          <div className="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3">
+      <section
+        className="w-full bg-repeat pt-[50px] md:pt-[100px] md:pb-[100px]"
+        style={{
+          backgroundImage: `url(${assetUrl('/services/service-boxes-bg.webp')})`,
+        }}
+      >
+        <div className="w-full px-6 pb-[50px] md:px-[100px] md:pb-0">
+          <div className="grid grid-cols-1 gap-5 md:grid-cols-2 md:gap-10 xl:grid-cols-3 xl:gap-[100px]">
             {SERVICES.map((s, i) => (
               <Reveal
                 key={s.slug}
                 delay={i * 60}
                 className={
                   i === SERVICES.length - 1
-                    ? 'md:col-span-2 md:mx-auto md:w-[calc(50%-0.625rem)] xl:col-span-1 xl:col-start-2 xl:mx-0 xl:w-auto'
-                    : undefined
+                    ? 'min-w-0 md:col-span-2 md:mx-auto md:w-[calc(50%-1.25rem)] xl:col-span-1 xl:col-start-2 xl:mx-0 xl:w-auto'
+                    : 'min-w-0'
                 }
               >
                 <ServiceCard service={s} index={i} />
@@ -60,7 +65,9 @@ export function Services() {
         <h2 className="font-[family-name:var(--font-display)] text-3xl font-medium md:text-4xl">
           Not sure which service fits?
         </h2>
-        <p className="mx-auto mt-4 max-w-md">Tell us what you're trying to accomplish — we'll point you in the right direction.</p>
+        <p className="mt-4 md:whitespace-nowrap">
+          Tell us what you're trying to accomplish — we'll point you in the right direction.
+        </p>
         <Link to="/contact" className="btn btn-inverse mt-8">
           Start a Project
         </Link>

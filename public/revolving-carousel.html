@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Signature Work Carousel</title>
+  <style>
+    :root {
+      --bg: transparent;
+      --focus: #00419f;
+      --radius-img: 16px;
+      --idle-deg-per-sec: 9;
+      --hover-deg-per-sec: 32;
+      --speed-lerp: 0.08;
+      /* Fill the iframe aggressively */
+      --ring-radius: min(52vmin, 380px);
+      --card-w: min(62vmin, 460px);
+      --card-h: calc(var(--card-w) * 0.68);
+      --perspective: 1800px;
+      --tilt-x: 8deg;
+      --ease-ui: cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+
+    html, body {
+      margin: 0;
+      width: 100%;
+      height: 100%;
+      background: transparent;
+      overflow: hidden;
+      font-family: system-ui, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      user-select: none;
+    }
+
+    body.is-locked { overflow: hidden; }
+
+    .stage {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      perspective: var(--perspective);
+      perspective-origin: 50% 42%;
+      cursor: grab;
+      touch-action: none;
+      display: grid;
+      place-items: center;
+    }
+
+    .stage.is-dragging { cursor: grabbing; }
+
+    .scene {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      display: grid;
+      place-items: center;
+      transform-style: preserve-3d;
+      transform: rotateX(var(--tilt-x));
+    }
+
+    .ring {
+      position: relative;
+      width: var(--card-w);
+      height: var(--card-h);
+      transform-style: preserve-3d;
+      will-change: transform;
+    }
+
+    .card {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      padding: 0;
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      border-radius: var(--radius-img);
+      transform-style: preserve-3d;
+      outline: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .card:focus-visible {
+      outline: 2px solid var(--focus);
+      outline-offset: 3px;
+    }
+
+    .card.is-hovered,
+    .card:focus-visible {
+      z-index: 200;
+    }
+
+    .card__frame {
+      width: 100%;
+      height: 100%;
+      border-radius: var(--radius-img);
+      overflow: hidden;
+      background: #f3f3f3;
+      box-shadow:
+        0 14px 32px rgba(0, 0, 0, 0.14),
+        0 0 0 1px rgba(0, 0, 0, 0.04);
+      transform: scale(1);
+      transition: transform 0.4s var(--ease-ui), box-shadow 0.4s var(--ease-ui);
+    }
+
+    .card.is-front .card__frame {
+      transform: scale(1.18);
+      box-shadow:
+        0 32px 64px rgba(0, 0, 0, 0.24),
+        0 0 0 1px rgba(0, 0, 0, 0.06);
+    }
+
+    .card.is-hovered .card__frame,
+    .card:focus-visible .card__frame {
+      transform: scale(1.33);
+      z-index: 200;
+    }
+
+    .card.is-front.is-hovered .card__frame,
+    .card.is-front:focus-visible .card__frame {
+      transform: scale(1.33);
+    }
+
+    .card__frame::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(110deg, #eee 0%, #f7f7f7 45%, #eee 90%);
+      background-size: 200% 100%;
+      animation: shimmer 1.4s ease-in-out infinite;
+      transition: opacity 0.4s ease;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .card.is-loaded .card__frame::before { opacity: 0; }
+
+    @keyframes shimmer {
+      0% { background-position: 100% 0; }
+      100% { background-position: -100% 0; }
+    }
+
+    .card img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      pointer-events: none;
+      -webkit-user-drag: none;
+    }
+
+    .card.is-loaded img { opacity: 1; }
+
+    /* Lightbox */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      display: grid;
+      place-items: center;
+      padding: 0.5rem;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s var(--ease-ui), visibility 0.3s;
+    }
+
+    .lightbox.is-open { opacity: 1; visibility: visible; }
+
+    .lightbox__backdrop {
+      position: absolute;
+      inset: 0;
+      border: none;
+      margin: 0;
+      padding: 0;
+      cursor: pointer;
+      background: transparent;
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
+    }
+
+    .lightbox__panel {
+      position: relative;
+      z-index: 1;
+      width: auto;
+      max-width: min(96%, 1100px);
+      max-height: 92vh;
+      background: transparent;
+      transform: scale(0.96);
+      opacity: 0;
+      transition: transform 0.35s var(--ease-ui), opacity 0.35s var(--ease-ui);
+    }
+
+    .lightbox.is-open .lightbox__panel {
+      transform: scale(1);
+      opacity: 1;
+    }
+
+    .lightbox__img-wrap {
+      border-radius: 0;
+      overflow: visible;
+      box-shadow: none;
+      background: transparent;
+      width: auto;
+      line-height: 0;
+    }
+
+    .lightbox__img-wrap img {
+      display: block;
+      width: auto;
+      max-width: min(96vw, 1100px);
+      max-height: 92vh;
+      height: auto;
+      object-fit: contain;
+      background: transparent;
+      border-radius: 12px;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.28);
+    }
+
+    /* Hide the ring while lightbox is open so only the image floats */
+    body.is-lightbox-open .stage {
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .lightbox__close,
+    .lightbox__nav {
+      position: absolute;
+      display: grid;
+      place-items: center;
+      width: 42px;
+      height: 42px;
+      border: 1px solid rgba(0, 0, 0, 0.12);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.92);
+      color: #111;
+      cursor: pointer;
+    }
+
+    .lightbox__close:focus-visible,
+    .lightbox__nav:focus-visible {
+      outline: 2px solid var(--focus);
+      outline-offset: 2px;
+    }
+
+    .lightbox__close {
+      top: max(0.75rem, env(safe-area-inset-top));
+      right: max(0.75rem, env(safe-area-inset-right));
+      z-index: 2;
+    }
+
+    .lightbox__nav--prev { left: max(0.5rem, env(safe-area-inset-left)); top: 50%; transform: translateY(-50%); }
+    .lightbox__nav--next { right: max(0.5rem, env(safe-area-inset-right)); top: 50%; transform: translateY(-50%); }
+
+    @media (prefers-reduced-motion: reduce) {
+      .scene { transform: none; }
+      .ring {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        gap: 0.65rem;
+        width: 100%;
+        height: auto;
+        transform: none !important;
+        padding: 1rem;
+      }
+      .card {
+        position: relative;
+        width: min(28vw, 110px);
+        height: calc(min(28vw, 110px) * 0.72);
+        transform: none !important;
+        filter: none !important;
+      }
+      .card__frame::before { animation: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="stage" id="stage" aria-roledescription="carousel" aria-label="Signature design work carousel">
+    <div class="scene">
+      <div class="ring" id="ring" role="list"></div>
+    </div>
+  </div>
+
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-hidden="true" aria-label="Image viewer" hidden>
+    <button type="button" class="lightbox__backdrop" id="lightbox-backdrop" aria-label="Close"></button>
+    <button type="button" class="lightbox__close" id="lightbox-close" aria-label="Close">
+      <svg width="16" height="16" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M4 4l10 10M14 4L4 14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+    </button>
+    <button type="button" class="lightbox__nav lightbox__nav--prev" id="lightbox-prev" aria-label="Previous">
+      <svg width="16" height="16" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M11 4L6 9l5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+    <button type="button" class="lightbox__nav lightbox__nav--next" id="lightbox-next" aria-label="Next">
+      <svg width="16" height="16" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M7 4l5 5-5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+    <div class="lightbox__panel">
+      <div class="lightbox__img-wrap"><img id="lightbox-img" alt="" /></div>
+    </div>
+  </div>
+
+  <script>
+    const IMAGES = [
+      { src: './services/signature%20soups.webp', alt: 'Signature Soups' },
+      { src: './services/signaturebites-wallpaper.webp', alt: 'Signature Bites' },
+      { src: './services/signaturesalads-wallpaper.webp', alt: 'Signature Salads' },
+      { src: './services/signaturesmoothies-wallpaper.webp', alt: 'Signature Smoothies' },
+      { src: './services/signaturewraps-wallpaper.webp', alt: 'Signature Wraps' },
+    ];
+
+    const stage = document.getElementById('stage');
+    const ring = document.getElementById('ring');
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const btnClose = document.getElementById('lightbox-close');
+    const btnPrev = document.getElementById('lightbox-prev');
+    const btnNext = document.getElementById('lightbox-next');
+    const btnBackdrop = document.getElementById('lightbox-backdrop');
+
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const n = IMAGES.length;
+    const step = 360 / n;
+
+    let radius = 0;
+    let angle = 0;
+    let velocity = 0;
+    let autoTarget = 0;
+    let frontIndex = 0;
+    let dragging = false;
+    let didDrag = false;
+    let lastX = 0;
+    let lastTs = 0;
+    let dragSamples = [];
+    let snapTo = null;
+    let lightboxOpen = false;
+    let tabVisible = true;
+    let hovering = false;
+    let lastFocused = null;
+    let lightboxIndex = 0;
+    const cards = [];
+
+    function cssNum(name, fb) {
+      const v = parseFloat(getComputedStyle(document.documentElement).getPropertyValue(name));
+      return Number.isFinite(v) ? v : fb;
+    }
+
+    function measureRadius() {
+      const el = document.createElement('div');
+      el.style.cssText = 'position:absolute;visibility:hidden;width:var(--ring-radius)';
+      document.body.appendChild(el);
+      const w = el.getBoundingClientRect().width;
+      el.remove();
+      return w || 180;
+    }
+
+    radius = measureRadius();
+
+    IMAGES.forEach((item, i) => {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'card';
+      btn.setAttribute('role', 'listitem');
+      btn.setAttribute('aria-label', item.alt);
+      btn.dataset.index = String(i);
+
+      const frame = document.createElement('div');
+      frame.className = 'card__frame';
+      const img = document.createElement('img');
+      img.src = item.src;
+      img.alt = item.alt;
+      img.loading = 'lazy';
+      img.decoding = 'async';
+      img.decode?.().catch(() => {}).finally(() => btn.classList.add('is-loaded'));
+      img.addEventListener('load', () => btn.classList.add('is-loaded'));
+
+      frame.appendChild(img);
+      btn.appendChild(frame);
+      ring.appendChild(btn);
+      cards.push(btn);
+
+      btn.style.transform = `rotateY(${i * step}deg) translateZ(${radius}px)`;
+
+      btn.addEventListener('pointerenter', () => {
+        btn.classList.add('is-hovered');
+        setHover(true);
+      });
+      btn.addEventListener('pointerleave', () => {
+        btn.classList.remove('is-hovered');
+        if (!cards.some((c) => c.classList.contains('is-hovered') || c === document.activeElement)) {
+          setHover(false);
+        }
+      });
+      btn.addEventListener('focus', () => { btn.classList.add('is-hovered'); setHover(true); });
+      btn.addEventListener('blur', () => {
+        btn.classList.remove('is-hovered');
+        if (!cards.some((c) => c.classList.contains('is-hovered'))) setHover(false);
+      });
+
+      btn.addEventListener('click', (e) => {
+        if (didDrag) { e.preventDefault(); return; }
+        if (i === frontIndex) openLightbox(i);
+        else snapCardToFront(i);
+      });
+    });
+
+    function applyTransforms() {
+      ring.style.transform = `rotateY(${angle}deg)`;
+
+      let best = 0;
+      let bestDist = Infinity;
+      cards.forEach((card, i) => {
+        card.style.transform = `rotateY(${i * step}deg) translateZ(${radius}px)`;
+        const world = ((angle + i * step) % 360 + 360) % 360;
+        const dist = Math.min(world, 360 - world);
+        if (dist < bestDist) { bestDist = dist; best = i; }
+        const t = dist / 180;
+        card.style.filter = `brightness(${1 - t * 0.12})`;
+        card.style.zIndex = String(Math.round(100 - dist));
+        card.classList.toggle('is-front', false);
+      });
+      frontIndex = best;
+      cards[best].classList.add('is-front');
+    }
+
+    function setHover(on) {
+      hovering = on;
+      if (reduceMotion || lightboxOpen || !tabVisible || dragging || snapTo != null) {
+        autoTarget = 0;
+      } else {
+        autoTarget = on ? cssNum('--hover-deg-per-sec', 32) : cssNum('--idle-deg-per-sec', 9);
+      }
+    }
+
+    function nearestSnapAngle(a) {
+      let bestA = a;
+      let bestDiff = Infinity;
+      for (let i = 0; i < n; i++) {
+        let target = -i * step;
+        while (target - a > 180) target -= 360;
+        while (target - a < -180) target += 360;
+        const d = Math.abs(target - a);
+        if (d < bestDiff) { bestDiff = d; bestA = target; }
+      }
+      return bestA;
+    }
+
+    function snapCardToFront(index) {
+      let target = -index * step;
+      while (target - angle > 180) target -= 360;
+      while (target - angle < -180) target += 360;
+      snapTo = target;
+      velocity = 0;
+    }
+
+    function beginSnap() {
+      snapTo = nearestSnapAngle(angle);
+      velocity = 0;
+    }
+
+    stage.addEventListener('pointerdown', (e) => {
+      if (lightboxOpen || reduceMotion) return;
+      if (e.pointerType === 'mouse' && e.button !== 0) return;
+      dragging = true;
+      didDrag = false;
+      snapTo = null;
+      lastX = e.clientX;
+      dragSamples = [{ t: performance.now(), x: e.clientX }];
+      velocity = 0;
+      stage.classList.add('is-dragging');
+      stage.setPointerCapture?.(e.pointerId);
+    });
+
+    stage.addEventListener('pointermove', (e) => {
+      if (!dragging) return;
+      const dx = e.clientX - lastX;
+      if (Math.abs(dx) > 2) didDrag = true;
+      lastX = e.clientX;
+      angle = (angle + dx * 0.35) % 360;
+      const now = performance.now();
+      dragSamples.push({ t: now, x: e.clientX });
+      dragSamples = dragSamples.filter((s) => now - s.t < 100);
+      applyTransforms();
+    });
+
+    function endDrag() {
+      if (!dragging) return;
+      dragging = false;
+      stage.classList.remove('is-dragging');
+      if (dragSamples.length >= 2) {
+        const a = dragSamples[0];
+        const b = dragSamples[dragSamples.length - 1];
+        const dt = (b.t - a.t) / 1000;
+        if (dt > 0) velocity = ((b.x - a.x) / dt) * 0.35;
+      }
+      window.setTimeout(() => {
+        if (!dragging && !lightboxOpen) beginSnap();
+      }, 160);
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => { didDrag = false; });
+      });
+    }
+
+    stage.addEventListener('pointerup', endDrag);
+    stage.addEventListener('pointercancel', endDrag);
+    stage.addEventListener('pointerenter', () => setHover(true));
+    stage.addEventListener('pointerleave', () => {
+      if (!cards.some((c) => c.classList.contains('is-hovered'))) setHover(false);
+    });
+
+    function tick(ts) {
+      if (!lastTs) lastTs = ts;
+      const dt = Math.min((ts - lastTs) / 1000, 0.064);
+      lastTs = ts;
+
+      if (!reduceMotion && !lightboxOpen && tabVisible) {
+        if (snapTo != null) {
+          const diff = snapTo - angle;
+          if (Math.abs(diff) < 0.05) {
+            angle = ((snapTo % 360) + 360) % 360;
+            snapTo = null;
+            velocity = 0;
+            setHover(hovering);
+          } else {
+            angle += diff * Math.min(1, 1 - Math.pow(0.0008, dt));
+          }
+        } else if (!dragging) {
+          const lerp = 1 - Math.pow(1 - cssNum('--speed-lerp', 0.08), dt * 60);
+          velocity += (autoTarget - velocity) * lerp;
+          angle += velocity * dt;
+        }
+        angle = ((angle % 360) + 360) % 360;
+        applyTransforms();
+      }
+      requestAnimationFrame(tick);
+    }
+
+    if (!reduceMotion) {
+      autoTarget = cssNum('--idle-deg-per-sec', 9);
+      velocity = autoTarget;
+      requestAnimationFrame(tick);
+    }
+    applyTransforms();
+
+    window.addEventListener('resize', () => {
+      radius = measureRadius();
+      applyTransforms();
+    });
+
+    document.addEventListener('visibilitychange', () => {
+      tabVisible = document.visibilityState === 'visible';
+      if (!tabVisible) { velocity = 0; autoTarget = 0; lastTs = 0; }
+      else if (!lightboxOpen && !reduceMotion) setHover(hovering);
+    });
+
+    stage.addEventListener('keydown', (e) => {
+      if (reduceMotion || lightboxOpen) return;
+      if (e.key === 'ArrowLeft') { e.preventDefault(); snapCardToFront((frontIndex - 1 + n) % n); }
+      if (e.key === 'ArrowRight') { e.preventDefault(); snapCardToFront((frontIndex + 1) % n); }
+    });
+
+    function openLightbox(index) {
+      lightboxIndex = index;
+      lastFocused = document.activeElement;
+      lightboxOpen = true;
+      velocity = 0;
+      autoTarget = 0;
+      snapTo = null;
+      const item = IMAGES[index];
+      lightboxImg.src = item.src;
+      lightboxImg.alt = item.alt;
+      lightbox.hidden = false;
+      lightbox.setAttribute('aria-hidden', 'false');
+      void lightbox.offsetWidth;
+      lightbox.classList.add('is-open');
+      document.body.classList.add('is-locked', 'is-lightbox-open');
+      btnClose.focus();
+    }
+
+    function closeLightbox() {
+      lightbox.classList.remove('is-open');
+      lightbox.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('is-locked', 'is-lightbox-open');
+      lightboxOpen = false;
+      const done = () => {
+        lightbox.hidden = true;
+        lightbox.removeEventListener('transitionend', done);
+      };
+      lightbox.addEventListener('transitionend', done);
+      if (!reduceMotion && tabVisible) setHover(hovering);
+      lastFocused?.focus?.({ preventScroll: true });
+    }
+
+    function stepLb(dir) {
+      lightboxIndex = (lightboxIndex + dir + n) % n;
+      const item = IMAGES[lightboxIndex];
+      lightboxImg.src = item.src;
+      lightboxImg.alt = item.alt;
+    }
+
+    btnClose.addEventListener('click', closeLightbox);
+    btnBackdrop.addEventListener('click', closeLightbox);
+    btnPrev.addEventListener('click', () => stepLb(-1));
+    btnNext.addEventListener('click', () => stepLb(1));
+
+    lightbox.addEventListener('keydown', (e) => {
+      if (!lightboxOpen) return;
+      if (e.key === 'Escape') { e.preventDefault(); closeLightbox(); }
+      if (e.key === 'ArrowLeft') { e.preventDefault(); stepLb(-1); }
+      if (e.key === 'ArrowRight') { e.preventDefault(); stepLb(1); }
+    });
+  </script>
+</body>
+</html>

@@ -1,3 +1,4 @@
+import { useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { SEO, SITE_URL } from '../components/SEO'
 import { Reveal } from '../components/Reveal'
@@ -26,6 +27,101 @@ const CREDIBILITY = [
     icon: '/icon-ongoing-support.png',
   },
 ]
+
+/** Clockwise (forward clip), then counter-clockwise (reversed clip), repeating. */
+function SeamlessLoopVideo({
+  src,
+  reverseSrc,
+  className,
+}: {
+  src: string
+  reverseSrc: string
+  className?: string
+}) {
+  const forwardRef = useRef<HTMLVideoElement>(null)
+  const reverseRef = useRef<HTMLVideoElement>(null)
+
+  useEffect(() => {
+    const forward = forwardRef.current
+    const reverse = reverseRef.current
+    if (!forward || !reverse) return
+
+    let mode: 'forward' | 'reverse' = 'forward'
+
+    const show = (el: HTMLVideoElement, visible: boolean) => {
+      el.style.opacity = visible ? '1' : '0'
+      el.style.zIndex = visible ? '1' : '0'
+    }
+
+    const playForward = async () => {
+      mode = 'forward'
+      reverse.pause()
+      reverse.currentTime = 0
+      show(forward, true)
+      show(reverse, false)
+      forward.currentTime = 0
+      try {
+        await forward.play()
+      } catch {
+        /* ignore */
+      }
+    }
+
+    const playReverse = async () => {
+      mode = 'reverse'
+      forward.pause()
+      forward.currentTime = 0
+      show(reverse, true)
+      show(forward, false)
+      reverse.currentTime = 0
+      try {
+        await reverse.play()
+      } catch {
+        /* ignore */
+      }
+    }
+
+    const onForwardEnded = () => {
+      if (mode === 'forward') void playReverse()
+    }
+    const onReverseEnded = () => {
+      if (mode === 'reverse') void playForward()
+    }
+
+    forward.addEventListener('ended', onForwardEnded)
+    reverse.addEventListener('ended', onReverseEnded)
+
+    void playForward()
+
+    return () => {
+      forward.removeEventListener('ended', onForwardEnded)
+      reverse.removeEventListener('ended', onReverseEnded)
+    }
+  }, [src, reverseSrc])
+
+  return (
+    <div className="relative">
+      <video
+        ref={forwardRef}
+        src={src}
+        muted
+        playsInline
+        preload="auto"
+        className={className}
+      />
+      <video
+        ref={reverseRef}
+        src={reverseSrc}
+        muted
+        playsInline
+        preload="auto"
+        aria-hidden="true"
+        className={`${className ?? ''} pointer-events-none absolute inset-0 h-full w-full`}
+        style={{ opacity: 0 }}
+      />
+    </div>
+  )
+}
 
 export function About() {
   const mike = TEAM[0]
@@ -58,17 +154,19 @@ export function About() {
             </p>
           </div>
           <div className="flex justify-center lg:justify-end">
-            <img
-              src={assetUrl('rusty.png')}
-              alt=""
-              className="h-auto w-full max-w-[280px] object-contain md:max-w-[340px] lg:max-w-[400px]"
-            />
+            <div className="w-full max-w-[280px] overflow-hidden rounded-[15px] border-[5px] border-[#151412] md:max-w-[340px] lg:max-w-[400px]">
+              <SeamlessLoopVideo
+                src={assetUrl('/dog-spinning.mp4')}
+                reverseSrc={assetUrl('/dog-spinning-reverse.mp4')}
+                className="block h-auto w-full object-contain"
+              />
+            </div>
           </div>
         </div>
       </section>
 
-      <section className="border-b border-[var(--color-line)] px-6 py-16 md:px-10 md:py-20">
-        <div className="mx-auto max-w-[var(--container-wide)]">
+      <section className="w-full border-b border-[var(--color-line)] bg-[#eff1de] px-[50px] py-16 md:py-20">
+        <div className="w-full">
           <div className="grid grid-cols-2 items-start gap-10 sm:grid-cols-4">
             {CREDIBILITY.map((c) => (
               <Reveal key={c.label} className="flex flex-col items-center">

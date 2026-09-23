@@ -3,10 +3,11 @@ import { SEO } from '../components/SEO'
 import { Reveal } from '../components/Reveal'
 import { ProjectCard } from '../components/ProjectCard'
 import { PROJECTS, CATEGORY_LABELS, type ProjectCategory } from '../data/projects'
+import { assetUrl } from '../lib/assetUrl'
 
 type FilterKey = 'all' | ProjectCategory
 
-const FILTERS: FilterKey[] = ['all', 'branding', 'graphic-design', 'web', 'packaging', 'print', 'digital']
+const FILTERS: FilterKey[] = ['all', 'branding', 'graphic-design', 'web', 'packaging', 'print']
 
 export function Work() {
   const [filter, setFilter] = useState<FilterKey>('all')
@@ -21,7 +22,12 @@ export function Work() {
         path="/work"
       />
 
-      <section className="border-b border-[var(--color-line)] px-6 py-16 md:px-10 md:py-20">
+      <section
+        className="border-b border-[var(--color-line)] bg-cover bg-center px-6 py-16 md:px-10 md:py-20"
+        style={{
+          backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), url(${assetUrl('/projects/chaotic-pattern-design.png')})`,
+        }}
+      >
         <div className="mx-auto max-w-[var(--container-wide)]">
           <p className="eyebrow mb-4">Work</p>
           <h1 className="max-w-2xl font-[family-name:var(--font-display)] text-4xl font-medium text-[var(--color-ink)] md:text-5xl">
@@ -42,7 +48,7 @@ export function Work() {
                 className={`border px-4 py-2 text-sm transition-colors ${
                   filter === key
                     ? 'border-[var(--color-ink)] bg-[var(--color-ink)] text-[var(--color-paper)]'
-                    : 'border-[var(--color-line-strong)] text-[var(--color-ink-dim)] hover:border-[var(--color-ink)] hover:text-[var(--color-ink)]'
+                    : 'border-[var(--color-line-strong)] text-[var(--color-ink-dim)] hover:border-[var(--color-ink)] hover:bg-white hover:text-[var(--color-ink)]'
                 }`}
               >
                 {CATEGORY_LABELS[key].toUpperCase()}

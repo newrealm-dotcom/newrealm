@@ -53,7 +53,7 @@ export const PROJECTS: Project[] = [
     resultsImage: '/projects/results-PopcornFrights.png',
   },
   {
-    slug: 'eric-kline-productions',
+    slug: 'black-diamond-enterprises',
     client: 'Black Diamond Enterprises',
     industry: 'Business Venture',
     tag: 'Website & Logo Design',
@@ -62,16 +62,17 @@ export const PROJECTS: Project[] = [
       'Website and original logo for the West Virginia-based company, Black Diamond Enterprises led by mineral extraction expert, Norm Mullins.',
     servicesProvided: ['Logo design', 'Brand identity', 'Website design & development'],
     challenge:
-      'A production company built around one director\'s reputation needed a visual identity and website that could stand alongside the production work itself — professional enough to present to studios and clients, distinct enough to be memorable.',
+      'A mineral-extraction company led by Norm Mullins needed a professional mark and website that could represent Black Diamond Enterprises credibly to partners and clients — clear enough to signal expertise, polished enough to stand up in a traditional industry.',
     strategy:
-      "Build the identity first, then design the site around it, so the mark and the site reinforce the same impression rather than feeling like two separate projects.",
+      'Start with an original logo and identity, then build the website around that system so the brand and the site feel like one coherent presence rather than separate pieces.',
     solution:
-      "New Realm designed an original logo for Eric Kline Productions and built the company's website around that identity.",
+      "New Realm designed an original logo for Black Diamond Enterprises and built the company's website around that identity.",
     results:
-      "A cohesive brand and website that gives Eric Kline Productions a professional online presence matching the quality of its production work.",
+      'A cohesive brand and website that gives Black Diamond Enterprises a professional online presence matching the seriousness of its mineral-extraction work.',
     sourceUrl: 'https://newrealm.com/pf/case-study-eric-kline-productions/',
     cover: '/projects/black-diamond.webp',
-    hero: '/projects/black-diamond.webp',
+    hero: '/BDE-hero-image.webp',
+    resultsImage: '/projects/black-diamond.webp',
   },
 ]
 

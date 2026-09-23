@@ -21,7 +21,7 @@ export function ServiceCard({ service, index }: ServiceCardProps) {
   return (
     <Link
       to={`/services/${service.slug}`}
-      className="group relative flex h-full min-h-[420px] flex-col overflow-hidden rounded-2xl p-8 md:p-9"
+      className="group relative flex h-full min-h-[420px] min-w-0 flex-col overflow-hidden rounded-2xl px-6 pb-6 pt-8 md:px-[50px] md:pb-[50px] md:shadow-[inset_0_0_0_7px_#fff] md:pt-9 md:group-hover:shadow-none"
       style={{ color: theme.fg }}
     >
       <div
@@ -35,20 +35,20 @@ export function ServiceCard({ service, index }: ServiceCardProps) {
       >
         {String(index + 1).padStart(2, '0')}
       </span>
-      <h3 className="mt-5 font-[family-name:var(--font-display)] text-[calc(1.5rem*1.4)] font-medium leading-tight transition-opacity duration-300 group-hover:opacity-0">
+      <h3 className="mt-5 break-words font-[family-name:var(--font-display)] text-[calc(1.5rem*1.4)] font-medium leading-tight transition-opacity duration-300 group-hover:opacity-0">
         {service.navLabel}
       </h3>
       <p
-        className="mt-3 text-sm leading-relaxed transition-opacity duration-300 group-hover:opacity-0"
+        className="mt-3 break-words text-sm leading-relaxed transition-opacity duration-300 group-hover:opacity-0"
         style={{ color: theme.muted }}
       >
         {service.shortDescription}
       </p>
-      <ul className="mt-8 flex-1 transition-opacity duration-300 group-hover:opacity-0">
+      <ul className="mt-8 min-w-0 flex-1 transition-opacity duration-300 group-hover:opacity-0">
         {service.subServices.map((item) => (
           <li
             key={item}
-            className="border-b py-3 text-sm"
+            className="break-words border-b py-3 text-sm"
             style={{ borderColor: theme.line, color: theme.fg }}
           >
             {item}
@@ -62,13 +62,13 @@ export function ServiceCard({ service, index }: ServiceCardProps) {
         Learn more →
       </span>
       <div
-        className="pointer-events-none absolute inset-0 z-10 flex flex-col items-center justify-center gap-6 px-8 opacity-0 transition-opacity duration-300 group-hover:opacity-100 md:px-9"
+        className="pointer-events-none absolute inset-0 z-10 flex min-w-0 flex-col items-center justify-center gap-6 overflow-hidden px-6 opacity-0 transition-opacity duration-300 group-hover:pointer-events-auto group-hover:opacity-100 md:px-[50px]"
         style={{ color: theme.fg }}
       >
-        <h3 className="max-w-full text-center font-[family-name:var(--font-display)] text-[calc(1.5rem*1.4*2)] font-medium leading-tight">
+        <h3 className="w-full max-w-full break-words text-center font-[family-name:var(--font-display)] text-3xl font-medium leading-tight sm:text-4xl lg:text-[calc(1.5rem*1.4*2)]">
           {service.navLabel}
         </h3>
-        <span className="text-sm font-semibold">Learn more →</span>
+        <span className="text-sm font-bold hover:underline hover:underline-offset-4">Learn more →</span>
       </div>
     </Link>
   )

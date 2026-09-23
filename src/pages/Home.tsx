@@ -162,10 +162,10 @@ export function Home() {
       </section>
 
       {/* 04 — Experience / Differentiator */}
-      <section className="border-b border-[var(--color-line)] bg-[var(--color-paper-2)] px-6 py-20 md:px-10 md:py-28">
-        <div className="mx-auto max-w-[var(--container-wide)]">
+      <section className="border-b border-[var(--color-line)] bg-[#eff1de] px-[100px] py-20 md:py-28">
+        <div className="w-full">
           <p className="eyebrow mb-4">20+ Years of Design + Digital Experience</p>
-          <h2 className="prose-copy mb-14 font-[family-name:var(--font-display)] text-3xl font-medium text-[var(--color-ink)] md:text-4xl">
+          <h2 className="mb-14 max-w-none font-[family-name:var(--font-display)] text-3xl font-medium text-[var(--color-ink)] md:whitespace-nowrap md:text-4xl">
             Most studios specialize in traditional creative or in digital. New Realm has spent two decades in both.
           </h2>
           <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4">
@@ -206,6 +206,18 @@ export function Home() {
             </Reveal>
             <Reveal delay={100}>
               <div className="border border-[var(--color-line)] p-8">
+                <a
+                  href="https://popcornfrights.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mb-6 block"
+                >
+                  <img
+                    src={assetUrl('/projects/popcorn-frights.jpg')}
+                    alt="Popcorn Frights"
+                    className="w-full object-cover"
+                  />
+                </a>
                 <p className="eyebrow mb-3 text-[var(--color-ink-faint)]">The Solution</p>
                 <p className="text-[var(--color-ink-dim)]">{featured.solution}</p>
                 <p className="eyebrow mb-3 mt-6 text-[var(--color-ink-faint)]">The Result</p>
@@ -309,11 +321,11 @@ export function Home() {
 
       {/* 10 — Final CTA */}
       <section className="cta-band px-6 py-24 text-center md:px-10 md:py-32">
-        <div className="mx-auto max-w-2xl">
-          <h2 className="font-[family-name:var(--font-display)] text-4xl font-medium md:text-5xl">
+        <div className="mx-auto max-w-[var(--container-wide)]">
+          <h2 className="font-[family-name:var(--font-display)] text-4xl font-medium md:whitespace-nowrap md:text-5xl">
             Let's build something that works.
           </h2>
-          <p className="mt-6">
+          <p className="mt-6 md:whitespace-nowrap">
             Tell us about your project — brand, website, or ongoing digital support — and we'll follow up shortly.
           </p>
           <div className="mt-10 flex flex-wrap justify-center gap-4">

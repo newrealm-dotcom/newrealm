@@ -12,9 +12,14 @@ export interface ServiceCategory {
   result: string
   whoItsFor: string
   whatsIncluded: string[]
-  whatMakesUsDifferent: string
-  nextStep: { label: string; to: string }
+  /** Plain string, or structured copy with a bold lead sentence + paragraphs */
+  whatMakesUsDifferent: string | { lead: string; paragraphs: string[] }
+  nextStep: { label: string; to: string; /** Optional CTA band heading; defaults to label */ ctaHeading?: string }
   subServices: string[]
+  /** Optional hero image for /services/:slug right column */
+  hero?: string
+  /** Optional iframe src for hero right column (e.g. carousel embed) */
+  heroEmbed?: string
 }
 
 /**
@@ -40,10 +45,22 @@ export const SERVICES: ServiceCategory[] = [
       'A business that looks like one coherent company everywhere it shows up, with materials that are faster to produce because the system is already decided.',
     whoItsFor: 'Businesses launching a new brand, outgrowing a dated identity, or tired of inconsistent materials across vendors.',
     whatsIncluded: ['Brand identity', 'Logo design', 'Marketing collateral', 'Corporate design', 'Campaign creative'],
-    whatMakesUsDifferent:
-      'Most studios stop at the identity file. We also design and print the collateral and build the website that has to carry that identity day to day — so the system is built to hold up in both mediums, not just look good in a brand deck.',
-    nextStep: { label: 'Talk about your brand', to: '/contact' },
+    whatMakesUsDifferent: {
+      lead: 'Most studios hand you a brand and walk away.',
+      paragraphs: [
+        'We stay for the part where it has to work.',
+        'A brand identity looks flawless in a presentation deck, but a deck is the easiest place a brand will ever live. The real test comes when the logo has to be foil-stamped on a business card, the palette has to survive uncoated paper, and the typography has to stay legible on a phone at arm\'s length. That\'s where most identities start to fray, because the studio that designed them is long gone and everyone else is left guessing.',
+        'We carry the identity all the way through. We design and produce the packaging, signage, and print collateral, and we design, develop and build the website where your brand spends most of its working life. Because we\'re responsible for every medium, we design for all of them from day one: colors specified for screen and press, type chosen to read at 12 pixels and 12 feet, marks built to scale from a favicon to a storefront.',
+        'The result is a brand that doesn\'t just photograph well. It shows up the same way everywhere your customers meet you, on paper and on screen, and keeps showing up that way long after the launch. One team, one standard, from the first sketch to the final print run to the live site.',
+      ],
+    },
+    nextStep: {
+      label: "Let's Get This Project Started",
+      ctaHeading: 'Talk about your brand',
+      to: '/contact',
+    },
     subServices: ['Brand identity', 'Logo design', 'Marketing collateral', 'Corporate design', 'Campaign creative'],
+    heroEmbed: '/revolving-carousel.html?v=6',
   },
   {
     slug: 'website-design-development',

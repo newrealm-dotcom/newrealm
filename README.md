@@ -35,7 +35,7 @@ npm run preview  # preview the production build
 
 All company facts on this site (the "Trends come and go. Diamonds are forever." tagline,
 20+ years in business, the Mike Franco bio, the service descriptions, and the two portfolio
-case studies — Popcorn Frights Film Festival and Eric Kline Productions) are grounded in
+case studies — Popcorn Frights Film Festival and Black Diamond Enterprises) are grounded in
 real, supplied content from newrealm.com. Nothing has been invented: no fabricated metrics,
 testimonials, additional team members, client logos, or case-study numbers. Where a real
 statistic wasn't available, the copy describes the strategic outcome qualitatively instead —
