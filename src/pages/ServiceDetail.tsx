@@ -81,6 +81,18 @@ export function ServiceDetail() {
                 loading="lazy"
               />
             </div>
+          ) : service.heroVideo ? (
+            <div className="mt-8 w-full px-6 lg:mt-0 lg:px-[20px] lg:pr-[45px]">
+              <video
+                src={assetUrl(service.heroVideo)}
+                className="h-auto w-full object-contain"
+                autoPlay
+                muted
+                loop
+                playsInline
+                aria-label={`${service.title} video`}
+              />
+            </div>
           ) : service.hero ? (
             <div className="mt-8 w-full px-6 lg:mt-0 lg:px-[20px] lg:pr-[45px]">
               <img
@@ -126,7 +138,8 @@ export function ServiceDetail() {
               service.slug === 'print-production' ||
               service.slug === 'website-design-development' ||
               service.slug === 'seo-aeo' ||
-              service.slug === 'packaging-product-design'
+              service.slug === 'packaging-product-design' ||
+              service.slug === 'character-design-development'
                 ? 'text-[133%] [&_.eyebrow]:text-[1rem]'
                 : undefined
             }
@@ -146,7 +159,8 @@ export function ServiceDetail() {
               service.slug === 'print-production' ||
               service.slug === 'website-design-development' ||
               service.slug === 'seo-aeo' ||
-              service.slug === 'packaging-product-design'
+              service.slug === 'packaging-product-design' ||
+              service.slug === 'character-design-development'
                       ? 'text-[1em]'
                       : 'text-sm'
                   }`}
@@ -159,7 +173,8 @@ export function ServiceDetail() {
               service.slug === 'print-production' ||
               service.slug === 'website-design-development' ||
               service.slug === 'seo-aeo' ||
-              service.slug === 'packaging-product-design'
+              service.slug === 'packaging-product-design' ||
+              service.slug === 'character-design-development'
                         ? 'mt-[0.55em]'
                         : 'mt-2'
                     }`}

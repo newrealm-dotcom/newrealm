@@ -18,6 +18,8 @@ export interface ServiceCategory {
   subServices: string[]
   /** Optional hero image for /services/:slug right column */
   hero?: string
+  /** Optional looping muted video for hero right column */
+  heroVideo?: string
   /** Optional iframe src for hero right column (e.g. carousel embed) */
   heroEmbed?: string
 }
@@ -232,6 +234,49 @@ export const SERVICES: ServiceCategory[] = [
     nextStep: { label: 'Start a project', to: '/contact' },
     subServices: ['Brochures', 'Catalogs', 'Direct mail', 'Signage', 'Corporate collateral', 'Specialty production'],
     hero: '/services/hero-printprod.webp',
+  },
+  {
+    slug: 'character-design-development',
+    navLabel: 'Character Design & Development',
+    title: 'Character Design & Development',
+    shortDescription:
+      "From first sketch to full animation, we create characters people remember. Original characters, crafted by top Independent studios and animators, built from concept to creation. We don't just design characters. We give them a life of their own.",
+    problem:
+      'Most brands know they need a character, but few know how to build one that lasts. Generic mascots blend into the background, stock-style designs feel forgettable, and characters created without a clear personality or purpose rarely connect with an audience. Even worse, a character that looks great in a single illustration often falls apart the moment it needs to move, speak, appear on packaging, or scale across a series, game, or campaign. The result is wasted budget, inconsistent branding, and a character nobody remembers.',
+    solution:
+      'We collaborate with a hand-picked network of design studios and animators to create original characters with real depth, from the first rough sketch to a fully realized, production-ready personality. Every character begins with strategy: who your audience is, what the character stands for, and where it will live. From there, we develop personality profiles, backstories, and visual concepts, then refine them into model sheets, turnarounds, expression studies, and pose libraries. When your character is ready to move, our animation partners bring it to life with motion that feels true to who it is. You get a character designed not just to look good, but to work everywhere you need it.',
+    result:
+      'A distinctive character that audiences recognize instantly and genuinely care about. Your character becomes a lasting brand asset, one that builds emotional connection, strengthens recognition, and gives your story a face. With a complete style guide and production-ready files, your team and partners can use the character consistently across animation, packaging, merchandise, social media, games, and print for years to come.',
+    whoItsFor:
+      "Our character design and development services are built for brands looking for a memorable mascot, game studios and app developers who need heroes, villains, and supporting casts, publishers and authors bringing children's books or graphic novels to life, animation and media producers developing new series or IP, toy and merchandise companies creating licensable characters, and agencies that need a reliable creative partner for client campaigns.",
+    whatsIncluded: [
+      'Custom website design',
+      'WordPress development',
+      'Responsive development',
+      'E-commerce',
+      'Landing pages',
+      'Website redesign',
+      'UI/UX',
+    ],
+    whatMakesUsDifferent: {
+      lead: "We don't rely on a single in-house style.",
+      paragraphs: [
+        "Instead, we match every project with the studios and animators best suited to it, whether that's playful 2D, stylized 3D, or something entirely new. That means you get specialist talent without having to find, vet, and manage it yourself. We also design for longevity: every character is built with its full lifecycle in mind, so it's ready to animate, merchandise, and grow as your brand does. And because we manage the entire process from concept to creation, you have one team, one point of contact, and one consistent vision from start to finish.",
+        'We believe great characters start with a story, not a sketch. Before a single line is drawn, we dig into what makes your brand or project tick, who your audience is, and what emotions your character needs to spark. That foundation shapes every decision that follows, from silhouette and color palette to the way your character walks, talks, and reacts. The result is a character with genuine personality and purpose, one that feels authentic rather than manufactured, and gives audiences a reason to come back again and again.',
+        'Just as importantly, you stay involved every step of the way. Our collaborative process includes clear milestones, structured feedback rounds, and transparent timelines, so there are no surprises and no guesswork. We hold every stage to the same high standard of quality control, ensuring consistency across every studio and animator involved. And when the project is complete, you receive full ownership of your character along with a comprehensive style guide, giving you the freedom and confidence to use it wherever your brand goes next.',
+      ],
+    },
+    nextStep: { label: 'Start your project', to: '/contact' },
+    subServices: [
+      'Custom website design',
+      'WordPress development',
+      'Responsive development',
+      'E-commerce',
+      'Landing pages',
+      'Website redesign',
+      'UI/UX',
+    ],
+    heroVideo: '/services/hello.mp4',
   },
 ]
 
