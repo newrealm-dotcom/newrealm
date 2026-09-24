@@ -26,6 +26,8 @@ export interface Project {
   cover?: string
   /** Case-study hero image (right column). Falls back to cover if omitted. */
   hero?: string
+  /** Optional hero right-column fade slider. When set, replaces the single hero image. */
+  heroImages?: string[]
   /** Case-study Results image (60% right column) */
   resultsImage?: string
 }
@@ -148,6 +150,34 @@ export const PROJECTS: Project[] = [
     cover: '/projects/work-authenticallhemp.webp',
     hero: '/projects/hero-authentically-hemp.webp',
     resultsImage: '/projects/hero-authenticallyhemp.webp',
+  },
+  {
+    slug: 'dapple-gang',
+    client: 'Dapple Gang',
+    industry: 'Character Design',
+    tag: 'Character Design',
+    categories: ['characters'],
+    summary:
+      "Original characters have been designed and are being developed for a future animated kid's show that's currently in the works.",
+    servicesProvided: ['Character Design'],
+    challenge:
+      "Dapple Gang set out to build something every dog lover could fall in love with: a crew of lovable pups, each with a personality big enough to carry its own stories. But a group of cute dogs alone isn't enough to build a lasting brand. With a cast this large, the biggest risk is sameness, characters that blur together, feel interchangeable, and never truly connect with an audience. Each pup needed to be instantly recognizable on its own while still looking and feeling like part of the same team. On top of that, the brand needed a way to turn casual fans into a real community, not just an audience watching from the sidelines.",
+    strategy:
+      'We approached the Dapple Gang like a team roster, where every member plays a role. Before designing a single character, we defined who each pup was and what they brought to the group: Buddy, the loyal leader and heart of the team; Pepper, the nonstop chatterbox and comedian; Whiskerz, the scruffy, wise elder; Shadow, the quiet strategist; Biscotti, the gentle giant and peacemaker; and more. Those personalities then shaped every visual decision, from breed, coat, and fur texture to posture and expression. To tie the crew together, we gave every member a signature jersey in their own color, creating a unified team look while making each character easy to spot and remember. And to invite fans in, we left the tenth spot on the team open.',
+    solution:
+      "We designed and developed a cast of distinctive characters, each with its own look, backstory, and role within the group. Rusty's long, flowing fur matches his untamed, adventurous spirit, Alfonse's sleek black-and-tan coat gives him his effortless cool, and Fredo Woofz carries the determined, kind-hearted energy of the newcomer destined to become an unlikely hero. Together, they form a balanced ensemble of leaders, dreamers, jokers, and protectors, with the natural chemistry and contrast that great stories are built on.",
+    results:
+      "The Dapple Gang now has a memorable, story-ready cast built to grow across books, animation, merchandise, and social media. Each character stands out with a clear personality and visual identity, while the matching jerseys make the group instantly recognizable as a team. The result is more than a set of characters: it's a world audiences can connect with, root for, and see themselves in.",
+    sourceUrl: 'https://newrealm.com/pf/case-study-popcorn-frights/',
+    cover: '/projects/work-dapplegang.webp',
+    heroImages: [
+      '/projects/hero-dapple-logo.webp',
+      '/projects/hero-fredo.webp',
+      '/projects/hero-fonzie.webp',
+      '/projects/hero-alfie.webp',
+      '/projects/hero-buddy.webp',
+    ],
+    resultsImage: '/projects/results-dapplegang.webp',
   },
 ]
 

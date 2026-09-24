@@ -13,7 +13,6 @@ const FILTERS: FilterKey[] = [
   'graphic-design',
   'web',
   'packaging',
-  'print',
   'characters',
 ]
 

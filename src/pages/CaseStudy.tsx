@@ -4,6 +4,7 @@ import { Reveal } from '../components/Reveal'
 import { ProjectCard } from '../components/ProjectCard'
 import { getProjectBySlug, getLatestProjects } from '../data/projects'
 import { ProjectCardsSlider } from '../components/ProjectCardsSlider'
+import { HeroImageFader } from '../components/HeroImageFader'
 import { assetUrl } from '../lib/assetUrl'
 import { NotFound } from './NotFound'
 
@@ -19,6 +20,7 @@ export function CaseStudy() {
   if (!project) return <NotFound />
 
   const related = getLatestProjects(5, project.slug)
+  const heroImages = project.heroImages
   const heroImage = project.hero ?? project.cover
   const resultsImage = project.resultsImage
 
@@ -61,7 +63,11 @@ export function CaseStudy() {
             </h1>
             <p className="prose-copy mt-6 text-lg text-[var(--color-ink-dim)]">{project.summary}</p>
           </div>
-          {heroImage ? (
+          {heroImages && heroImages.length > 0 ? (
+            <div className="mt-8 w-full px-6 lg:mt-0 lg:p-[20px] lg:pr-[45px]">
+              <HeroImageFader images={heroImages} intervalMs={5000} />
+            </div>
+          ) : heroImage ? (
             <div className="mt-8 w-full px-6 lg:mt-0 lg:p-[20px] lg:pr-[45px]">
               {project.clientUrl ? (
                 <a href={project.clientUrl} target="_blank" rel="noopener noreferrer">
