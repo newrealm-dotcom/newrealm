@@ -30,6 +30,52 @@ export interface Project {
  */
 export const PROJECTS: Project[] = [
   {
+    slug: 'unearthed-rentals',
+    client: 'Unearthed Rentals',
+    industry: 'Luxury Event Rentals',
+    tag: 'Website Design',
+    categories: ['web'],
+    summary:
+      'Complete website overhaul for the Stuart, FL based Unearthed Rentals led by serial entrepreneur, Jade Smith.',
+    servicesProvided: ['Website design & development'],
+    challenge:
+      "A South Florida rental company that started as the region's first vintage rental house had grown into a full design-forward furniture and décor resource, and its site needed to catch up. It had to serve two very different audiences at once: planners and designers who need to browse inventory quickly and build out large installs, and couples who need inspiration, confidence, and an easy path to booking for the biggest day of their lives.",
+    strategy:
+      'Treat the inventory like a curated showroom, not a catalog. We organized pieces by style, category, and event type so planners can pull a full look in minutes, while styled event galleries and clear service details (delivery, installation, and removal) help couples picture their day and trust the team behind it.',
+    solution:
+      "New Realm designed and built a website that reflects Unearthed's reputation for curated, one-of-a-kind rentals, giving the brand a polished online home that speaks to planners, venues, and couples alike, and turns browsing into bookings.",
+    results:
+      "A website that reflects Unearthed's evolution from South Florida's first vintage rental company into the region's go-to for design-forward event rentals, giving planners and couples a polished place to discover the collection and start booking.",
+    sourceUrl: 'https://www.unearthedrentals.com',
+    clientUrl: 'https://www.unearthedrentals.com',
+    cover: '/projects/work-unearthed.webp',
+    hero: '/projects/hero-unearthed.webp',
+    resultsImage: '/projects/results-unearthed.webp',
+  },
+  {
+    slug: 'black-diamond-enterprises',
+    client: 'Black Diamond Enterprises',
+    industry: 'Business Venture',
+    tag: 'Website & Logo Design',
+    categories: ['web', 'branding'],
+    summary:
+      'Website and original logo for the West Virginia-based company, Black Diamond Enterprises led by mineral extraction expert, Norm Mullins.',
+    servicesProvided: ['Logo design', 'Brand identity', 'Website design & development'],
+    challenge:
+      'A mineral-extraction company led by Norm Mullins needed a professional mark and website that could represent Black Diamond Enterprises credibly to partners and clients — clear enough to signal expertise, polished enough to stand up in a traditional industry.',
+    strategy:
+      'Start with an original logo and identity, then build the website around that system so the brand and the site feel like one coherent presence rather than separate pieces.',
+    solution:
+      "New Realm designed an original logo for Black Diamond Enterprises and built the company's website around that identity.",
+    results:
+      'A cohesive brand and website that gives Black Diamond Enterprises a professional online presence matching the seriousness of its mineral-extraction work.',
+    sourceUrl: 'https://newrealm.com/pf/case-study-eric-kline-productions/',
+    clientUrl: 'https://blckdiamondenterprises.com/',
+    cover: '/projects/black-diamond.webp',
+    hero: '/BDE-hero-image.webp',
+    resultsImage: '/projects/black-diamond.webp',
+  },
+  {
     slug: 'popcorn-frights-film-festival',
     client: 'Popcorn Frights Film Festival',
     industry: 'Entertainment / Film Festival',
@@ -52,32 +98,16 @@ export const PROJECTS: Project[] = [
     hero: '/projects/casestudy-PopcornFrights.webp',
     resultsImage: '/projects/results-PopcornFrights.png',
   },
-  {
-    slug: 'black-diamond-enterprises',
-    client: 'Black Diamond Enterprises',
-    industry: 'Business Venture',
-    tag: 'Website & Logo Design',
-    categories: ['web', 'branding'],
-    summary:
-      'Website and original logo for the West Virginia-based company, Black Diamond Enterprises led by mineral extraction expert, Norm Mullins.',
-    servicesProvided: ['Logo design', 'Brand identity', 'Website design & development'],
-    challenge:
-      'A mineral-extraction company led by Norm Mullins needed a professional mark and website that could represent Black Diamond Enterprises credibly to partners and clients — clear enough to signal expertise, polished enough to stand up in a traditional industry.',
-    strategy:
-      'Start with an original logo and identity, then build the website around that system so the brand and the site feel like one coherent presence rather than separate pieces.',
-    solution:
-      "New Realm designed an original logo for Black Diamond Enterprises and built the company's website around that identity.",
-    results:
-      'A cohesive brand and website that gives Black Diamond Enterprises a professional online presence matching the seriousness of its mineral-extraction work.',
-    sourceUrl: 'https://newrealm.com/pf/case-study-eric-kline-productions/',
-    cover: '/projects/black-diamond.webp',
-    hero: '/BDE-hero-image.webp',
-    resultsImage: '/projects/black-diamond.webp',
-  },
 ]
+
 
 export function getProjectBySlug(slug: string) {
   return PROJECTS.find((p) => p.slug === slug)
+}
+
+/** Newest-first project list (array order). Optionally exclude a slug. */
+export function getLatestProjects(count = 5, excludeSlug?: string) {
+  return PROJECTS.filter((p) => p.slug !== excludeSlug).slice(0, count)
 }
 
 export const CATEGORY_LABELS: Record<'all' | ProjectCategory, string> = {

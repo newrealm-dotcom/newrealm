@@ -4,7 +4,8 @@ import { Reveal } from '../components/Reveal'
 import { ProjectCard } from '../components/ProjectCard'
 import { ServiceCard } from '../components/ServiceCard'
 import { SERVICES } from '../data/services'
-import { PROJECTS } from '../data/projects'
+import { PROJECTS, getLatestProjects } from '../data/projects'
+import { ProjectCardsSlider } from '../components/ProjectCardsSlider'
 import { INSIGHTS } from '../data/insights'
 import { TEAM } from '../data/team'
 import { assetUrl } from '../lib/assetUrl'
@@ -130,13 +131,15 @@ export function Home() {
               View all work →
             </Link>
           </div>
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
-            {PROJECTS.map((project) => (
-              <Reveal key={project.slug} className="h-full">
-                <ProjectCard project={project} />
-              </Reveal>
+          <ProjectCardsSlider desktopColumns={3}>
+            {getLatestProjects(5).map((project) => (
+              <div key={project.slug} className="min-w-0 snap-start">
+                <Reveal className="h-full">
+                  <ProjectCard project={project} />
+                </Reveal>
+              </div>
             ))}
-          </div>
+          </ProjectCardsSlider>
         </div>
       </section>
 
@@ -206,18 +209,26 @@ export function Home() {
             </Reveal>
             <Reveal delay={100}>
               <div className="border border-[var(--color-line)] p-8">
-                <a
-                  href="https://popcornfrights.com/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="mb-6 block"
-                >
+                {featured.clientUrl ? (
+                  <a
+                    href={featured.clientUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mb-6 block"
+                  >
+                    <img
+                      src={assetUrl(featured.cover ?? '')}
+                      alt={featured.client}
+                      className="w-full object-cover"
+                    />
+                  </a>
+                ) : featured.cover ? (
                   <img
-                    src={assetUrl('/projects/popcorn-frights.jpg')}
-                    alt="Popcorn Frights"
-                    className="w-full object-cover"
+                    src={assetUrl(featured.cover)}
+                    alt={featured.client}
+                    className="mb-6 w-full object-cover"
                   />
-                </a>
+                ) : null}
                 <p className="eyebrow mb-3 text-[var(--color-ink-faint)]">The Solution</p>
                 <p className="text-[var(--color-ink-dim)]">{featured.solution}</p>
                 <p className="eyebrow mb-3 mt-6 text-[var(--color-ink-faint)]">The Result</p>

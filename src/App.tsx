@@ -2,6 +2,7 @@ import { Routes, Route } from 'react-router-dom'
 import { Nav } from './components/Nav'
 import { Footer } from './components/Footer'
 import { ScrollToTop } from './components/ScrollToTop'
+import { BackToTop } from './components/BackToTop'
 import { Home } from './pages/Home'
 import { Work } from './pages/Work'
 import { CaseStudy } from './pages/CaseStudy'
@@ -46,6 +47,7 @@ function App() {
       </main>
 
       <Footer />
+      <BackToTop />
     </>
   )
 }

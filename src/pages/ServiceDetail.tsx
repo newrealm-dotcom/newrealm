@@ -5,7 +5,8 @@ import { ProjectCard } from '../components/ProjectCard'
 import { ServiceCard } from '../components/ServiceCard'
 import { ServiceCardsSlider } from '../components/ServiceCardsSlider'
 import { getServiceBySlug, SERVICES } from '../data/services'
-import { PROJECTS } from '../data/projects'
+import { getLatestProjects } from '../data/projects'
+import { ProjectCardsSlider } from '../components/ProjectCardsSlider'
 import { assetUrl } from '../lib/assetUrl'
 import { NotFound } from './NotFound'
 
@@ -15,9 +16,7 @@ export function ServiceDetail() {
 
   if (!service) return <NotFound />
 
-  const relatedProjects = PROJECTS.filter(
-    (p) => p.slug === 'popcorn-frights-film-festival' || p.slug === 'black-diamond-enterprises',
-  ).slice(0, 2)
+  const relatedProjects = getLatestProjects(5)
   const otherServices = SERVICES.map((s, index) => ({ service: s, index })).filter(
     ({ service: s }) => s.slug !== service.slug,
   )
@@ -199,13 +198,15 @@ export function ServiceDetail() {
         <section className="px-6 py-16 md:px-10 md:py-20">
           <div className="mx-auto max-w-[var(--container-wide)]">
             <p className="eyebrow mb-8">Related Work</p>
-            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+            <ProjectCardsSlider>
               {relatedProjects.map((p) => (
-                <Reveal key={p.slug} className="h-full">
-                  <ProjectCard project={p} />
-                </Reveal>
+                <div key={p.slug} className="min-w-0 snap-start">
+                  <Reveal className="h-full">
+                    <ProjectCard project={p} />
+                  </Reveal>
+                </div>
               ))}
-            </div>
+            </ProjectCardsSlider>
           </div>
         </section>
       )}

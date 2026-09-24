@@ -2,7 +2,8 @@ import { Link, useParams } from 'react-router-dom'
 import { SEO } from '../components/SEO'
 import { Reveal } from '../components/Reveal'
 import { ProjectCard } from '../components/ProjectCard'
-import { getProjectBySlug, PROJECTS } from '../data/projects'
+import { getProjectBySlug, getLatestProjects } from '../data/projects'
+import { ProjectCardsSlider } from '../components/ProjectCardsSlider'
 import { assetUrl } from '../lib/assetUrl'
 import { NotFound } from './NotFound'
 
@@ -17,7 +18,7 @@ export function CaseStudy() {
 
   if (!project) return <NotFound />
 
-  const related = PROJECTS.filter((p) => p.slug !== project.slug)
+  const related = getLatestProjects(5, project.slug)
   const heroImage = project.hero ?? project.cover
   const resultsImage = project.resultsImage
 
@@ -45,17 +46,38 @@ export function CaseStudy() {
             </Link>
             <p className="eyebrow mb-4 mt-6">{project.industry}</p>
             <h1 className="font-[family-name:var(--font-display)] text-4xl font-medium text-[var(--color-ink)] md:text-5xl">
-              {project.client}
+              {project.clientUrl ? (
+                <a
+                  href={project.clientUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:underline hover:underline-offset-4"
+                >
+                  {project.client}
+                </a>
+              ) : (
+                project.client
+              )}
             </h1>
             <p className="prose-copy mt-6 text-lg text-[var(--color-ink-dim)]">{project.summary}</p>
           </div>
           {heroImage ? (
             <div className="mt-8 w-full px-6 lg:mt-0 lg:p-[20px] lg:pr-[45px]">
-              <img
-                src={assetUrl(heroImage)}
-                alt=""
-                className="h-auto w-full object-contain"
-              />
+              {project.clientUrl ? (
+                <a href={project.clientUrl} target="_blank" rel="noopener noreferrer">
+                  <img
+                    src={assetUrl(heroImage)}
+                    alt=""
+                    className="h-auto w-full object-contain"
+                  />
+                </a>
+              ) : (
+                <img
+                  src={assetUrl(heroImage)}
+                  alt=""
+                  className="h-auto w-full object-contain"
+                />
+              )}
             </div>
           ) : null}
         </div>
@@ -69,7 +91,7 @@ export function CaseStudy() {
                 <a
                   href={project.clientUrl}
                   target="_blank"
-                  rel="noreferrer"
+                  rel="noopener noreferrer"
                   className="nav-link text-[var(--color-ink-dim)]"
                 >
                   {project.client}
@@ -123,11 +145,21 @@ export function CaseStudy() {
           </div>
           {resultsImage ? (
             <div className="w-full">
-              <img
-                src={assetUrl(resultsImage)}
-                alt=""
-                className="h-auto w-full object-contain"
-              />
+              {project.clientUrl ? (
+                <a href={project.clientUrl} target="_blank" rel="noopener noreferrer">
+                  <img
+                    src={assetUrl(resultsImage)}
+                    alt=""
+                    className="h-auto w-full object-contain"
+                  />
+                </a>
+              ) : (
+                <img
+                  src={assetUrl(resultsImage)}
+                  alt=""
+                  className="h-auto w-full object-contain"
+                />
+              )}
             </div>
           ) : null}
         </div>
@@ -137,11 +169,13 @@ export function CaseStudy() {
         <section className="px-6 py-16 md:px-10 md:py-20">
           <div className="mx-auto max-w-[var(--container-wide)]">
             <p className="eyebrow mb-8">Related Work</p>
-            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+            <ProjectCardsSlider>
               {related.map((p) => (
-                <ProjectCard key={p.slug} project={p} />
+                <div key={p.slug} className="min-w-0 snap-start">
+                  <ProjectCard project={p} />
+                </div>
               ))}
-            </div>
+            </ProjectCardsSlider>
           </div>
         </section>
       )}
