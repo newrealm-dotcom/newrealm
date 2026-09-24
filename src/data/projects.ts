@@ -127,6 +127,28 @@ export const PROJECTS: Project[] = [
     hero: '/projects/casestudy-PopcornFrights.webp',
     resultsImage: '/projects/results-PopcornFrights.png',
   },
+  {
+    slug: 'authentically-hemp',
+    client: 'Authentically Hemp',
+    industry: 'CBD',
+    tag: 'Packaging Design',
+    categories: ['packaging'],
+    summary:
+      'Full website, collateral design and label creation provided for Authentically Hemp, a provider of 100% natural, organically grown, low-THC, high-CBD industrial hemp oil.',
+    servicesProvided: ['Packaging Design'],
+    challenge:
+      "The CBD market grew fast, and with that growth came confusion. Shelves and websites filled up with products making big promises, inconsistent quality, and little transparency, leaving many customers unsure who to trust. Authentically Hemp had something genuinely different to offer: pure, organically grown, quality-tested hemp oil made right here in the USA. But in an industry still shaking off old stigmas and crowded with look-alike brands, the challenge was making that authenticity visible. The brand needed to feel clean, credible, and approachable to everyday wellness seekers, including people trying CBD for the very first time, without looking clinical or getting lost in the noise.",
+    strategy:
+      "We built everything around the one word already in the brand's name: authentic. Rather than chasing the loud, trend-driven look common in the CBD space, we leaned into honesty, simplicity, and nature. The goal was to let the product's integrity speak for itself, from its organic roots to its rigorous quality testing, and to present hemp not as something edgy or mysterious, but as a natural part of a healthy, balanced lifestyle. We focused on building trust first: clear communication, a calm and grounded visual language, and a warm, welcoming tone that would make customers feel informed and comfortable from their very first interaction with the brand.",
+    solution:
+      "We created an e-commerce website, business collateral and packaging design that brings Authentically Hemp's natural, trustworthy character to life. Earthy tones, clean typography, and botanical details reflect the purity of the product, while clear, easy-to-read information highlights what matters most to customers: organic ingredients, quality testing, and American-made standards. Every touchpoint was designed to feel consistent and genuine, giving the brand a polished, professional presence that stands confidently apart from its competitors.",
+    results:
+      "Authentically Hemp now has a brand that looks as pure and trustworthy as the products behind it. The refreshed presence helped grow its customer base and strengthened its social following helping to support retail and online sales, and customers responded to the brand's honest, approachable feel. Most importantly, Authentically Hemp is now positioned as a name people can rely on in a crowded market, proving that in wellness, authenticity isn't just a promise, it's the brand.",
+    sourceUrl: 'https://newrealm.com/pf/case-study-popcorn-frights/',
+    cover: '/projects/work-authenticallhemp.webp',
+    hero: '/projects/hero-authentically-hemp.webp',
+    resultsImage: '/projects/hero-authenticallyhemp.webp',
+  },
 ]
 
 
