@@ -154,12 +154,12 @@ export const PROJECTS: Project[] = [
   {
     slug: 'dapple-gang',
     client: 'Dapple Gang',
-    industry: 'Character Design',
+    industry: 'Animation',
     tag: 'Character Design',
     categories: ['characters'],
     summary:
       "Original characters have been designed and are being developed for a future animated kid's show that's currently in the works.",
-    servicesProvided: ['Character Design'],
+    servicesProvided: ['Character Design/Development/Storyboarding/Animaton'],
     challenge:
       "Dapple Gang set out to build something every dog lover could fall in love with: a crew of lovable pups, each with a personality big enough to carry its own stories. But a group of cute dogs alone isn't enough to build a lasting brand. With a cast this large, the biggest risk is sameness, characters that blur together, feel interchangeable, and never truly connect with an audience. Each pup needed to be instantly recognizable on its own while still looking and feeling like part of the same team. On top of that, the brand needed a way to turn casual fans into a real community, not just an audience watching from the sidelines.",
     strategy:
