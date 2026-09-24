@@ -8,6 +8,8 @@ const SERVICE_CARD_THEMES = [
   { bg: '#34d399', fg: '#151412', muted: 'rgba(21, 20, 18, 0.72)', line: 'rgba(21, 20, 18, 0.18)' },
   { bg: '#fb7185', fg: '#151412', muted: 'rgba(21, 20, 18, 0.72)', line: 'rgba(21, 20, 18, 0.18)' },
   { bg: '#a3e635', fg: '#151412', muted: 'rgba(21, 20, 18, 0.72)', line: 'rgba(21, 20, 18, 0.18)' },
+  { bg: '#fb923c', fg: '#151412', muted: 'rgba(21, 20, 18, 0.72)', line: 'rgba(21, 20, 18, 0.18)' },
+  { bg: '#67e8f9', fg: '#151412', muted: 'rgba(21, 20, 18, 0.72)', line: 'rgba(21, 20, 18, 0.18)' },
 ] as const
 
 interface ServiceCardProps {

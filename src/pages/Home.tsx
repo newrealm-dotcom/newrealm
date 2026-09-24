@@ -33,8 +33,8 @@ const DIFFERENTIATORS = [
   },
 ]
 
-/** Homepage services grid — first six categories, each with its own color block. */
-const HOME_SERVICES = SERVICES.slice(0, 6)
+/** Homepage services grid — all service categories, each with its own color block. */
+const HOME_SERVICES = SERVICES
 
 const WHY_US = [
   {
@@ -151,8 +151,8 @@ export function Home() {
             Design and digital work that makes a business easier to understand, trust, and do business with.
           </h2>
           <p className="prose-copy mb-14 text-[var(--color-ink-dim)]">
-            Six service areas spanning brand, web, marketing, search, maintenance, and packaging — built to work together
-            under one roof.
+            Eight service areas spanning brand, web, marketing, search, maintenance, packaging, print, and character
+            design — built to work together under one roof.
           </p>
           <div className="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3">
             {HOME_SERVICES.map((s, i) => (

@@ -10,7 +10,7 @@ export function Services() {
     <>
       <SEO
         title="Services"
-        description="Branding & graphic design, website design & development, digital marketing, SEO/AEO, website & app maintenance, packaging, and print — New Realm Graphics' full range of services."
+        description="Branding & graphic design, website design & development, digital marketing, SEO/AEO, website & app maintenance, packaging, print, and character design — New Realm Graphics' full range of services."
         path="/services"
       />
 
@@ -45,15 +45,7 @@ export function Services() {
         <div className="w-full px-6 pb-[50px] md:px-[100px] md:pb-0">
           <div className="grid grid-cols-1 gap-5 md:grid-cols-2 md:gap-10 xl:grid-cols-3 xl:gap-[100px]">
             {SERVICES.map((s, i) => (
-              <Reveal
-                key={s.slug}
-                delay={i * 60}
-                className={
-                  i === SERVICES.length - 1
-                    ? 'min-w-0 md:col-span-2 md:mx-auto md:w-[calc(50%-1.25rem)] xl:col-span-1 xl:col-start-2 xl:mx-0 xl:w-auto'
-                    : 'min-w-0'
-                }
-              >
+              <Reveal key={s.slug} delay={i * 60} className="min-w-0">
                 <ServiceCard service={s} index={i} />
               </Reveal>
             ))}
