@@ -3,6 +3,7 @@ import { SEO, SITE_URL } from '../components/SEO'
 import { Reveal } from '../components/Reveal'
 import { ProjectCard } from '../components/ProjectCard'
 import { ServiceCard } from '../components/ServiceCard'
+import { ServiceCardsSlider } from '../components/ServiceCardsSlider'
 import { getServiceBySlug, SERVICES } from '../data/services'
 import { PROJECTS } from '../data/projects'
 import { assetUrl } from '../lib/assetUrl'
@@ -17,9 +18,9 @@ export function ServiceDetail() {
   const relatedProjects = PROJECTS.filter(
     (p) => p.slug === 'popcorn-frights-film-festival' || p.slug === 'black-diamond-enterprises',
   ).slice(0, 2)
-  const otherServices = SERVICES.map((s, index) => ({ service: s, index }))
-    .filter(({ service: s }) => s.slug !== service.slug)
-    .slice(0, 3)
+  const otherServices = SERVICES.map((s, index) => ({ service: s, index })).filter(
+    ({ service: s }) => s.slug !== service.slug,
+  )
 
   return (
     <>
@@ -37,13 +38,19 @@ export function ServiceDetail() {
         }}
       />
 
-      <section className="border-b border-[var(--color-line)] bg-white py-6 md:py-8">
+      <section
+        className={`border-b border-[var(--color-line)] bg-white py-6 md:py-8 ${
+          service.slug === 'seo-aeo' ? 'md:pb-[calc(2rem+50px)]' : ''
+        }`}
+      >
         <div
           className={`grid w-full grid-cols-1 items-center ${
-            service.heroEmbed ? 'lg:grid-cols-[28%_72%] lg:items-stretch' : 'lg:grid-cols-[40%_60%]'
+            service.heroEmbed
+              ? 'lg:grid-cols-[minmax(34rem,40%)_1fr] lg:items-stretch'
+              : 'lg:grid-cols-[44%_56%]'
           }`}
         >
-          <div className="flex flex-col justify-center px-6 lg:px-[64px]">
+          <div className="flex min-w-0 flex-col justify-center px-6 lg:px-[64px]">
             <Link to="/services" className="link-underline w-fit text-sm text-[var(--color-ink-dim)]">
               ← All services
             </Link>
@@ -52,11 +59,11 @@ export function ServiceDetail() {
               {service.title}
             </h1>
             <p className="prose-copy mt-6 text-lg text-[var(--color-ink-dim)]">{service.shortDescription}</p>
-            <div className="mt-10 flex flex-wrap gap-4">
-              <Link to={service.nextStep.to} className="btn btn-primary">
+            <div className="mt-10 flex flex-wrap gap-4 lg:flex-nowrap">
+              <Link to={service.nextStep.to} className="btn btn-primary shrink-0">
                 {service.nextStep.label}
               </Link>
-              <Link to="/work" className="btn btn-secondary">
+              <Link to="/work" className="btn btn-secondary shrink-0">
                 View Our Work
               </Link>
             </div>
@@ -82,7 +89,13 @@ export function ServiceDetail() {
         </div>
       </section>
 
-      <section className="bg-[#e0e3bf] px-[100px] py-16 md:py-20">
+      <section
+        className="px-[100px] py-16 md:py-[100px]"
+        style={{
+          backgroundColor: '#80c8c5',
+          backgroundImage: 'linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5))',
+        }}
+      >
         <div className="grid w-full grid-cols-1 gap-12 md:grid-cols-3 md:gap-x-[calc(3rem+50px)]">
           <Reveal>
             <p className="eyebrow mb-3">The Problem</p>
@@ -99,7 +112,7 @@ export function ServiceDetail() {
         </div>
       </section>
 
-      <section className="border-y border-[var(--color-line)] bg-[#80c8c5] px-[100px] py-16 md:py-20">
+      <section className="border-y border-[var(--color-line)] bg-[#fbbf24] px-[100px] py-16 md:py-[150px]">
         <div className="grid w-full grid-cols-1 gap-12 md:grid-cols-2">
           <Reveal
             className={
@@ -175,13 +188,15 @@ export function ServiceDetail() {
       <section className="border-t border-[var(--color-line)] px-6 py-16 md:px-10 md:py-20">
         <div className="mx-auto max-w-[var(--container-wide)]">
           <p className="eyebrow mb-8">Other Services</p>
-          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          <ServiceCardsSlider>
             {otherServices.map(({ service: s, index }) => (
-              <Reveal key={s.slug}>
-                <ServiceCard service={s} index={index} />
-              </Reveal>
+              <div key={s.slug} className="min-w-0 snap-start">
+                <Reveal className="h-full">
+                  <ServiceCard service={s} index={index} />
+                </Reveal>
+              </div>
             ))}
-          </div>
+          </ServiceCardsSlider>
         </div>
       </section>
 

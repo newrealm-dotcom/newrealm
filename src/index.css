@@ -2,21 +2,21 @@
 
 @theme {
   --font-display: 'Bricolage Grotesque', ui-sans-serif, system-ui, sans-serif;
-  --font-body: 'Manrope', ui-sans-serif, system-ui, sans-serif;
+  --font-body: 'Kanit', ui-sans-serif, system-ui, sans-serif;
 
   /* Editorial paper/ink palette — replaces the earlier dark/neon "crystal" system. */
   --color-paper: #f6f4ef;
   --color-paper-2: #eeebe2;
-  --color-ink: #16140f;
-  --color-ink-dim: #5c5848;
-  --color-ink-faint: #6a6555;
-  --color-line: rgba(22, 20, 15, 0.12);
-  --color-line-strong: rgba(22, 20, 15, 0.22);
+  --color-ink: #151412;
+  --color-ink-dim: #151412;
+  --color-ink-faint: #151412;
+  --color-line: rgba(21, 20, 18, 0.12);
+  --color-line-strong: rgba(21, 20, 18, 0.22);
   --color-gold: #8f5c24;
   --color-gold-dim: rgba(143, 92, 36, 0.14);
 
   /* Inverse section (footer, one contrast band) */
-  --color-ink-2: #100e0a;
+  --color-ink-2: #151412;
 
   --container-content: 1280px;
   --container-wide: 1440px;
@@ -100,7 +100,7 @@
     justify-content: center;
     gap: 0.5rem;
     padding: 0.85rem 1.5rem;
-    font-size: 0.875rem;
+    font-size: 1.05rem;
     font-weight: 600;
     border-radius: 25px;
     position: relative;
@@ -124,8 +124,8 @@
     background-color: #00419f;
     background-image: linear-gradient(
       90deg,
-      #161411 0%,
-      #161411 50%,
+      #151412 0%,
+      #151412 50%,
       #00419f 50%,
       #00419f 100%
     );
@@ -154,12 +154,12 @@
   }
 
   .btn-inverse {
-    color: #161411;
+    color: #151412;
     background-color: #fff;
     background-image: linear-gradient(
       90deg,
-      #161411 0%,
-      #161411 50%,
+      #151412 0%,
+      #151412 50%,
       #fff 50%,
       #fff 100%
     );

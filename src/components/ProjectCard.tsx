@@ -6,7 +6,7 @@ export function ProjectCard({ project }: { project: Project }) {
   return (
     <Link
       to={`/work/${project.slug}`}
-      className="group relative flex h-full flex-col rounded-[20px] border border-white/25 bg-[#00918A] transition-colors hover:border-white/60"
+      className="group relative flex h-full flex-col rounded-[20px] border border-white/25 bg-[#00419f] transition-colors hover:border-white/60"
     >
       <div className="flex items-start justify-between px-7 pt-7">
         <span className="eyebrow !text-white">{project.tag}</span>

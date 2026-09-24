@@ -152,6 +152,14 @@ export function About() {
               website development and digital marketing — a combination most agencies specialize away from as the
               industry has split into separate creative and digital shops.
             </p>
+            <div className="mt-10 hidden flex-wrap gap-4 lg:flex lg:flex-nowrap">
+              <Link to="/contact" className="btn btn-primary shrink-0">
+                Let's Get This Project Started
+              </Link>
+              <Link to="/work" className="btn btn-secondary shrink-0">
+                View Our Work
+              </Link>
+            </div>
           </div>
           <div className="flex justify-center lg:justify-end">
             <div className="w-full max-w-[280px] overflow-hidden rounded-[15px] border-[5px] border-[#151412] md:max-w-[340px] lg:max-w-[400px]">

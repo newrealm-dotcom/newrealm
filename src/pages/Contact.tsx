@@ -1,4 +1,5 @@
 import { useState, type FormEvent } from 'react'
+import { Link } from 'react-router-dom'
 import { SEO } from '../components/SEO'
 import { FAQ } from '../data/faq'
 import { assetUrl } from '../lib/assetUrl'
@@ -66,7 +67,7 @@ export function Contact() {
       />
 
       <section className="border-b border-[var(--color-line)] px-6 py-16 md:px-10 md:py-20">
-        <div className="mx-auto grid max-w-[var(--container-wide)] grid-cols-1 items-center gap-10 lg:grid-cols-2 lg:gap-16">
+        <div className="mx-auto grid max-w-[var(--container-wide)] grid-cols-1 items-center gap-10 lg:grid-cols-[40%_60%] lg:gap-16">
           <div>
             <p className="eyebrow mb-4">Start a Project</p>
             <h1 className="max-w-2xl font-[family-name:var(--font-display)] text-4xl font-medium text-[var(--color-ink)] md:text-5xl">
@@ -75,6 +76,14 @@ export function Contact() {
             <p className="prose-copy mt-6 text-lg text-[var(--color-ink-dim)]">
               Share a few details and someone from our team will follow up shortly.
             </p>
+            <div className="mt-10 hidden flex-wrap gap-4 lg:flex lg:flex-nowrap">
+              <Link to="/contact" className="btn btn-primary shrink-0">
+                Let's Get This Project Started
+              </Link>
+              <Link to="/work" className="btn btn-secondary shrink-0">
+                View Our Work
+              </Link>
+            </div>
           </div>
           <div className="mx-auto w-3/4 lg:mx-0 lg:justify-self-end">
             <img
@@ -86,7 +95,7 @@ export function Contact() {
         </div>
       </section>
 
-      <section className="px-6 py-16 md:px-10 md:py-20">
+      <section className="bg-[#fbbf24] px-6 py-16 md:px-10 md:py-20">
         <div className="mx-auto max-w-2xl">
           {status === 'done' ? (
             <div className="border border-[var(--color-line)] bg-[var(--color-paper-2)] p-10 text-center">

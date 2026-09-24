@@ -21,6 +21,14 @@ export function Insights() {
             <h1 className="max-w-2xl font-[family-name:var(--font-display)] text-4xl font-medium text-[var(--color-ink)] md:text-5xl">
               Practical thinking on design and digital.
             </h1>
+            <div className="mt-10 hidden flex-wrap gap-4 lg:flex lg:flex-nowrap">
+              <Link to="/contact" className="btn btn-primary shrink-0">
+                Let's Get This Project Started
+              </Link>
+              <Link to="/work" className="btn btn-secondary shrink-0">
+                View Our Work
+              </Link>
+            </div>
           </div>
           <div className="mx-auto w-3/4 lg:mx-0 lg:justify-self-end">
             <BeforeAfterSlider

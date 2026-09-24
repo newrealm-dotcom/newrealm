@@ -94,6 +94,7 @@ export const SERVICES: ServiceCategory[] = [
       'Website redesign',
       'UI/UX',
     ],
+    heroEmbed: '/revolving-carousel.html?set=webdesign&v=2',
   },
   {
     slug: 'digital-marketing',
@@ -110,6 +111,7 @@ export const SERVICES: ServiceCategory[] = [
       "Because we also design and build the sites and brands this marketing points to, strategy and execution stay connected — a campaign doesn't hand off to a landing page nobody involved in the campaign has seen.",
     nextStep: { label: 'Request a quote', to: '/contact' },
     subServices: ['Digital strategy', 'Search marketing', 'Content marketing', 'Conversion optimization', 'Campaign development'],
+    hero: '/services/hero-digitalmarketing.png',
   },
   {
     slug: 'seo-aeo',
@@ -143,6 +145,7 @@ export const SERVICES: ServiceCategory[] = [
       'AI-search optimization',
       'Structured data / schema',
     ],
+    hero: '/services/hero-SEO-AEO.webp',
   },
   {
     slug: 'website-app-maintenance',
@@ -159,6 +162,7 @@ export const SERVICES: ServiceCategory[] = [
       'Ongoing maintenance of client sites and apps is handled by the same team responsible for New Realm\'s own online data services and digital properties — this is a standing discipline here, not an afterthought add-on.',
     nextStep: { label: 'Talk about ongoing support', to: '/contact' },
     subServices: ['Content updates', 'WordPress maintenance', 'Security', 'Performance optimization', 'Troubleshooting', 'App/site management'],
+    hero: '/services/hero-web-app-maint.webp',
   },
   {
     slug: 'packaging-product-design',
@@ -175,6 +179,7 @@ export const SERVICES: ServiceCategory[] = [
       'The same team designing the packaging also handles print production more broadly — so production constraints get caught during design, not after the first run comes back wrong.',
     nextStep: { label: 'Start a project', to: '/contact' },
     subServices: ['Packaging design', 'Product graphics', 'Prototyping', 'Production preparation'],
+    heroEmbed: '/revolving-carousel.html?set=packaging&v=3',
   },
   {
     slug: 'print-production',
@@ -191,6 +196,7 @@ export const SERVICES: ServiceCategory[] = [
       'Twenty-plus years in print and production sit alongside the digital side of the business — a combination that has gotten rare as most studios specialize in one or the other.',
     nextStep: { label: 'Start a project', to: '/contact' },
     subServices: ['Brochures', 'Catalogs', 'Direct mail', 'Signage', 'Corporate collateral', 'Specialty production'],
+    hero: '/services/hero-printprod.webp',
   },
 ]
 

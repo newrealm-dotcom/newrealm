@@ -157,6 +157,20 @@
 
     .card.is-loaded img { opacity: 1; }
 
+    body.set-cover .card img {
+      object-fit: cover;
+    }
+
+    body.set-cover .card__frame {
+      background: transparent;
+    }
+
+    body.set-packaging {
+      --card-w: min(48vmin, 340px);
+      --card-h: var(--card-w);
+      --ring-radius: min(40vmin, 290px);
+    }
+
     /* Lightbox */
     .lightbox {
       position: fixed;
@@ -305,15 +319,43 @@
   </div>
 
   <script>
-    const IMAGES = [
-      { src: './services/signature%20soups.webp', alt: 'Signature Soups' },
-      { src: './services/signaturebites-wallpaper.webp', alt: 'Signature Bites' },
-      { src: './services/signaturesalads-wallpaper.webp', alt: 'Signature Salads' },
-      { src: './services/signaturesmoothies-wallpaper.webp', alt: 'Signature Smoothies' },
-      { src: './services/signaturewraps-wallpaper.webp', alt: 'Signature Wraps' },
-    ];
+    const IMAGE_SETS = {
+      branding: [
+        { src: './services/signature%20soups.webp', alt: 'Signature Soups' },
+        { src: './services/signaturebites-wallpaper.webp', alt: 'Signature Bites' },
+        { src: './services/signaturesalads-wallpaper.webp', alt: 'Signature Salads' },
+        { src: './services/signaturesmoothies-wallpaper.webp', alt: 'Signature Smoothies' },
+        { src: './services/signaturewraps-wallpaper.webp', alt: 'Signature Wraps' },
+      ],
+      webdesign: [
+        { src: './services/webdesign01.webp', alt: 'Website design example 1' },
+        { src: './services/webdesign02.webp', alt: 'Website design example 2' },
+        { src: './services/webdesign03.webp', alt: 'Website design example 3' },
+        { src: './services/webdesign04.webp', alt: 'Website design example 4' },
+        { src: './services/webdesign05.webp', alt: 'Website design example 5' },
+      ],
+      packaging: [
+        { src: './services/packaging01.webp', alt: 'Packaging design example 1' },
+        { src: './services/packaging02.webp', alt: 'Packaging design example 2' },
+        { src: './services/packaging03.webp', alt: 'Packaging design example 3' },
+        { src: './services/packaging04.webp', alt: 'Packaging design example 4' },
+        { src: './services/packaging05.webp', alt: 'Packaging design example 5' },
+      ],
+    };
 
+    const setKey = new URLSearchParams(location.search).get('set') || 'branding';
+    const IMAGES = IMAGE_SETS[setKey] || IMAGE_SETS.branding;
+    if (setKey === 'webdesign' || setKey === 'packaging') document.body.classList.add('set-cover');
+    if (setKey === 'packaging') document.body.classList.add('set-packaging');
     const stage = document.getElementById('stage');
+    if (stage) {
+      const labels = {
+        branding: 'Signature design work carousel',
+        webdesign: 'Website design work carousel',
+        packaging: 'Packaging design work carousel',
+      };
+      stage.setAttribute('aria-label', labels[setKey] || labels.branding);
+    }
     const ring = document.getElementById('ring');
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = document.getElementById('lightbox-img');

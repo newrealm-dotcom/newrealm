@@ -61,8 +61,8 @@ export function CaseStudy() {
         </div>
 
         {/* Meta — Client / Industry / Services */}
-        <div className="mt-10 w-full px-6 py-[25px] md:px-10">
-          <div className="mx-auto grid w-full max-w-[var(--container-content)] grid-cols-1 gap-12 sm:grid-cols-3">
+        <div className="mt-10 w-full px-6 py-10 md:px-[100px] md:py-[20px]">
+          <div className="grid w-full grid-cols-1 gap-12 sm:grid-cols-3">
             <div>
               <p className="eyebrow mb-3">Client</p>
               {project.clientUrl ? (
@@ -91,8 +91,14 @@ export function CaseStudy() {
       </section>
 
       {/* Challenge / Strategy / Solution */}
-      <section className="px-6 py-16 md:px-10 md:py-20">
-        <div className="mx-auto grid max-w-[var(--container-content)] grid-cols-1 gap-12 md:grid-cols-3">
+      <section
+        className="px-6 py-16 md:p-[100px]"
+        style={{
+          backgroundColor: '#80c8c5',
+          backgroundImage: 'linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5))',
+        }}
+      >
+        <div className="grid w-full grid-cols-1 gap-12 md:grid-cols-3">
           <Reveal>
             <p className="eyebrow mb-3">The Challenge</p>
             <p className="text-[var(--color-ink-dim)]">{project.challenge}</p>
@@ -109,7 +115,7 @@ export function CaseStudy() {
       </section>
 
       {/* Results — full width, 40% copy / 60% image, 50px side padding */}
-      <section className="border-y border-[var(--color-line)] bg-[var(--color-paper-2)] py-16 md:py-20">
+      <section className="border-y border-[var(--color-line)] bg-[#fbbf24] py-16 md:py-20">
         <div className="grid w-full grid-cols-1 items-center gap-10 px-[50px] lg:grid-cols-[2fr_3fr] lg:gap-12">
           <div className="flex flex-col justify-center">
             <p className="eyebrow mb-3">The Results</p>
