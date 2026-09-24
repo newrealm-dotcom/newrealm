@@ -40,7 +40,12 @@ export function ServiceDetail() {
 
       <section
         className={`border-b border-[var(--color-line)] bg-white py-6 md:py-8 ${
-          service.slug === 'seo-aeo' ? 'md:pb-[calc(2rem+50px)]' : ''
+          service.slug === 'seo-aeo' ||
+          service.slug === 'digital-marketing' ||
+          service.slug === 'website-app-maintenance' ||
+          service.slug === 'print-production'
+            ? 'md:pb-[calc(2rem+50px)]'
+            : ''
         }`}
       >
         <div
