@@ -1,4 +1,11 @@
-export type ProjectCategory = 'branding' | 'graphic-design' | 'web' | 'packaging' | 'print' | 'digital'
+export type ProjectCategory =
+  | 'branding'
+  | 'graphic-design'
+  | 'web'
+  | 'packaging'
+  | 'print'
+  | 'digital'
+  | 'characters'
 
 export interface Project {
   slug: string
@@ -76,6 +83,28 @@ export const PROJECTS: Project[] = [
     resultsImage: '/projects/black-diamond.webp',
   },
   {
+    slug: 'lemira-estee',
+    client: 'Lemira Estee',
+    industry: 'Beauty',
+    tag: 'Graphic Design',
+    categories: ['graphic-design'],
+    summary:
+      "Self-Care Journal created for independent lipstick line, Lemira Estee and it's founder, Eileen Lemelman.",
+    servicesProvided: ['Graphic Design'],
+    challenge:
+      'Lemira Estee needed to live in two worlds at once. It had to feel elegant and luxurious enough to stand beside established beauty brands, while honoring its faith-based roots with sincerity and grace. Every shade is tied to a woman of the Bible, so the design had to make those stories feel personal and inviting, not preachy or dated. On top of that, the brand speaks to two very different audiences: individual women shopping for themselves, and churches and organizations buying for fundraising and outreach. The identity had to connect with both.',
+    strategy:
+      "We started with Eileen's story. The image of her mother and grandmother applying lipstick before greeting the world became the emotional heart of the brand: beauty as a daily act of dignity, faith, and confidence. From there, we defined a visual language built on three ideas: timeless elegance, quiet strength, and legacy. We treated each shade as a character with its own story, giving every woman of the Bible a distinct identity within a cohesive system. The goal was a brand that feels like a keepsake, something passed down rather than simply purchased.",
+    solution:
+      "We designed a self-care journal that brought the Lemira Estee story off the lipstick tube and into women's daily lives. Created to promote a brand event, the journal became both a meaningful keepsake and a natural extension of the brand. Its pages invite women to slow down, reflect, and nurture their faith and confidence, echoing the same daily ritual of dignity that inspired the brand. We carried the brand's elegant palette, graceful typography, and scripture-inspired messaging throughout, so every page felt unmistakably Lemira Estee. More than a promotional piece, the journal gave attendees something personal to take home and return to long after the event ended.",
+    results:
+      "The journal did exactly what great brand pieces should: it kept the conversation going. Lemira Estee expanded its reach well beyond the event itself, introducing the brand to new women and communities who connected with its message of faith, beauty, and purpose. The response was overwhelmingly positive, with attendees embracing the journal as a thoughtful, beautifully crafted gift. By turning a single event into a lasting touchpoint, the journal helped establish Lemira Estee as a brand that doesn't just sell beauty products, but supports women in living with intention every day.",
+    sourceUrl: 'https://newrealm.com/pf/case-study-popcorn-frights/',
+    cover: '/projects/selectedwork-lemiraestee.webp',
+    hero: '/projects/hero-lemiraestee.webp',
+    resultsImage: '/projects/results-lemiraestee.webp',
+  },
+  {
     slug: 'popcorn-frights-film-festival',
     client: 'Popcorn Frights Film Festival',
     industry: 'Entertainment / Film Festival',
@@ -113,9 +142,10 @@ export function getLatestProjects(count = 5, excludeSlug?: string) {
 export const CATEGORY_LABELS: Record<'all' | ProjectCategory, string> = {
   all: 'All',
   branding: 'Branding',
-  'graphic-design': 'Graphic Design',
+  'graphic-design': 'Graphics',
   web: 'Web',
   packaging: 'Packaging',
   print: 'Print',
   digital: 'Digital',
+  characters: 'Characters',
 }

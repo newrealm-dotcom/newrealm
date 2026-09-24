@@ -7,7 +7,15 @@ import { assetUrl } from '../lib/assetUrl'
 
 type FilterKey = 'all' | ProjectCategory
 
-const FILTERS: FilterKey[] = ['all', 'branding', 'graphic-design', 'web', 'packaging', 'print']
+const FILTERS: FilterKey[] = [
+  'all',
+  'branding',
+  'graphic-design',
+  'web',
+  'packaging',
+  'print',
+  'characters',
+]
 
 export function Work() {
   const [filter, setFilter] = useState<FilterKey>('all')
