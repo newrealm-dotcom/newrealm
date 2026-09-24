@@ -46,9 +46,8 @@ export const SERVICES: ServiceCategory[] = [
     whoItsFor: 'Businesses launching a new brand, outgrowing a dated identity, or tired of inconsistent materials across vendors.',
     whatsIncluded: ['Brand identity', 'Logo design', 'Marketing collateral', 'Corporate design', 'Campaign creative'],
     whatMakesUsDifferent: {
-      lead: 'Most studios hand you a brand and walk away.',
+      lead: 'Most studios hand you a brand and walk away. We stay for the part where it has to work.',
       paragraphs: [
-        'We stay for the part where it has to work.',
         'A brand identity looks flawless in a presentation deck, but a deck is the easiest place a brand will ever live. The real test comes when the logo has to be foil-stamped on a business card, the palette has to survive uncoated paper, and the typography has to stay legible on a phone at arm\'s length. That\'s where most identities start to fray, because the studio that designed them is long gone and everyone else is left guessing.',
         'We carry the identity all the way through. We design and produce the packaging, signage, and print collateral, and we design, develop and build the website where your brand spends most of its working life. Because we\'re responsible for every medium, we design for all of them from day one: colors specified for screen and press, type chosen to read at 12 pixels and 12 feet, marks built to scale from a favicon to a storefront.',
         'The result is a brand that doesn\'t just photograph well. It shows up the same way everywhere your customers meet you, on paper and on screen, and keeps showing up that way long after the launch. One team, one standard, from the first sketch to the final print run to the live site.',
@@ -82,8 +81,14 @@ export const SERVICES: ServiceCategory[] = [
       'Website redesign',
       'UI/UX',
     ],
-    whatMakesUsDifferent:
-      "Design and development happen under one roof, alongside the copywriting, motion graphics, and digital marketing that go into the site — so the people building the pages are the same people who'll be asked to maintain and market them later.",
+    whatMakesUsDifferent: {
+      lead: 'Design and development happen under one roof, alongside the copywriting, motion graphics, and digital marketing that go into the site — so the people building the pages are the same people who\'ll be asked to maintain and market them later.',
+      paragraphs: [
+        'Your website is often the first real conversation a customer has with your business, and it needs to do a lot at once: communicate who you are, earn trust quickly, work flawlessly on every device, and guide visitors toward taking action. A great site balances all of this without feeling crowded or complicated. Our design and development process starts with understanding your goals and your audience, then builds a site that looks distinctive, loads fast, is easy to navigate, and is structured to grow alongside your business.',
+        'Design and development happen under one roof, alongside the copywriting, motion graphics, and digital marketing that go into the site. That means the words, visuals, animation, and code are shaped together from the start rather than pieced together at the end. Designers work directly with developers, so what gets approved is what gets built, and copy is written for the layout it will live in instead of being squeezed into boxes after the fact. The result is a site that feels cohesive, with every element working toward the same purpose.',
+        'Just as important, the people building your pages are the same people who will be asked to maintain and market them later. That shared accountability changes how a site gets built. We make choices with the long term in mind: clean, well-organized code that\'s easy to update, content structures that support SEO and campaigns, and landing pages designed to convert when marketing starts driving traffic. You end up with a website that isn\'t just impressive on launch day, but ready to perform, adapt, and improve for years to come.',
+      ],
+    },
     nextStep: { label: 'Discuss your website', to: '/contact' },
     subServices: [
       'Custom website design',
@@ -107,8 +112,14 @@ export const SERVICES: ServiceCategory[] = [
     result: 'Marketing spend and effort pointed at the channels that actually move the business forward, with ongoing testing to improve return over time.',
     whoItsFor: 'Businesses that need a coordinated digital presence, not one more disconnected campaign.',
     whatsIncluded: ['Digital strategy', 'Search marketing', 'Content marketing', 'Conversion optimization', 'Campaign development'],
-    whatMakesUsDifferent:
-      "Because we also design and build the sites and brands this marketing points to, strategy and execution stay connected — a campaign doesn't hand off to a landing page nobody involved in the campaign has seen.",
+    whatMakesUsDifferent: {
+      lead: 'Because we also design and build the sites and brands this marketing points to, strategy and execution stay connected — a campaign doesn\'t hand off to a landing page nobody involved in the campaign has seen.',
+      paragraphs: [
+        'Digital marketing works best when it\'s treated as part of a larger system rather than a standalone service. A campaign can drive thousands of clicks, but if those clicks land on a page that feels disconnected from the ad, loads slowly, or buries the next step, the budget is wasted. Our approach covers the full picture: search and social advertising, SEO, email, content, and analytics, all planned around clear goals and measured against real business outcomes rather than vanity metrics.',
+        'Because we also design and build the sites and brands this marketing points to, strategy and execution stay connected. A campaign doesn\'t hand off to a landing page nobody involved in the campaign has seen. The same team that shapes the message also shapes where it leads, so the visual identity, tone, and offer carry through from the first impression to the final conversion. When the data shows something isn\'t working, we don\'t have to coordinate across three vendors to fix it. We can adjust the ad, the page, or the funnel itself, quickly and in step with each other.',
+        'This continuity pays off over time. Every campaign teaches us something about your audience, and that insight flows directly back into your website, your messaging, and your brand. Instead of a series of disconnected efforts, you get a marketing operation that learns and improves as a whole, with each piece strengthening the others and every dollar working toward the same goal.',
+      ],
+    },
     nextStep: { label: 'Request a quote', to: '/contact' },
     subServices: ['Digital strategy', 'Search marketing', 'Content marketing', 'Conversion optimization', 'Campaign development'],
     hero: '/services/hero-digitalmarketing.png',
@@ -133,8 +144,14 @@ export const SERVICES: ServiceCategory[] = [
       'AI-search optimization',
       'Structured data / schema',
     ],
-    whatMakesUsDifferent:
-      "SEO and AEO aren't bolted onto a finished site here — because we build the site too, technical fixes (page structure, schema, load speed) get made directly in the code rather than routed through a third party.",
+    whatMakesUsDifferent: {
+      lead: 'SEO and AEO aren\'t bolted onto a finished site here — because we build the site too, technical fixes (page structure, schema, load speed) get made directly in the code rather than routed through a third party.',
+      paragraphs: [
+        'How people find information is changing. Traditional search engines still drive a large share of traffic, but more and more questions are now answered directly by AI assistants, voice search, and the summaries that appear at the top of search results. Search engine optimization (SEO) helps your site rank well when people search, while answer engine optimization (AEO) helps your content get recognized, cited, and surfaced by the tools that deliver answers instead of links. Together, they make sure your business is visible wherever your customers are looking, whether they\'re scrolling results pages or asking a question out loud.',
+        'SEO and AEO aren\'t bolted onto a finished site here. Because we build the site too, technical fixes like page structure, schema markup, and load speed get made directly in the code rather than routed through a third party. There\'s no waiting on another vendor to implement recommendations, and no gap between the people who identify an issue and the people who fix it. Clean heading hierarchies, structured data that helps search engines and AI tools understand your content, fast load times, and mobile-friendly layouts are built in from the foundation, not patched on afterward.',
+        'That technical groundwork is paired with content strategy designed for how people actually search today. We research the questions your customers are asking, write clear and authoritative content that answers them directly, and organize it so both search engines and answer engines can easily interpret and trust it. As search behavior and algorithms evolve, we monitor performance and refine both the content and the code behind it, so your visibility continues to grow instead of quietly slipping over time.',
+      ],
+    },
     nextStep: { label: 'Request a website audit', to: '/contact' },
     subServices: [
       'Technical SEO',
@@ -158,8 +175,14 @@ export const SERVICES: ServiceCategory[] = [
     result: 'A site that keeps working, keeps loading fast, and keeps getting updated, without the business needing an in-house developer.',
     whoItsFor: 'Businesses with a working site that just needs someone reliably keeping it maintained — including sites New Realm did not design.',
     whatsIncluded: ['Content updates', 'WordPress maintenance', 'Security', 'Performance optimization', 'Troubleshooting', 'App/site management'],
-    whatMakesUsDifferent:
-      'Ongoing maintenance of client sites and apps is handled by the same team responsible for New Realm\'s own online data services and digital properties — this is a standing discipline here, not an afterthought add-on.',
+    whatMakesUsDifferent: {
+      lead: 'Ongoing maintenance of client sites and apps is handled by the same team responsible for New Realm\'s own online data services and digital properties — this is a standing discipline here, not an afterthought add-on.',
+      paragraphs: [
+        'A website or app is never truly finished. Once it launches, the real work begins: software updates, security patches, performance tuning, content changes, and the steady stream of small fixes that keep everything running smoothly. Left unattended, even a well-built site gradually slows down, falls behind on security, and starts to feel dated to the people using it. Our maintenance service keeps your digital properties healthy, secure, and current, so they continue to perform the way they did on launch day, and better.',
+        'Ongoing maintenance of client sites and apps is handled by the same team responsible for New Realm\'s own online data services and digital properties. This is a standing discipline here, not an afterthought add-on. We rely on these same practices every day to keep our own systems reliable, which means the monitoring, backups, update schedules, and incident response we apply to your site are tested against real stakes, not just written into a service agreement. When something needs attention, it\'s handled by people who know the work intimately and treat uptime and security as core responsibilities.',
+        'That consistency gives you something most maintenance plans can\'t: continuity. The team looking after your site understands how it was built, why decisions were made, and how it fits into your broader business. Instead of explaining your setup to a new support contact every time an issue comes up, you work with people who already know it, can spot problems before they become outages, and can recommend improvements as your needs grow. The result is a site or app that stays dependable over the long term, and a partner who treats its care as seriously as its creation.',
+      ],
+    },
     nextStep: { label: 'Talk about ongoing support', to: '/contact' },
     subServices: ['Content updates', 'WordPress maintenance', 'Security', 'Performance optimization', 'Troubleshooting', 'App/site management'],
     hero: '/services/hero-web-app-maint.webp',
@@ -175,8 +198,14 @@ export const SERVICES: ServiceCategory[] = [
     result: 'Packaging that differentiates the product in the marketplace and holds up once it leaves the design file.',
     whoItsFor: 'Product businesses launching a new SKU or refreshing packaging that no longer stands out.',
     whatsIncluded: ['Packaging design', 'Product graphics', 'Prototyping', 'Production preparation'],
-    whatMakesUsDifferent:
-      'The same team designing the packaging also handles print production more broadly — so production constraints get caught during design, not after the first run comes back wrong.',
+    whatMakesUsDifferent: {
+      lead: 'The same team designing the packaging also handles print production more broadly — so production constraints get caught during design, not after the first run comes back wrong.',
+      paragraphs: [
+        'Packaging is often the moment a customer decides whether to pick up your product or walk past it. It has to stand out on a crowded shelf or in a shipping box, communicate what\'s inside at a glance, reflect the quality of the brand, and still protect the product on its way to the customer. Good product design works the same way, balancing how something looks with how it feels, functions, and holds up in real use. Our process starts with your product, your customer, and the environment where they\'ll meet, then builds packaging and product designs that are as practical as they are memorable.',
+        'The same team designing the packaging also handles print production more broadly, so production constraints get caught during design, not after the first run comes back wrong. Dielines, material choices, finishing effects like foils and embossing, color accuracy across different substrates, and the realities of how a box folds, stacks, and ships are all considered from the first concept. Designs are developed with manufacturing in mind, which means fewer surprises at the proof stage, fewer costly reprints, and a finished product that matches what was approved.',
+        'This approach keeps creativity and practicality working together rather than pulling against each other. Ambitious ideas get tested against what\'s actually achievable within your budget and timeline, and when a constraint appears, we can adjust the design with a clear understanding of the tradeoffs. Because packaging is designed alongside your broader brand, it also stays consistent with your website, marketing, and printed materials. The result is packaging that looks great in the mockup, arrives exactly right from the printer, and represents your product well from the shelf to the customer\'s hands.',
+      ],
+    },
     nextStep: { label: 'Start a project', to: '/contact' },
     subServices: ['Packaging design', 'Product graphics', 'Prototyping', 'Production preparation'],
     heroEmbed: '/revolving-carousel.html?set=packaging&v=3',
@@ -192,8 +221,14 @@ export const SERVICES: ServiceCategory[] = [
     result: 'Print materials that read as part of the same company as the website, produced correctly the first time.',
     whoItsFor: 'Businesses that still need physical materials — trade shows, direct mail, retail signage, leave-behinds — done right.',
     whatsIncluded: ['Brochures', 'Catalogs', 'Direct mail', 'Signage', 'Corporate collateral', 'Specialty production'],
-    whatMakesUsDifferent:
-      'Twenty-plus years in print and production sit alongside the digital side of the business — a combination that has gotten rare as most studios specialize in one or the other.',
+    whatMakesUsDifferent: {
+      lead: 'Twenty-plus years in print and production sit alongside the digital side of the business — a combination that has gotten rare as most studios specialize in one or the other.',
+      paragraphs: [
+        'Print remains one of the most tangible ways a brand shows up in the world. Business cards, brochures, packaging, signage, and trade show materials are often the pieces people hold in their hands, keep on their desks, or see in person, and they leave a lasting impression when they\'re done well. Getting print right takes more than good design. It requires a working knowledge of paper stocks, color management, finishing techniques, and production timelines, along with the judgment to know what will look great on screen but fall flat on press, and how to fix it before it does.',
+        'Twenty-plus years in print and production sit alongside the digital side of our business, a combination that has become rare as most studios specialize in one or the other. That experience means we understand the details that separate a polished printed piece from an expensive reprint: proper bleeds and color profiles, how inks behave on different surfaces, and how to work with printers and vendors to keep quality high and costs in check. We manage the process from concept through final delivery, so you\'re not left translating between a designer and a print shop on your own.',
+        'Having both disciplines under one roof keeps your brand consistent wherever it appears. The colors, typography, and messaging on your website carry through to your brochures, packaging, and signage without the drift that often happens when separate teams handle each medium. Campaigns can move seamlessly between digital and physical channels, and decisions made in one space inform the other. The result is a brand that feels unified and deliberate, whether someone encounters it on a phone screen or picks it up off a table.',
+      ],
+    },
     nextStep: { label: 'Start a project', to: '/contact' },
     subServices: ['Brochures', 'Catalogs', 'Direct mail', 'Signage', 'Corporate collateral', 'Specialty production'],
     hero: '/services/hero-printprod.webp',

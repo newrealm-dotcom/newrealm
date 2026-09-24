@@ -116,7 +116,13 @@ export function ServiceDetail() {
         <div className="grid w-full grid-cols-1 gap-12 md:grid-cols-2">
           <Reveal
             className={
-              service.slug === 'branding-graphic-design'
+              service.slug === 'branding-graphic-design' ||
+              service.slug === 'digital-marketing' ||
+              service.slug === 'website-app-maintenance' ||
+              service.slug === 'print-production' ||
+              service.slug === 'website-design-development' ||
+              service.slug === 'seo-aeo' ||
+              service.slug === 'packaging-product-design'
                 ? 'text-[133%] [&_.eyebrow]:text-[1rem]'
                 : undefined
             }
@@ -130,12 +136,28 @@ export function ServiceDetail() {
                 <li
                   key={item}
                   className={`flex items-start gap-2 text-[var(--color-ink-dim)] ${
-                    service.slug === 'branding-graphic-design' ? 'text-[1em]' : 'text-sm'
+                    service.slug === 'branding-graphic-design' ||
+              service.slug === 'digital-marketing' ||
+              service.slug === 'website-app-maintenance' ||
+              service.slug === 'print-production' ||
+              service.slug === 'website-design-development' ||
+              service.slug === 'seo-aeo' ||
+              service.slug === 'packaging-product-design'
+                      ? 'text-[1em]'
+                      : 'text-sm'
                   }`}
                 >
                   <span
                     className={`h-1 w-1 shrink-0 bg-[var(--color-ink-faint)] ${
-                      service.slug === 'branding-graphic-design' ? 'mt-[0.55em]' : 'mt-2'
+                      service.slug === 'branding-graphic-design' ||
+              service.slug === 'digital-marketing' ||
+              service.slug === 'website-app-maintenance' ||
+              service.slug === 'print-production' ||
+              service.slug === 'website-design-development' ||
+              service.slug === 'seo-aeo' ||
+              service.slug === 'packaging-product-design'
+                        ? 'mt-[0.55em]'
+                        : 'mt-2'
                     }`}
                   />
                   {item}
@@ -149,10 +171,8 @@ export function ServiceDetail() {
               <p className="text-[var(--color-ink-dim)]">{service.whatMakesUsDifferent}</p>
             ) : (
               <div className="space-y-4 text-[var(--color-ink-dim)]">
-                <p className="font-semibold text-[var(--color-ink)]">
-                  {service.whatMakesUsDifferent.lead} {service.whatMakesUsDifferent.paragraphs[0]}
-                </p>
-                {service.whatMakesUsDifferent.paragraphs.slice(1).map((para) => {
+                <p className="font-semibold text-[var(--color-ink)]">{service.whatMakesUsDifferent.lead}</p>
+                {service.whatMakesUsDifferent.paragraphs.map((para) => {
                   const boldStart = para.indexOf('One team, one standard')
                   if (boldStart === -1) {
                     return <p key={para.slice(0, 48)}>{para}</p>
