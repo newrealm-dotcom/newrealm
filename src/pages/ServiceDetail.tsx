@@ -49,7 +49,7 @@ export function ServiceDetail() {
       >
         <div
           className={`grid w-full grid-cols-1 items-center ${
-            service.heroEmbed
+            service.heroEmbed || service.heroVideo
               ? 'lg:grid-cols-[minmax(34rem,40%)_1fr] lg:items-stretch'
               : 'lg:grid-cols-[44%_56%]'
           }`}
@@ -82,10 +82,10 @@ export function ServiceDetail() {
               />
             </div>
           ) : service.heroVideo ? (
-            <div className="mt-8 w-full px-6 lg:mt-0 lg:px-[20px] lg:pr-[45px]">
+            <div className="w-full self-stretch -my-6 md:-my-8">
               <video
                 src={assetUrl(service.heroVideo)}
-                className="h-auto w-full object-contain"
+                className="block h-full min-h-full w-full object-cover"
                 autoPlay
                 muted
                 loop
