@@ -35,6 +35,12 @@ const GALLERY_FOLDERS: GalleryFolderConfig[] = [
     exportName: 'charactersGalleryImages',
     altSuffix: 'character design work',
   },
+  {
+    folder: 'packaging',
+    virtualId: 'virtual:packaging-gallery',
+    exportName: 'packagingGalleryImages',
+    altSuffix: 'packaging design work',
+  },
 ]
 
 function altFromFilename(filename: string, altSuffix: string): string {
@@ -132,7 +138,7 @@ function scanPublicFolder(
 }
 
 /**
- * Virtual modules that mirror image files in public/{branding,characters}.
+ * Virtual modules that mirror image files in public/{branding,characters,packaging}.
  * Drop a new image in those folders → it appears in the matching masonry gallery.
  */
 export function publicGalleryPlugin(rootDir: string): Plugin {

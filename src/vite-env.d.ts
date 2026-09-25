@@ -16,3 +16,8 @@ declare module 'virtual:characters-gallery' {
   export type CharactersGalleryImage = GalleryImage
   export const charactersGalleryImages: CharactersGalleryImage[]
 }
+
+declare module 'virtual:packaging-gallery' {
+  export type PackagingGalleryImage = GalleryImage
+  export const packagingGalleryImages: PackagingGalleryImage[]
+}

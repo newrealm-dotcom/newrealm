@@ -6,6 +6,7 @@ import { ServiceCard } from '../components/ServiceCard'
 import { ServiceCardsSlider } from '../components/ServiceCardsSlider'
 import { BrandingMasonryGallery } from '../components/BrandingMasonryGallery'
 import { CharactersMasonryGallery } from '../components/CharactersMasonryGallery'
+import { PackagingMasonryGallery } from '../components/PackagingMasonryGallery'
 import { getServiceBySlug, SERVICES } from '../data/services'
 import { getLatestProjects } from '../data/projects'
 import { ProjectCardsSlider } from '../components/ProjectCardsSlider'
@@ -212,7 +213,7 @@ export function ServiceDetail() {
       </section>
 
       {service.slug === 'branding-graphic-design' && (
-        <section className="w-full overflow-x-hidden border-t border-[var(--color-line)]">
+        <section className="w-full overflow-x-hidden border-t border-[var(--color-line)] bg-white">
           <BrandingMasonryGallery />
         </section>
       )}
@@ -240,8 +241,14 @@ export function ServiceDetail() {
       )}
 
       {service.slug === 'character-design-development' && (
-        <section className="w-full overflow-x-hidden border-t border-[var(--color-line)]">
+        <section className="w-full overflow-x-hidden border-t border-[var(--color-line)] bg-white">
           <CharactersMasonryGallery />
+        </section>
+      )}
+
+      {service.slug === 'packaging-product-design' && (
+        <section className="w-full overflow-x-hidden border-t border-[var(--color-line)] bg-white">
+          <PackagingMasonryGallery />
         </section>
       )}
 
