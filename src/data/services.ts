@@ -61,7 +61,7 @@ export const SERVICES: ServiceCategory[] = [
       to: '/contact',
     },
     subServices: ['Brand identity', 'Logo design', 'Marketing collateral', 'Corporate design', 'Campaign creative'],
-    heroEmbed: '/revolving-carousel.html?v=6',
+    heroEmbed: '/revolving-carousel.html?v=7',
   },
   {
     slug: 'website-design-development',
@@ -101,7 +101,7 @@ export const SERVICES: ServiceCategory[] = [
       'Website redesign',
       'UI/UX',
     ],
-    heroEmbed: '/revolving-carousel.html?set=webdesign&v=2',
+    heroEmbed: '/revolving-carousel.html?set=webdesign&v=3',
   },
   {
     slug: 'digital-marketing',
@@ -210,7 +210,7 @@ export const SERVICES: ServiceCategory[] = [
     },
     nextStep: { label: 'Start a project', to: '/contact' },
     subServices: ['Packaging design', 'Product graphics', 'Prototyping', 'Production preparation'],
-    heroEmbed: '/revolving-carousel.html?set=packaging&v=3',
+    heroEmbed: '/revolving-carousel.html?set=packaging&v=4',
   },
   {
     slug: 'print-production',

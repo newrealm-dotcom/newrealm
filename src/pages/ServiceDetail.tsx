@@ -76,19 +76,19 @@ export function ServiceDetail() {
             </div>
           </div>
           {service.heroEmbed ? (
-            <div className="relative mt-6 min-h-[440px] w-full lg:mt-0 lg:min-h-[min(72vh,720px)]">
+            <div className="relative mt-6 w-full lg:mt-0 lg:min-h-[min(72vh,720px)]">
               <iframe
                 src={assetUrl(service.heroEmbed)}
                 title={`${service.title} gallery`}
-                className="absolute inset-0 block h-full w-full border-0 bg-transparent"
+                className="block h-[min(145vw,780px)] w-full border-0 bg-transparent lg:absolute lg:inset-0 lg:h-full"
                 loading="lazy"
               />
             </div>
           ) : service.heroVideo ? (
-            <div className="w-full self-stretch -my-6 md:-my-8">
+            <div className="mt-8 w-full px-6 lg:mt-0 lg:self-stretch lg:px-0 lg:-my-8">
               <video
                 src={assetUrl(service.heroVideo)}
-                className="block h-full min-h-full w-full object-cover"
+                className="block h-auto w-full object-contain lg:h-full lg:min-h-full lg:object-cover"
                 autoPlay
                 muted
                 loop
@@ -109,7 +109,7 @@ export function ServiceDetail() {
       </section>
 
       <section
-        className="px-[100px] py-16 md:py-[100px]"
+        className="px-6 py-16 md:px-[100px] md:py-[100px]"
         style={{
           backgroundColor: '#80c8c5',
           backgroundImage: 'linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5))',
@@ -131,7 +131,7 @@ export function ServiceDetail() {
         </div>
       </section>
 
-      <section className="border-y border-[var(--color-line)] bg-[#fbbf24] px-[100px] py-16 md:py-[150px]">
+      <section className="border-y border-[var(--color-line)] bg-[#fbbf24] px-6 py-16 md:px-[100px] md:py-[150px]">
         <div className="grid w-full grid-cols-1 gap-12 md:grid-cols-2">
           <Reveal
             className={
@@ -220,12 +220,12 @@ export function ServiceDetail() {
 
       {service.slug === 'character-design-development' && (
         <section className="border-t border-[var(--color-line)] px-6 py-16 md:px-10 md:py-20">
-          <div className="mx-auto grid max-w-[var(--container-wide)] grid-cols-1 gap-6 md:grid-cols-2 md:gap-8">
+          <div className="mx-auto grid max-w-[var(--container-wide)] grid-cols-1 gap-8 md:grid-cols-2 md:gap-8">
             {[
               { id: '12285377', title: 'Character design reel' },
               { id: '14661089', title: 'Character animation reel' },
             ].map((video) => (
-              <div key={video.id} className="relative w-full overflow-hidden bg-black pt-[56.25%]">
+              <div key={video.id} className="relative isolate w-full overflow-hidden bg-black pt-[56.25%]">
                 <iframe
                   src={`https://player.vimeo.com/video/${video.id}?title=0&byline=0&portrait=0`}
                   title={video.title}
@@ -270,7 +270,7 @@ export function ServiceDetail() {
       )}
 
       <section className="border-t border-[var(--color-line)] px-6 py-16 md:px-10 md:py-20">
-        <div className="mx-auto max-w-[var(--container-wide)]">
+        <div className="mx-auto max-w-[var(--container-wide)] overflow-visible">
           <p className="eyebrow mb-8">Other Services</p>
           <ServiceCardsSlider>
             {otherServices.map(({ service: s, index }) => (

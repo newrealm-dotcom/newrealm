@@ -51,13 +51,13 @@ export function ServiceCardsSlider({ children }: ServiceCardsSliderProps) {
   }
 
   return (
-    <div className="relative">
+    <div className="relative px-1">
       <button
         type="button"
         aria-label="Previous services"
         disabled={!canPrev}
         onClick={() => scrollPage(-1)}
-        className="absolute top-1/2 left-0 z-20 inline-flex h-10 w-10 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-[var(--color-line-strong)] bg-[var(--color-paper)] text-[var(--color-ink)] shadow-sm transition-opacity disabled:cursor-not-allowed disabled:opacity-30"
+        className="absolute top-1/2 left-0 z-20 inline-flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-[var(--color-line-strong)] bg-[var(--color-paper)] text-[var(--color-ink)] shadow-sm transition-opacity disabled:cursor-not-allowed disabled:opacity-30 sm:-translate-x-1/2"
       >
         <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
           <path
@@ -74,7 +74,7 @@ export function ServiceCardsSlider({ children }: ServiceCardsSliderProps) {
         aria-label="Next services"
         disabled={!canNext}
         onClick={() => scrollPage(1)}
-        className="absolute top-1/2 right-0 z-20 inline-flex h-10 w-10 translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-[var(--color-line-strong)] bg-[var(--color-paper)] text-[var(--color-ink)] shadow-sm transition-opacity disabled:cursor-not-allowed disabled:opacity-30"
+        className="absolute top-1/2 right-0 z-20 inline-flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-[var(--color-line-strong)] bg-[var(--color-paper)] text-[var(--color-ink)] shadow-sm transition-opacity disabled:cursor-not-allowed disabled:opacity-30 sm:translate-x-1/2"
       >
         <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
           <path
@@ -88,7 +88,7 @@ export function ServiceCardsSlider({ children }: ServiceCardsSliderProps) {
       </button>
       <div
         ref={scrollerRef}
-        className="grid snap-x snap-mandatory auto-cols-[100%] grid-flow-col gap-5 overflow-x-auto overscroll-x-contain pb-2 [scrollbar-width:thin] sm:auto-cols-[calc((100%-1.25rem)/2)] lg:auto-cols-[calc((100%-2.5rem)/3)]"
+        className="grid snap-x snap-mandatory auto-cols-[100%] grid-flow-col gap-5 overflow-x-auto overscroll-x-contain pb-2 [-ms-overflow-style:none] [scrollbar-width:thin] sm:auto-cols-[calc((100%-1.25rem)/2)] lg:auto-cols-[calc((100%-2.5rem)/3)]"
       >
         {children}
       </div>

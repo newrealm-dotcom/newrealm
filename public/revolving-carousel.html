@@ -171,6 +171,73 @@
       --ring-radius: min(40vmin, 290px);
     }
 
+    /* Mobile: one image per line instead of 3D ring */
+    @media (max-width: 767px) {
+      html, body {
+        overflow: auto;
+        height: auto;
+        min-height: 100%;
+      }
+
+      .stage {
+        perspective: none;
+        display: block;
+        height: auto;
+        min-height: 100%;
+        cursor: default;
+        touch-action: pan-y;
+        padding: 0.75rem 1rem 1.25rem;
+      }
+
+      .scene {
+        display: block;
+        height: auto;
+        transform: none;
+        transform-style: flat;
+      }
+
+      .ring {
+        display: flex;
+        flex-direction: column;
+        gap: 0.85rem;
+        width: 100%;
+        height: auto;
+        transform: none !important;
+        transform-style: flat;
+      }
+
+      .card {
+        position: relative;
+        inset: auto;
+        width: 100%;
+        height: auto;
+        aspect-ratio: 16 / 11;
+        transform: none !important;
+        filter: none !important;
+      }
+
+      body.set-packaging .card {
+        aspect-ratio: 1 / 1;
+      }
+
+      .card__frame {
+        box-shadow:
+          0 8px 20px rgba(0, 0, 0, 0.1),
+          0 0 0 1px rgba(0, 0, 0, 0.04);
+      }
+
+      .card.is-front .card__frame,
+      .card.is-hovered .card__frame,
+      .card:focus-visible .card__frame,
+      .card.is-front.is-hovered .card__frame,
+      .card.is-front:focus-visible .card__frame {
+        transform: none;
+        box-shadow:
+          0 8px 20px rgba(0, 0, 0, 0.1),
+          0 0 0 1px rgba(0, 0, 0, 0.04);
+      }
+    }
+
     /* Lightbox */
     .lightbox {
       position: fixed;
@@ -365,6 +432,8 @@
     const btnBackdrop = document.getElementById('lightbox-backdrop');
 
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const mobileStack = window.matchMedia('(max-width: 767px)');
+    let isMobileStack = mobileStack.matches;
     const n = IMAGES.length;
     const step = 360 / n;
 
@@ -425,32 +494,52 @@
       ring.appendChild(btn);
       cards.push(btn);
 
-      btn.style.transform = `rotateY(${i * step}deg) translateZ(${radius}px)`;
+      btn.style.transform = isMobileStack
+        ? 'none'
+        : `rotateY(${i * step}deg) translateZ(${radius}px)`;
 
       btn.addEventListener('pointerenter', () => {
+        if (isMobileStack) return;
         btn.classList.add('is-hovered');
         setHover(true);
       });
       btn.addEventListener('pointerleave', () => {
+        if (isMobileStack) return;
         btn.classList.remove('is-hovered');
         if (!cards.some((c) => c.classList.contains('is-hovered') || c === document.activeElement)) {
           setHover(false);
         }
       });
-      btn.addEventListener('focus', () => { btn.classList.add('is-hovered'); setHover(true); });
+      btn.addEventListener('focus', () => {
+        if (isMobileStack) return;
+        btn.classList.add('is-hovered');
+        setHover(true);
+      });
       btn.addEventListener('blur', () => {
+        if (isMobileStack) return;
         btn.classList.remove('is-hovered');
         if (!cards.some((c) => c.classList.contains('is-hovered'))) setHover(false);
       });
 
       btn.addEventListener('click', (e) => {
         if (didDrag) { e.preventDefault(); return; }
-        if (i === frontIndex) openLightbox(i);
+        if (isMobileStack || i === frontIndex) openLightbox(i);
         else snapCardToFront(i);
       });
     });
 
     function applyTransforms() {
+      if (isMobileStack) {
+        ring.style.transform = 'none';
+        cards.forEach((card) => {
+          card.style.transform = 'none';
+          card.style.filter = 'none';
+          card.style.zIndex = '';
+          card.classList.remove('is-front');
+        });
+        return;
+      }
+
       ring.style.transform = `rotateY(${angle}deg)`;
 
       let best = 0;
@@ -471,7 +560,7 @@
 
     function setHover(on) {
       hovering = on;
-      if (reduceMotion || lightboxOpen || !tabVisible || dragging || snapTo != null) {
+      if (isMobileStack || reduceMotion || lightboxOpen || !tabVisible || dragging || snapTo != null) {
         autoTarget = 0;
       } else {
         autoTarget = on ? cssNum('--hover-deg-per-sec', 32) : cssNum('--idle-deg-per-sec', 9);
@@ -505,7 +594,7 @@
     }
 
     stage.addEventListener('pointerdown', (e) => {
-      if (lightboxOpen || reduceMotion) return;
+      if (lightboxOpen || reduceMotion || isMobileStack) return;
       if (e.pointerType === 'mouse' && e.button !== 0) return;
       dragging = true;
       didDrag = false;
@@ -559,7 +648,7 @@
       const dt = Math.min((ts - lastTs) / 1000, 0.064);
       lastTs = ts;
 
-      if (!reduceMotion && !lightboxOpen && tabVisible) {
+      if (!reduceMotion && !lightboxOpen && tabVisible && !isMobileStack) {
         if (snapTo != null) {
           const diff = snapTo - angle;
           if (Math.abs(diff) < 0.05) {
@@ -581,7 +670,7 @@
       requestAnimationFrame(tick);
     }
 
-    if (!reduceMotion) {
+    if (!reduceMotion && !isMobileStack) {
       autoTarget = cssNum('--idle-deg-per-sec', 9);
       velocity = autoTarget;
       requestAnimationFrame(tick);
@@ -589,6 +678,20 @@
     applyTransforms();
 
     window.addEventListener('resize', () => {
+      const nextMobile = mobileStack.matches;
+      if (nextMobile !== isMobileStack) {
+        isMobileStack = nextMobile;
+        if (isMobileStack) {
+          velocity = 0;
+          autoTarget = 0;
+          snapTo = null;
+          dragging = false;
+        } else if (!reduceMotion) {
+          autoTarget = cssNum('--idle-deg-per-sec', 9);
+          velocity = autoTarget;
+          requestAnimationFrame(tick);
+        }
+      }
       radius = measureRadius();
       applyTransforms();
     });

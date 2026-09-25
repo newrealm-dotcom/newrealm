@@ -165,16 +165,16 @@ export function Home() {
       </section>
 
       {/* 04 — Experience / Differentiator */}
-      <section className="border-b border-[var(--color-line)] bg-[#eff1de] px-[100px] py-20 md:py-28">
+      <section className="border-b border-[var(--color-line)] bg-[#eff1de] px-8 py-24 sm:px-12 md:px-[100px] md:py-28">
         <div className="w-full">
           <p className="eyebrow mb-4">20+ Years of Design + Digital Experience</p>
-          <h2 className="mb-14 max-w-none font-[family-name:var(--font-display)] text-3xl font-medium text-[var(--color-ink)] md:whitespace-nowrap md:text-4xl">
+          <h2 className="mb-16 max-w-none font-[family-name:var(--font-display)] text-3xl font-medium text-[var(--color-ink)] md:mb-14 md:whitespace-nowrap md:text-4xl">
             Most studios specialize in traditional creative or in digital. New Realm has spent two decades in both.
           </h2>
-          <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="grid grid-cols-1 gap-14 sm:grid-cols-2 sm:gap-10 lg:grid-cols-4">
             {DIFFERENTIATORS.map((d) => (
               <Reveal key={d.label} className="flex flex-col items-center text-center">
-                <div className="mb-4 flex h-[150px] w-full items-center justify-center">
+                <div className="mb-5 flex h-[150px] w-full items-center justify-center">
                   <img
                     src={assetUrl(d.icon)}
                     alt=""
@@ -240,7 +240,7 @@ export function Home() {
       </section>
 
       {/* 06 — Why New Realm */}
-      <section className="border-b border-[var(--color-line)] px-6 py-20 md:px-10 md:py-28">
+      <section className="border-b border-[var(--color-line)] px-6 pb-10 pt-20 md:px-10 md:pb-16 md:pt-28">
         <div className="mx-auto max-w-[var(--container-wide)]">
           <p className="eyebrow mb-4">Why New Realm</p>
           <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4">
@@ -256,8 +256,8 @@ export function Home() {
 
       {/* 08 — About / Leadership */}
       <section className="relative z-10 overflow-visible border-b border-[var(--color-line)] bg-[var(--color-paper-2)]">
-        <div className="grid w-full grid-cols-1 gap-12 lg:grid-cols-2 lg:items-stretch lg:gap-8">
-          <Reveal className="flex flex-col justify-center px-6 py-20 md:px-10 md:py-28 lg:pl-[120px] lg:pr-12">
+        <div className="grid w-full grid-cols-1 gap-6 lg:grid-cols-2 lg:items-stretch lg:gap-8">
+          <Reveal className="flex flex-col justify-center px-6 pb-10 pt-10 md:px-10 md:pb-28 md:pt-28 lg:pl-[120px] lg:pr-12">
             <p className="eyebrow mb-4">Owner &amp; Operator</p>
             <h2 className="font-[family-name:var(--font-display)] text-3xl font-medium text-[var(--color-ink)] md:text-4xl">
               {TEAM[0].name}

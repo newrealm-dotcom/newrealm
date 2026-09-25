@@ -42,7 +42,7 @@ export function Services() {
           backgroundImage: `url(${assetUrl('/services/service-boxes-bg.webp')})`,
         }}
       >
-        <div className="w-full px-6 pb-[50px] md:px-[100px] md:pb-0">
+        <div className="w-full px-5 pb-[50px] sm:px-8 md:px-[100px] md:pb-0">
           <div className="grid grid-cols-1 gap-5 md:grid-cols-2 md:gap-10 xl:grid-cols-3 xl:gap-[100px]">
             {SERVICES.map((s, i) => (
               <Reveal key={s.slug} delay={i * 60} className="min-w-0">

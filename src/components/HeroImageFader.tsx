@@ -18,20 +18,28 @@ export function HeroImageFader({
   transitionMs = 1000,
 }: HeroImageFaderProps) {
   const [active, setActive] = useState(0)
+  const [prev, setPrev] = useState<number | null>(null)
 
   useEffect(() => {
     if (images.length < 2) return
 
     const id = window.setInterval(() => {
-      setActive((i) => (i + 1) % images.length)
+      setActive((i) => {
+        setPrev(i)
+        return (i + 1) % images.length
+      })
     }, intervalMs)
 
     return () => window.clearInterval(id)
   }, [images.length, intervalMs])
 
-  if (images.length === 0) return null
+  useEffect(() => {
+    if (prev === null) return
+    const id = window.setTimeout(() => setPrev(null), transitionMs)
+    return () => window.clearTimeout(id)
+  }, [prev, transitionMs])
 
-  const transition = `opacity ${transitionMs}ms ease-in-out, filter ${transitionMs}ms ease-in-out`
+  if (images.length === 0) return null
 
   return (
     <div className="relative w-full lg:h-[650px]">
@@ -43,16 +51,21 @@ export function HeroImageFader({
       />
       {images.map((src, i) => {
         const isActive = i === active
+        const isOutgoing = i === prev
+        const visible = isActive || isOutgoing
         return (
           <img
             key={src}
             src={assetUrl(src)}
             alt=""
-            className={`absolute inset-0 h-full w-full object-contain ${isActive ? 'z-[1]' : 'z-0'}`}
+            className={`absolute inset-0 h-full w-full object-contain ${
+              isActive ? 'z-[2]' : isOutgoing ? 'z-[1]' : 'z-0'
+            }`}
             style={{
-              opacity: isActive ? 1 : 0,
-              filter: isActive ? 'blur(0px)' : 'blur(16px)',
-              transition,
+              opacity: isActive ? 1 : isOutgoing ? 0 : 0,
+              filter: isActive ? 'blur(0px)' : 'blur(18px)',
+              transition: `opacity ${transitionMs}ms ease-in-out, filter ${transitionMs}ms ease-in-out`,
+              pointerEvents: visible ? 'auto' : 'none',
             }}
           />
         )

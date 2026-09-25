@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { SEO } from '../components/SEO'
 import { Reveal } from '../components/Reveal'
@@ -8,6 +9,56 @@ import { HeroImageFader } from '../components/HeroImageFader'
 import { assetUrl } from '../lib/assetUrl'
 import { NotFound } from './NotFound'
 
+function ResultsLightbox({
+  src,
+  alt,
+  onClose,
+}: {
+  src: string
+  alt: string
+  onClose: () => void
+}) {
+  useEffect(() => {
+    const prevOverflow = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+
+    const onKey = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') onClose()
+    }
+    window.addEventListener('keydown', onKey)
+    return () => {
+      document.body.style.overflow = prevOverflow
+      window.removeEventListener('keydown', onKey)
+    }
+  }, [onClose])
+
+  return (
+    <div
+      className="fixed inset-0 z-[100] flex items-center justify-center bg-black/85 p-4 md:p-8"
+      role="dialog"
+      aria-modal="true"
+      aria-label={alt || 'Results image'}
+      onClick={onClose}
+    >
+      <button
+        type="button"
+        onClick={onClose}
+        className="absolute right-4 top-4 z-[101] border border-white/30 bg-black/40 px-3 py-2 text-sm text-white hover:bg-black/60"
+        aria-label="Close lightbox"
+      >
+        Close
+      </button>
+      <img
+        src={src}
+        alt={alt}
+        decoding="async"
+        className="max-h-[min(92vh,100%)] max-w-[min(96vw,100%)] object-contain"
+        onClick={(event) => event.stopPropagation()}
+      />
+    </div>
+  )
+}
+
 /**
  * Shared case-study layout for every /work/:slug page.
  * Copy an existing PROJECTS entry and fill hero / resultsImage / clientUrl —
@@ -16,6 +67,7 @@ import { NotFound } from './NotFound'
 export function CaseStudy() {
   const { slug } = useParams<{ slug: string }>()
   const project = slug ? getProjectBySlug(slug) : undefined
+  const [lightboxOpen, setLightboxOpen] = useState(false)
 
   if (!project) return <NotFound />
 
@@ -144,32 +196,37 @@ export function CaseStudy() {
 
       {/* Results — full width, 40% copy / 60% image, 50px side padding */}
       <section className="border-y border-[var(--color-line)] bg-[#fbbf24] py-16 md:py-20">
-        <div className="grid w-full grid-cols-1 items-center gap-10 px-[50px] lg:grid-cols-[2fr_3fr] lg:gap-12">
+        <div className="grid w-full grid-cols-1 items-center gap-10 px-6 sm:px-[50px] lg:grid-cols-[2fr_3fr] lg:gap-12">
           <div className="flex flex-col justify-center">
             <p className="eyebrow mb-3">The Results</p>
             <p className="text-lg text-[var(--color-ink-dim)]">{project.results}</p>
           </div>
           {resultsImage ? (
             <div className="w-full">
-              {project.clientUrl ? (
-                <a href={project.clientUrl} target="_blank" rel="noopener noreferrer">
-                  <img
-                    src={assetUrl(resultsImage)}
-                    alt=""
-                    className="h-auto w-full object-contain"
-                  />
-                </a>
-              ) : (
+              <button
+                type="button"
+                onClick={() => setLightboxOpen(true)}
+                className="block w-full cursor-zoom-in border-0 bg-transparent p-0 text-left"
+                aria-label={`View larger: ${project.client} results`}
+              >
                 <img
                   src={assetUrl(resultsImage)}
-                  alt=""
+                  alt={`${project.client} results`}
                   className="h-auto w-full object-contain"
                 />
-              )}
+              </button>
             </div>
           ) : null}
         </div>
       </section>
+
+      {lightboxOpen && resultsImage ? (
+        <ResultsLightbox
+          src={assetUrl(resultsImage)}
+          alt={`${project.client} results`}
+          onClose={() => setLightboxOpen(false)}
+        />
+      ) : null}
 
       {related.length > 0 && (
         <section className="px-6 py-16 md:px-10 md:py-20">

@@ -64,8 +64,8 @@ export function Nav() {
       ref={headerRef}
       className="sticky top-0 z-40 border-b border-[var(--color-line)] bg-[var(--color-paper)]/95 backdrop-blur-sm"
     >
-      <nav className="mx-auto grid max-w-[var(--container-wide)] grid-cols-[1fr_auto_1fr] items-center px-6 py-3 md:px-10">
-        <ul className="hidden items-center gap-8 justify-self-start md:flex">
+      <nav className="relative mx-auto grid max-w-[var(--container-wide)] grid-cols-[1fr_auto_1fr] items-center px-6 py-3 md:px-10">
+        <ul className="hidden items-center gap-8 justify-self-start md:col-start-1 md:flex">
           <li ref={servicesRef} className="relative">
             <button
               type="button"
@@ -118,20 +118,9 @@ export function Nav() {
           ))}
         </ul>
 
-        <button
-          type="button"
-          className="flex h-9 w-9 flex-col items-center justify-center gap-1.5 justify-self-start md:hidden"
-          aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
-          aria-expanded={mobileOpen}
-          onClick={() => setMobileOpen((v) => !v)}
-        >
-          <span className={`h-px w-6 bg-[var(--color-ink)] transition-transform ${mobileOpen ? 'translate-y-[3.5px] rotate-45' : ''}`} />
-          <span className={`h-px w-6 bg-[var(--color-ink)] transition-transform ${mobileOpen ? '-translate-y-[3.5px] -rotate-45' : ''}`} />
-        </button>
-
         <Link
           to="/"
-          className="group relative flex items-center justify-self-center"
+          className="group relative col-span-3 flex items-center justify-self-center md:col-span-1 md:col-start-2"
           onClick={() => setMobileOpen(false)}
         >
           <img
@@ -147,13 +136,35 @@ export function Nav() {
           />
         </Link>
 
-        <div className="hidden justify-self-end md:block">
+        <div className="hidden justify-self-end md:col-start-3 md:block">
           <Link to="/contact" className="btn btn-primary">
             Start a Project
           </Link>
         </div>
 
-        <div className="w-9 justify-self-end md:hidden" aria-hidden="true" />
+        <button
+          type="button"
+          className="absolute right-6 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 flex-col items-center justify-center gap-1.5 md:hidden"
+          aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
+          aria-expanded={mobileOpen}
+          onClick={() => setMobileOpen((v) => !v)}
+        >
+          <span
+            className={`h-0.5 w-6 origin-center bg-[var(--color-ink)] transition-transform duration-200 ${
+              mobileOpen ? 'translate-y-[7px] rotate-45' : ''
+            }`}
+          />
+          <span
+            className={`h-0.5 w-6 bg-[var(--color-ink)] transition-opacity duration-200 ${
+              mobileOpen ? 'opacity-0' : 'opacity-100'
+            }`}
+          />
+          <span
+            className={`h-0.5 w-6 origin-center bg-[var(--color-ink)] transition-transform duration-200 ${
+              mobileOpen ? '-translate-y-[7px] -rotate-45' : ''
+            }`}
+          />
+        </button>
       </nav>
 
       {mobileOpen &&
