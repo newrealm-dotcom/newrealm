@@ -5,6 +5,7 @@ import { ProjectCard } from '../components/ProjectCard'
 import { ServiceCard } from '../components/ServiceCard'
 import { ServiceCardsSlider } from '../components/ServiceCardsSlider'
 import { BrandingMasonryGallery } from '../components/BrandingMasonryGallery'
+import { CharactersMasonryGallery } from '../components/CharactersMasonryGallery'
 import { getServiceBySlug, SERVICES } from '../data/services'
 import { getLatestProjects } from '../data/projects'
 import { ProjectCardsSlider } from '../components/ProjectCardsSlider'
@@ -213,6 +214,34 @@ export function ServiceDetail() {
       {service.slug === 'branding-graphic-design' && (
         <section className="w-full overflow-x-hidden border-t border-[var(--color-line)]">
           <BrandingMasonryGallery />
+        </section>
+      )}
+
+      {service.slug === 'character-design-development' && (
+        <section className="border-t border-[var(--color-line)] px-6 py-16 md:px-10 md:py-20">
+          <div className="mx-auto grid max-w-[var(--container-wide)] grid-cols-1 gap-6 md:grid-cols-2 md:gap-8">
+            {[
+              { id: '12285377', title: 'Character design reel' },
+              { id: '14661089', title: 'Character animation reel' },
+            ].map((video) => (
+              <div key={video.id} className="relative w-full overflow-hidden bg-black pt-[56.25%]">
+                <iframe
+                  src={`https://player.vimeo.com/video/${video.id}?title=0&byline=0&portrait=0`}
+                  title={video.title}
+                  className="absolute inset-0 h-full w-full border-0"
+                  allow="autoplay; fullscreen; picture-in-picture"
+                  allowFullScreen
+                  loading="lazy"
+                />
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {service.slug === 'character-design-development' && (
+        <section className="w-full overflow-x-hidden border-t border-[var(--color-line)]">
+          <CharactersMasonryGallery />
         </section>
       )}
 

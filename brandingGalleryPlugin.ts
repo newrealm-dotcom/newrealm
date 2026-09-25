@@ -2,26 +2,50 @@ import fs from 'node:fs'
 import path from 'node:path'
 import type { Plugin } from 'vite'
 
-const VIRTUAL_ID = 'virtual:branding-gallery'
-const RESOLVED_ID = `\0${VIRTUAL_ID}`
 const IMAGE_EXT = /\.(webp|jpe?g|png|gif|avif)$/i
 
-export interface BrandingGalleryImageMeta {
+export interface PublicGalleryImageMeta {
   src: string
   alt: string
   width: number
   height: number
 }
 
-function altFromFilename(filename: string): string {
-  const base = filename.replace(/\.[^.]+$/, '')
-  const spaced = base.replace(/[-_]+/g, ' ').replace(/\s+/g, ' ').trim()
-  if (!spaced) return 'Branding work sample'
-  return `${spaced.charAt(0).toUpperCase()}${spaced.slice(1)} branding work`
+interface GalleryFolderConfig {
+  /** Folder under public/, e.g. "branding" */
+  folder: string
+  /** Virtual module id, e.g. "virtual:branding-gallery" */
+  virtualId: string
+  /** Exported const name in the virtual module */
+  exportName: string
+  /** Suffix used in generated alt text */
+  altSuffix: string
 }
 
-function publicSrc(filename: string): string {
-  return `/branding/${filename.split('/').map(encodeURIComponent).join('/')}`
+const GALLERY_FOLDERS: GalleryFolderConfig[] = [
+  {
+    folder: 'branding',
+    virtualId: 'virtual:branding-gallery',
+    exportName: 'brandingGalleryImages',
+    altSuffix: 'branding work',
+  },
+  {
+    folder: 'characters',
+    virtualId: 'virtual:characters-gallery',
+    exportName: 'charactersGalleryImages',
+    altSuffix: 'character design work',
+  },
+]
+
+function altFromFilename(filename: string, altSuffix: string): string {
+  const base = filename.replace(/\.[^.]+$/, '')
+  const spaced = base.replace(/[-_]+/g, ' ').replace(/\s+/g, ' ').trim()
+  if (!spaced) return altSuffix.charAt(0).toUpperCase() + altSuffix.slice(1)
+  return `${spaced.charAt(0).toUpperCase()}${spaced.slice(1)} ${altSuffix}`
+}
+
+function publicSrc(folder: string, filename: string): string {
+  return `/${folder}/${filename.split('/').map(encodeURIComponent).join('/')}`
 }
 
 /** Minimal dimension probe for common formats (no extra dependency). */
@@ -56,11 +80,7 @@ function readImageSize(filePath: string): { width: number; height: number } {
     }
 
     // PNG
-    if (
-      buf[0] === 0x89 &&
-      buf.toString('ascii', 1, 4) === 'PNG' &&
-      buf.length >= 24
-    ) {
+    if (buf[0] === 0x89 && buf.toString('ascii', 1, 4) === 'PNG' && buf.length >= 24) {
       return {
         width: buf.readUInt32BE(16),
         height: buf.readUInt32BE(20),
@@ -89,56 +109,67 @@ function readImageSize(filePath: string): { width: number; height: number } {
   return fallback
 }
 
-function scanBrandingDir(brandingDir: string): BrandingGalleryImageMeta[] {
-  if (!fs.existsSync(brandingDir)) return []
+function scanPublicFolder(
+  dir: string,
+  folder: string,
+  altSuffix: string,
+): PublicGalleryImageMeta[] {
+  if (!fs.existsSync(dir)) return []
 
   return fs
-    .readdirSync(brandingDir)
+    .readdirSync(dir)
     .filter((name) => IMAGE_EXT.test(name) && !name.startsWith('.'))
     .sort((a, b) => a.localeCompare(b, undefined, { sensitivity: 'base' }))
     .map((filename) => {
-      const size = readImageSize(path.join(brandingDir, filename))
+      const size = readImageSize(path.join(dir, filename))
       return {
-        src: publicSrc(filename),
-        alt: altFromFilename(filename),
+        src: publicSrc(folder, filename),
+        alt: altFromFilename(filename, altSuffix),
         width: size.width,
         height: size.height,
       }
     })
 }
 
-function buildModuleSource(brandingDir: string): string {
-  const images = scanBrandingDir(brandingDir)
-  return `export const brandingGalleryImages = ${JSON.stringify(images, null, 2)}\n`
-}
-
 /**
- * Virtual module that always mirrors files currently in public/branding.
- * Drop a new image in that folder → it appears in the masonry gallery.
+ * Virtual modules that mirror image files in public/{branding,characters}.
+ * Drop a new image in those folders → it appears in the matching masonry gallery.
  */
-export function brandingGalleryPlugin(rootDir: string): Plugin {
-  const brandingDir = path.resolve(rootDir, 'public/branding')
+export function publicGalleryPlugin(rootDir: string): Plugin {
+  const folders = GALLERY_FOLDERS.map((config) => ({
+    ...config,
+    dir: path.resolve(rootDir, 'public', config.folder),
+    resolvedId: `\0${config.virtualId}`,
+  }))
+
+  const byResolved = new Map(folders.map((f) => [f.resolvedId, f]))
+  const byVirtual = new Map(folders.map((f) => [f.virtualId, f]))
 
   return {
-    name: 'branding-gallery',
+    name: 'public-gallery',
     resolveId(id) {
-      if (id === VIRTUAL_ID) return RESOLVED_ID
+      const match = byVirtual.get(id)
+      return match ? match.resolvedId : undefined
     },
     load(id) {
-      if (id === RESOLVED_ID) return buildModuleSource(brandingDir)
+      const match = byResolved.get(id)
+      if (!match) return undefined
+      const images = scanPublicFolder(match.dir, match.folder, match.altSuffix)
+      return `export const ${match.exportName} = ${JSON.stringify(images, null, 2)}\n`
     },
     configureServer(server) {
-      if (!fs.existsSync(brandingDir)) {
-        fs.mkdirSync(brandingDir, { recursive: true })
+      for (const folder of folders) {
+        if (!fs.existsSync(folder.dir)) {
+          fs.mkdirSync(folder.dir, { recursive: true })
+        }
+        server.watcher.add(folder.dir)
       }
-      server.watcher.add(brandingDir)
 
       const refresh = (file: string) => {
-        if (!file.startsWith(brandingDir)) return
-        const mod = server.moduleGraph.getModuleById(RESOLVED_ID)
-        if (mod) {
-          server.moduleGraph.invalidateModule(mod)
-        }
+        const match = folders.find((folder) => file.startsWith(folder.dir))
+        if (!match) return
+        const mod = server.moduleGraph.getModuleById(match.resolvedId)
+        if (mod) server.moduleGraph.invalidateModule(mod)
         server.ws.send({ type: 'full-reload', path: '*' })
       }
 
@@ -148,3 +179,6 @@ export function brandingGalleryPlugin(rootDir: string): Plugin {
     },
   }
 }
+
+/** @deprecated Use publicGalleryPlugin — kept name for existing vite.config imports. */
+export const brandingGalleryPlugin = publicGalleryPlugin
