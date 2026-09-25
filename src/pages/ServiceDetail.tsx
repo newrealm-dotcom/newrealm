@@ -4,6 +4,7 @@ import { Reveal } from '../components/Reveal'
 import { ProjectCard } from '../components/ProjectCard'
 import { ServiceCard } from '../components/ServiceCard'
 import { ServiceCardsSlider } from '../components/ServiceCardsSlider'
+import { BrandingMasonryGallery } from '../components/BrandingMasonryGallery'
 import { getServiceBySlug, SERVICES } from '../data/services'
 import { getLatestProjects } from '../data/projects'
 import { ProjectCardsSlider } from '../components/ProjectCardsSlider'
@@ -208,6 +209,12 @@ export function ServiceDetail() {
           </Reveal>
         </div>
       </section>
+
+      {service.slug === 'branding-graphic-design' && (
+        <section className="w-full overflow-x-hidden border-t border-[var(--color-line)]">
+          <BrandingMasonryGallery />
+        </section>
+      )}
 
       {relatedProjects.length > 0 && (
         <section className="px-6 py-16 md:px-10 md:py-20">
