@@ -1,127 +1,11 @@
 import { useEffect, useState } from 'react'
+import {
+  brandingGalleryImages,
+  type BrandingGalleryImage,
+} from 'virtual:branding-gallery'
 import { assetUrl } from '../lib/assetUrl'
 
-interface GalleryImage {
-  src: string
-  alt: string
-  width: number
-  height: number
-}
-
-/**
- * Branding gallery sources — swap entries here to change the set.
- * Paths are under /public/branding.
- */
-const BRANDING_GALLERY_IMAGES: GalleryImage[] = [
-  {
-    src: '/branding/greenbag-lunch2go-lunchmenu.webp',
-    alt: 'Lunch2Go green bag lunch menu design',
-    width: 650,
-    height: 864,
-  },
-  {
-    src: '/branding/greenbag-lunch2go-perfectgift.webp',
-    alt: 'Lunch2Go perfect gift green bag packaging design',
-    width: 649,
-    height: 864,
-  },
-  {
-    src: '/branding/logo-BDE.webp',
-    alt: 'Black Diamond Enterprises logo',
-    width: 1200,
-    height: 637,
-  },
-  {
-    src: '/branding/logo-EKP.webp',
-    alt: 'Eric Kline Productions logo',
-    width: 1200,
-    height: 827,
-  },
-  {
-    src: '/branding/logo-TGB.webp',
-    alt: 'The Green Bag logo',
-    width: 1099,
-    height: 1200,
-  },
-  {
-    src: '/branding/logo-beetyoutoit.webp',
-    alt: 'Beet You To It logo',
-    width: 1200,
-    height: 1200,
-  },
-  {
-    src: '/branding/logo-cousin-chichi.webp',
-    alt: 'Cousin Chi Chi logo',
-    width: 1200,
-    height: 1200,
-  },
-  {
-    src: '/branding/logo-olfattorio.webp',
-    alt: 'Olfattorio logo',
-    width: 1200,
-    height: 550,
-  },
-  {
-    src: '/branding/logo-stoopidcookies.webp',
-    alt: 'Stoopid Cookies logo',
-    width: 1200,
-    height: 508,
-  },
-  {
-    src: '/branding/logo-thedapper-dachsie.webp',
-    alt: 'The Dapper Dachsie logo',
-    width: 1200,
-    height: 1200,
-  },
-  {
-    src: '/branding/logo-thedirty-dachsie.webp',
-    alt: 'The Dirty Dachsie logo',
-    width: 1000,
-    height: 1000,
-  },
-  {
-    src: '/branding/quick-lunch2go-menu-front.webp',
-    alt: 'Quick Lunch2Go menu front cover',
-    width: 930,
-    height: 1200,
-  },
-  {
-    src: '/branding/quick-lunch2go-menu-inside.webp',
-    alt: 'Quick Lunch2Go menu inside spread',
-    width: 930,
-    height: 1200,
-  },
-  {
-    src: '/branding/signature%20soups.webp',
-    alt: 'Signature soups wallpaper design',
-    width: 1000,
-    height: 667,
-  },
-  {
-    src: '/branding/signaturebites-wallpaper.webp',
-    alt: 'Signature bites wallpaper design',
-    width: 1000,
-    height: 667,
-  },
-  {
-    src: '/branding/signaturesalads-wallpaper.webp',
-    alt: 'Signature salads wallpaper design',
-    width: 1000,
-    height: 667,
-  },
-  {
-    src: '/branding/signaturesmoothies-wallpaper.webp',
-    alt: 'Signature smoothies wallpaper design',
-    width: 1000,
-    height: 667,
-  },
-  {
-    src: '/branding/signaturewraps-wallpaper.webp',
-    alt: 'Signature wraps wallpaper design',
-    width: 1000,
-    height: 667,
-  },
-]
+type GalleryImage = BrandingGalleryImage
 
 function fisherYatesShuffle<T>(items: T[]): T[] {
   const next = items.slice()
@@ -295,7 +179,7 @@ function GalleryLightbox({
  */
 export function BrandingMasonryGallery() {
   // Shuffle once on first client render (Vite SPA — no SSR hydration mismatch).
-  const [shuffled] = useState(() => fisherYatesShuffle(BRANDING_GALLERY_IMAGES))
+  const [shuffled] = useState(() => fisherYatesShuffle([...brandingGalleryImages]))
   const [columnCount, setColumnCount] = useState(() =>
     typeof window !== 'undefined' ? columnCountForWidth(window.innerWidth) : 4,
   )
