@@ -15,7 +15,7 @@ Single source of truth for this build's visual and content direction.
 
 ## 1. Creative Direction
 
-**Positioning.** New Realm Graphics has 20+ years of experience spanning traditional
+**Positioning.** New Realm Graphics has 25+ years of experience spanning traditional
 design/print and modern web/digital marketing — a combination most studios have
 specialized away from. The site should read as an established, multidisciplinary
 creative-and-digital agency, not a template-driven "graphic design company" site.

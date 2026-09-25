@@ -1,6 +1,6 @@
 # New Realm Graphics
 
-Marketing site for New Realm Graphics — a Fort Lauderdale, FL design studio with 20+ years of
+Marketing site for New Realm Graphics — a Fort Lauderdale, FL design studio with 25+ years of
 experience across branding, website design and development, print, packaging, and digital
 marketing (SEO/AEO). This is a multi-page, editorial-style marketing site: Home, Work
 (portfolio + case studies), Services (overview + 7 individual service pages), About, Insights
@@ -34,7 +34,7 @@ npm run preview  # preview the production build
 ## Content sourcing
 
 All company facts on this site (the "Trends come and go. Diamonds are forever." tagline,
-20+ years in business, the Mike Franco bio, the service descriptions, and the two portfolio
+25+ years in business, the Mike Franco bio, the service descriptions, and the two portfolio
 case studies — Popcorn Frights Film Festival and Black Diamond Enterprises) are grounded in
 real, supplied content from newrealm.com. Nothing has been invented: no fabricated metrics,
 testimonials, additional team members, client logos, or case-study numbers. Where a real

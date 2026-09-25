@@ -12,7 +12,7 @@ import { assetUrl } from '../lib/assetUrl'
 
 const DIFFERENTIATORS = [
   {
-    label: '20+ Years Experience',
+    label: '25+ Years Experience',
     detail: 'Design and digital work spanning two decades, not a recent pivot.',
     icon: '/icon-20plus-years.png',
   },
@@ -62,7 +62,7 @@ export function Home() {
     <>
       <SEO
         title="New Realm Graphics — Branding, Websites & Digital Marketing"
-        description="New Realm Graphics is a Fort Lauderdale, FL design studio with 20+ years of experience in branding, website design and development, print, packaging, SEO/AEO, and digital marketing for small businesses."
+        description="New Realm Graphics is a Fort Lauderdale, FL design studio with 25+ years of experience in branding, website design and development, print, packaging, SEO/AEO, and digital marketing for small businesses."
         path="/"
         jsonLd={{
           '@context': 'https://schema.org',
@@ -91,7 +91,7 @@ export function Home() {
                 We Build Brands, Websites, and Digital Experiences That Perform.
               </h1>
               <p className="prose-copy mt-8 text-lg text-[var(--color-ink-dim)]">
-                20+ years of design and digital experience — brand identity, website design and development, print and
+                25+ years of design and digital experience — brand identity, website design and development, print and
                 packaging, digital marketing, and SEO/AEO — for small businesses that need to look credible and be found
                 online.
               </p>
@@ -167,9 +167,10 @@ export function Home() {
       {/* 04 — Experience / Differentiator */}
       <section className="border-b border-[var(--color-line)] bg-[#eff1de] px-8 py-24 sm:px-12 md:px-[100px] md:py-28">
         <div className="w-full">
-          <p className="eyebrow mb-4">20+ Years of Design + Digital Experience</p>
-          <h2 className="mb-16 max-w-none font-[family-name:var(--font-display)] text-3xl font-medium text-[var(--color-ink)] md:mb-14 md:whitespace-nowrap md:text-4xl">
-            Most studios specialize in traditional creative or in digital. New Realm has spent two decades in both.
+          <p className="eyebrow mb-4">25+ Years of Design + Digital Experience</p>
+          <h2 className="mb-16 max-w-none font-[family-name:var(--font-display)] text-3xl font-medium text-[var(--color-ink)] md:mb-14 md:text-4xl">
+            Most studios specialize in traditional creative or in digital.{' '}
+            <span className="md:block">New Realm has spent two decades in both.</span>
           </h2>
           <div className="grid grid-cols-1 gap-14 sm:grid-cols-2 sm:gap-10 lg:grid-cols-4">
             {DIFFERENTIATORS.map((d) => (
@@ -277,12 +278,12 @@ export function Home() {
             <div className="group relative mx-auto flex h-full w-full max-w-lg items-end justify-center lg:absolute lg:inset-x-0 lg:bottom-0 lg:top-[-50px] lg:h-auto lg:mx-0 lg:max-w-none">
               <div className="relative h-full w-full max-w-full">
                 <img
-                  src={assetUrl('mike-franco.png?v=12')}
+                  src={assetUrl('mikefranco.png?v=12')}
                   alt={TEAM[0].name}
                   className="h-full w-full max-w-full object-contain object-bottom transition-none group-hover:opacity-0"
                 />
                 <img
-                  src={assetUrl('mike-franco-hover.png?v=12')}
+                  src={assetUrl('mikefranco-wink.png?v=12')}
                   alt=""
                   aria-hidden="true"
                   className="pointer-events-none absolute inset-0 h-full w-full object-contain object-bottom opacity-0 transition-none group-hover:opacity-100"

@@ -41,7 +41,7 @@ export function Footer() {
           <div className="col-span-2 md:col-span-1">
             <img src={assetUrl('nrg-logo-white.png')} alt="New Realm Graphics" className="h-32 w-auto" />
             <p className="mt-4 max-w-xs text-sm text-[var(--color-paper)]/60">
-              A Fort Lauderdale, FL design studio with 20+ years of experience across branding, website design and
+              A Fort Lauderdale, FL design studio with 25+ years of experience across branding, website design and
               development, print, packaging, and digital marketing.
             </p>
           </div>

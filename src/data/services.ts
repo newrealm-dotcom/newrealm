@@ -26,7 +26,7 @@ export interface ServiceCategory {
 
 /**
  * Grounded in the verbatim service copy supplied from newrealm.com/services/
- * (see git history) plus the real facts established there: 20+ years,
+ * (see git history) plus the real facts established there: 25+ years,
  * HTML/CSS/PHP/Java experience, an in-house team spanning digital marketing,
  * motion graphics, animation, copywriting and PR, and systems built so
  * clients can update their own sites or hand updates back to New Realm.

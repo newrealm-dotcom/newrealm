@@ -7,7 +7,7 @@ import { assetUrl } from '../lib/assetUrl'
 
 const CREDIBILITY = [
   {
-    label: '20+ Years',
+    label: '25+ Years',
     detail: 'Design and digital experience',
     icon: '/icon-20plus-years.png',
   },
@@ -130,7 +130,7 @@ export function About() {
     <>
       <SEO
         title="About"
-        description="New Realm Graphics is a Fort Lauderdale, FL design studio with 20+ years of experience combining traditional design and print with modern website development and digital marketing."
+        description="New Realm Graphics is a Fort Lauderdale, FL design studio with 25+ years of experience combining traditional design and print with modern website development and digital marketing."
         path="/about"
         jsonLd={{
           '@context': 'https://schema.org',
@@ -144,10 +144,10 @@ export function About() {
           <div>
             <p className="eyebrow mb-4">About</p>
             <h1 className="max-w-2xl font-[family-name:var(--font-display)] text-4xl font-medium text-[var(--color-ink)] md:text-5xl">
-              20+ years of design + digital experience.
+              25+ years of design + digital experience.
             </h1>
             <p className="prose-copy mt-6 text-lg text-[var(--color-ink-dim)]">
-              New Realm Graphics is a Fort Lauderdale, FL design studio that has spent over 20 years helping small
+              New Realm Graphics is a Fort Lauderdale, FL design studio that has spent over 25 years helping small
               businesses succeed online. The studio combines experience in traditional design and print with modern
               website development and digital marketing — a combination most agencies specialize away from as the
               industry has split into separate creative and digital shops.
