@@ -30,6 +30,14 @@ export interface Project {
   heroImages?: string[]
   /** Case-study Results image (60% right column) */
   resultsImage?: string
+  /** Client quote shown under the homepage case-study button */
+  testimonial?: {
+    quote: string
+    name: string
+    role: string
+    url: string
+    urlLabel: string
+  }
 }
 
 /**
@@ -60,6 +68,14 @@ export const PROJECTS: Project[] = [
     cover: '/projects/work-unearthed.webp',
     hero: '/projects/hero-unearthed.webp',
     resultsImage: '/projects/results-unearthed.webp',
+    testimonial: {
+      quote:
+        "We just wanted to tell you how much we appreciate your hard work on this website! Since launching, we have received numerous compliments and positive feedback. This process required significant time and attention to detail so thank you, again, for your efforts. We are so grateful for what you've helped us create! :)",
+      name: 'Savannah Asbury',
+      role: 'Marketing Director',
+      url: 'https://www.unearthedrentals.com',
+      urlLabel: 'www.unearthedrentals.com',
+    },
   },
   {
     slug: 'black-diamond-enterprises',

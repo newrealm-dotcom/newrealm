@@ -207,6 +207,33 @@ export function Home() {
               <Link to={`/work/${featured.slug}`} className="btn btn-secondary mt-8">
                 Read the case study
               </Link>
+              {featured.testimonial ? (
+                <figure className="mt-8 border-l-[3px] border-[#00419f] bg-[var(--color-paper-2)] px-6 py-6">
+                  <blockquote>
+                    <p className="font-[family-name:var(--font-display)] text-lg leading-snug text-[var(--color-ink)] md:text-xl">
+                      <span
+                        aria-hidden="true"
+                        className="mr-1 font-[family-name:var(--font-display)] text-5xl leading-none text-[#00419f]"
+                      >
+                        “
+                      </span>
+                      {featured.testimonial.quote}
+                    </p>
+                  </blockquote>
+                  <figcaption className="mt-5 border-t border-[var(--color-line)] pt-4">
+                    <p className="text-sm font-semibold text-[var(--color-ink)]">{featured.testimonial.name}</p>
+                    <p className="text-sm text-[var(--color-ink-dim)]">{featured.testimonial.role}</p>
+                    <a
+                      href={featured.testimonial.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="link-underline mt-1 inline-block text-sm text-[var(--color-ink)]"
+                    >
+                      {featured.testimonial.urlLabel}
+                    </a>
+                  </figcaption>
+                </figure>
+              ) : null}
             </Reveal>
             <Reveal delay={100}>
               <div className="border border-[var(--color-line)] p-8">
