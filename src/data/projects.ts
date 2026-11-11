@@ -78,6 +78,37 @@ export const PROJECTS: Project[] = [
     },
   },
   {
+    slug: 'totally-gone-bananas',
+    client: 'Totally Gone Bananas',
+    industry: 'Recipe Blog/Food App',
+    tag: 'Website Design',
+    categories: ['web'],
+    summary:
+      'A personal side project built through vibe coding: a website dedicated to all things bananas.',
+    servicesProvided: ['Website design & development'],
+    challenge:
+      'Totally Gone Bananas started with a simple question: what do you do with the bunch on your counter? The answer had grown into recipes, a blog, a podcast, merch, and a growing guide, and it all needed one home. Visitors show up in different moods. Some have overripe bananas and ten minutes. Others just want to wander through banana history and culture.',
+    strategy:
+      'Organize around the questions people actually ask in the kitchen: how ripe are the bananas, how much time is there, and what are you craving? Recipes are sorted by category and searchable by ingredient, with notes on whether a banana is best for blending, baking, or freezing. The blog, the growing zones guide, and member features give curious fans somewhere to explore, save favorites, and share their own recipes.',
+    solution:
+      'New Realm designed and built a bright, playful site that puts the recipes up front and keeps the personality close behind. A banana mascot in sunglasses, a banana-themed game, and an easy path from “what should I make?” to a finished loaf make it feel like a fun community rather than a recipe database, one that works as well for a five-minute smoothie as for a weekend bake.',
+    results:
+      'A website that gives Totally Gone Bananas room to grow from a collection of recipes into a full banana destination, where home bakers can find the right recipe for whatever they have on the counter and fans can keep exploring the blog, the growing guide, and the community. Members save favorites, rate what they bake, and share their own banana wins.',
+    sourceUrl: 'https://www.totallygonebananas.com',
+    clientUrl: 'https://www.totallygonebananas.com',
+    cover: '/work-tgb.webp',
+    hero: '/TGB-screen.webp',
+    resultsImage: '/results-tgb.webp',
+    testimonial: {
+      quote:
+        "We just wanted to tell you how much we appreciate your hard work on this website! Since launching, we have received numerous compliments and positive feedback. This process required significant time and attention to detail so thank you, again, for your efforts. We are so grateful for what you've helped us create! :)",
+      name: 'Savannah Asbury',
+      role: 'Marketing Director',
+      url: 'https://www.totallygonebananas.com',
+      urlLabel: 'www.totallygonebananas.com',
+    },
+  },
+  {
     slug: 'black-diamond-enterprises',
     client: 'Black Diamond Enterprises',
     industry: 'Business Venture',
